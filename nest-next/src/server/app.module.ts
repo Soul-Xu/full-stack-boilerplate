@@ -11,7 +11,6 @@ import { CommonModule } from './models/index.module';
 import { HttpModule } from '@nestjs/axios';
 import { APP_FILTER, APP_PIPE, APP_GUARD } from '@nestjs/core';
 import { HttpExceptionFilter } from 'src/server/core/filter/http-exception.filter';
-// import { RolesGuard } from './core/guards/roles.guard';
 
 @Global()
 @Module({

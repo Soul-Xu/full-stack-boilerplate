@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React, { useState } from 'react';
 import { useRouter } from 'next/router'
 import {
@@ -18,7 +19,8 @@ const pathMap = {
   '3': "center"
 }
 
-const PageLayout: React.FC = (children: any) => {
+// @ts-ignore
+const PageLayout: React.FC = ({children}) => {
   const router = useRouter()
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -32,7 +34,8 @@ const PageLayout: React.FC = (children: any) => {
   };
 
   return (
-    <Layout>
+    <div>
+      <Layout>
       <Sider theme="light" trigger={null} collapsible collapsed={collapsed}>
         <div className="demo-logo-vertical" />
         <Menu
@@ -75,11 +78,23 @@ const PageLayout: React.FC = (children: any) => {
               height: 64,
             }}
           />
-          <Breadcrumb style={{ marginBottom: '16px' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
+          <Breadcrumb 
+            style={{ marginBottom: '16px' }}
+            items={[
+              {
+                title: 'Home',
+              },
+              {
+                title: <a href="">Application Center</a>,
+              },
+              {
+                title: <a href="">Application List</a>,
+              },
+              {
+                title: 'An Application',
+              },
+            ]}
+          />
         </Header>
         <div style={{ 
             // margin: '24px 16px',
@@ -91,11 +106,12 @@ const PageLayout: React.FC = (children: any) => {
               background: colorBgContainer,
             }}
           >
-           children
+          { children }
           </Content>
         </div>
       </Layout>
-    </Layout>
+      </Layout>
+    </div>
   );
 };
 

@@ -1,14 +1,15 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import { authSlice } from "./authSlice"
-import { counterSlice } from './counterSlice'
+import { loginSlice } from "./loginSlice"
 import { createWrapper } from "next-redux-wrapper"
 
 const makeStore = () =>
   configureStore({
     reducer: {
-      [authSlice.name]: authSlice.reducer
+      auth: authSlice.reducer,
+      login: loginSlice.reducer
     },
-    devTools: true,
+    devTools: true
   })
 
 export type AppStore = ReturnType<typeof makeStore>

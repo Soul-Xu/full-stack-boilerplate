@@ -9,6 +9,12 @@ import { ViewService } from './view.service';
 export class ViewController {
   constructor(private viewService: ViewService) {}
 
+  @Get('login')
+  @ApiTags('Login')
+  public async showLogin(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
   // page
   @Get('home')
   @ApiTags('Home')
@@ -28,12 +34,6 @@ export class ViewController {
   @ApiTags('Center')
   @ApiResponse({ status: 200, description: '首页' })
   public async showCenter(@Req() req: Request, @Res() res: Response) {
-    await this.viewService.handler(req, res);
-  }
-
-  @Post('login')
-  @ApiTags('Home')
-  public async showLogin(@Req() req: Request, @Res() res: Response) {
     await this.viewService.handler(req, res);
   }
 
