@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { AppState } from "./store"
+import { AppState } from "../store"
 import { HYDRATE } from "next-redux-wrapper"
 
 export interface UserState {
@@ -27,9 +27,8 @@ export const loginSlice = createSlice({
   reducers: {
     // Action to set the authentication status
     setUserInfo(state, action) {
-      console.log("setUserInfo", state, action)
       state.userInfo = action.payload
-    }
+    },
 
     // Special reducer for hydrating the state. Special case for next-redux-wrapper
     // extraReducers: {

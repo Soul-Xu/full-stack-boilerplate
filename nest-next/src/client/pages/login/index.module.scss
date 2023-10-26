@@ -1,13 +1,20 @@
 .login-container {
   width: 100vw;
   height: 100vh;
-  background: #fff;
-  color: #373737;
+  background: #c0c0c0;
+  padding-top: 80px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
 
   .login-form {
+    margin: 0 auto;
+    color: #333;
+    background: #fff;
+    min-width: 320px;
+    max-width: 420px;
+    max-height: 280px;
+    box-sizing: border-box;
 
     .form-title {
       margin: 20px;

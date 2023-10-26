@@ -9,6 +9,12 @@ import { ViewService } from './view.service';
 export class ViewController {
   constructor(private viewService: ViewService) {}
 
+  @Get('/')
+  @ApiTags('/')
+  public async showIndex(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
   @Get('login')
   @ApiTags('Login')
   public async showLogin(@Req() req: Request, @Res() res: Response) {

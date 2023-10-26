@@ -1,26 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { CreateLoginDto } from './dto/create-login.dto';
-import { UpdateLoginDto } from './dto/update-login.dto';
+
+const authMap = ["admin", "leon"]
 
 @Injectable()
 export class LoginService {
-  create(createLoginDto: CreateLoginDto) {
-    return 'This action adds a new login';
-  }
-
-  findAll() {
-    return `This action returns all login`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} login`;
-  }
-
-  update(id: number, updateLoginDto: UpdateLoginDto) {
-    return `This action updates a #${id} login`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} login`;
+  login(body: any) {
+    const { username, password } = body
+    if (authMap.indexOf(username) > -1) {
+      return {
+        code: 200,
+        data: {
+          isAuth: true
+        },
+        message: "登录成功"
+      }
+    } else {
+      return {
+        code: 500,
+        data: {
+          isAuth: false
+        },
+        message: "登录失败"
+      }
+    }
   }
 }
