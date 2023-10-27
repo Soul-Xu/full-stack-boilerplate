@@ -15,8 +15,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
-
-    console.log('1111-exception');
     const url = request.originalUrl; // 请求路由
     const status =
       exception instanceof HttpException

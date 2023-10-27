@@ -34,46 +34,4 @@ export class HomeController {
     private readonly homeService: HomeService,
     private readonly http: HttpService,
   ) {}
-
-  @Post()
-  // @UsePipes(new JoiValidationPipe(createCatSchema))
-  create(@Body(new ValidationPipe()) createHomeDto: CreateHomeDto) {
-    return this.homeService.create(createHomeDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.homeService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.homeService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateHomeDto: UpdateHomeDto) {
-    return this.homeService.update(+id, updateHomeDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.homeService.remove(+id);
-  }
-
-  // @ApiExcludeController()
-  @Get('/polymerization/homepage')
-  getApi(): Observable<AxiosResponse<any>> {
-    // throw new HttpException(
-    //   {
-    //     status: HttpStatus.FORBIDDEN,
-    //     error: 'This is a custom message',
-    //   },
-    //   HttpStatus.FORBIDDEN,
-    // );
-    console.log('api-home');
-    return this.http
-      .get('https://portalserver-uat.musegaming.co/polymerization/homepage')
-      .pipe(map((response) => response.data));
-  }
 }

@@ -15,12 +15,6 @@ export class ViewController {
     await this.viewService.handler(req, res);
   }
 
-  @Get('login')
-  @ApiTags('Login')
-  public async showLogin(@Req() req: Request, @Res() res: Response) {
-    await this.viewService.handler(req, res);
-  }
-
   // page
   @Get('home')
   @ApiTags('Home')
@@ -29,39 +23,79 @@ export class ViewController {
     await this.viewService.handler(req, res);
   }
 
-  @Get('event')
-  @ApiTags('Event')
-  @ApiResponse({ status: 200, description: '首页' })
-  public async showEvent(@Req() req: Request, @Res() res: Response) {
+  @Get('login')
+  @ApiTags('Login')
+  @ApiResponse({ status: 200, description: '登录页' })
+  public async showLogin(@Req() req: Request, @Res() res: Response) {
+    console.log("login-server")
     await this.viewService.handler(req, res);
   }
 
-  @Get('center')
-  @ApiTags('Center')
+  @Get('receiveAssign')
+  @ApiTags('ReceiveAssign')
   @ApiResponse({ status: 200, description: '首页' })
-  public async showCenter(@Req() req: Request, @Res() res: Response) {
+  public async showReceiveAssign(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
+  @Get('diagnosisRecovery')
+  @ApiTags('DiagnosisRecovery')
+  @ApiResponse({ status: 200, description: '首页' })
+  public async showDiagnosisRecovery(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
+  @Get('review')
+  @ApiTags('Review')
+  @ApiResponse({ status: 200, description: '首页' })
+  public async showReview(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
+  @Get('secondLevelAudit')
+  @ApiTags('SecondLevelAudit')
+  @ApiResponse({ status: 200, description: '首页' })
+  public async showSecondLevelAudit(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
+  @Get('eventReportAudit')
+  @ApiTags('EventReportAudit')
+  @ApiResponse({ status: 200, description: '首页' })
+  public async showEventReportAudit(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
+  @Get('departmentCounterSign')
+  @ApiTags('DepartmentCounterSign')
+  @ApiResponse({ status: 200, description: '首页' })
+  public async showDepartmentCounterSign(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
+  @Get('reportCoordination')
+  @ApiTags('ReportCoordination')
+  @ApiResponse({ status: 200, description: '首页' })
+  public async showReportCoordination(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
+  @Get('statement')
+  @ApiTags('Statement')
+  @ApiResponse({ status: 200, description: '首页' })
+  public async showStatement(@Req() req: Request, @Res() res: Response) {
     await this.viewService.handler(req, res);
   }
 
   @Get('_next*')
-  @ApiTags('Others')
+  @ApiTags('_next*')
   public async assets(@Req() req: Request, @Res() res: Response) {
     await this.viewService.handler(req, res);
   }
 
   @Get('favicon.ico')
-  @ApiTags('Others')
+  @ApiTags('favicon.ico')
   public async favicon(@Req() req: Request, @Res() res: Response) {
     await this.viewService.handler(req, res);
-  }
-
-  // api
-  @ApiTags('Test')
-  @Get('/polymerization/homepage')
-  public async testApi(@Req() req: Request, @Res() res: Response) {
-    console.log('11111');
-    return {
-      content: 'api success',
-    };
   }
 }

@@ -9,8 +9,6 @@
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -19,9 +17,14 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "~/*": ["public/*"]
-    }
+      "*": [
+        "@/*"
+      ]
+    },
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitAny": false,
+    "noEmit": true,
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",

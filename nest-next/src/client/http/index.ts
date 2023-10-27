@@ -58,7 +58,7 @@ const request = (url: string, req: Record<string, any> = {}, conf: AxiosReqConfi
     headers: {
       "Content-Type": "application/json; charset=utf-8",
       // "X-Forwarded-For": storage.get("ip") || "",
-      // "X-Access-Token": token,
+      // "T": token,
       "Access-Control-Allow-Origin": "*",
       withCredentials: true,
       crossDomain: true
@@ -83,12 +83,12 @@ const request = (url: string, req: Record<string, any> = {}, conf: AxiosReqConfi
       .catch((error) => {
         closeLoading(conf.timestamp);
         if (type(error) === "String") {
-          toast.error(error);
+          // toast.error(error);
         } else if (error?.message) {
-          toast.error(error.message);
+          // toast.error(error.message);
         } else {
           try {
-            toast.error(JSON.stringify(error.message));
+            // toast.error(JSON.stringify(error.message));
           } catch (e) {
             // message.error('')
             console.log("axios catch JSON.stringify err");
@@ -174,7 +174,7 @@ axios.interceptors.response.use(
 
 const goLogin = (message: string) => {
   // storage.del("token"); // 清除token
-  toast.error(message);
+  // toast.error(message);
   setTimeout(() => {
     // 跳转到登录页, 带上登录后重定向本页面路径参数
     const pathname = window.location.pathname;

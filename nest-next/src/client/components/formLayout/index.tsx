@@ -17,7 +17,7 @@ interface IFormObjProps {
   layout?: string | any,
   labelAlign?: string | any,
   items: Array<any>,
-  customElements: any
+  customElements?: any
 }
 
 interface IChangePageFunc {
@@ -54,13 +54,23 @@ const FormLayout = ({
         { items.length > 0 && items.map((item: any, index: number) => {
           if (item.type === 'input') {
             return (
-              <Form.Item {...item?.formItemLayout} required={item?.require} colon={false} label={item.label || ""} key={item.key} name={item.name} className={classNames("header-input-wrap")}>
+              <Form.Item 
+                {...item?.formItemLayout} 
+                required={item?.require} 
+                colon={false} 
+                label={item.label || ""} 
+                key={item.key} 
+                name={item.name} 
+                className={classNames("header-input-wrap")}
+                rules={item?.rules}
+              >
                 <input
+                  style={item.style}
                   value={item.value}
                   onChange={(e) => item.callback(e)}
                   placeholder={item.placeholder}
                   placeholder-class="placeholder-class"
-                  type="text"
+                  type={item.subType || "text" }
                 />
               </Form.Item>
             )

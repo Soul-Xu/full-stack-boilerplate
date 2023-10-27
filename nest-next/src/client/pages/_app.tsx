@@ -1,16 +1,13 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// import "styles/global.css"
-// import "antd/dist/antd.css"
-import Head from 'next/head'
 import { Suspense, useEffect } from "react"
+import Head from 'next/head'
 import type { AppProps } from "next/app"
 import { wrapper } from "../store/store"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Suspense fallback="loading">
-      {/* @ts-ignore */}
       <Head>
+        <link rel="icon" href="../public/favicon.ico" />
         <title>云速易连</title>
       </Head>
       <Component {...pageProps} />

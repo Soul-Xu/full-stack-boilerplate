@@ -1,0 +1,17 @@
+.home-container {
+  height: auto;
+  min-height: 500px;
+  background: #fff;
+  padding-top: 15px;;
+
+  .container-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .container-content {
+    padding-left: 27px;
+    padding-right: 27px;
+  }
+}

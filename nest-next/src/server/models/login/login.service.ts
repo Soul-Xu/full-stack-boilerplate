@@ -8,7 +8,7 @@ export class LoginService {
     const { username, password } = body
     if (authMap.indexOf(username) > -1) {
       return {
-        code: 200,
+        code: 0,
         data: {
           isAuth: true
         },

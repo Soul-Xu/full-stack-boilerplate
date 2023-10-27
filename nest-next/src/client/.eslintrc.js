@@ -1,25 +1,52 @@
 module.exports = {
+  env: {
+    browser: true,
+    es2021: true
+  },
+  extends: [
+    'plugin:react/recommended',
+    'eslint:recommended',
+    'plugin:import/typescript',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'prettier',
+    'standard'
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: 'src/client/tsconfig.json',
-    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module'
   },
-  plugins: ['@typescript-eslint/eslint-plugin'],
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
+  plugins: [
+    'react',
+    '@typescript-eslint',
+    'react-hooks'
   ],
-  root: true,
-  env: {
-    jest: true,
-  },
-  ignorePatterns: ['.eslintrc.js'],
   rules: {
-    '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }]
+    'no-use-before-define': 0,
+    'react/react-in-jsx-scope': 0,
+    'no-undef': 0,
+    '@typescript-eslint/no-var-requires': 0,
+    quotes: 0,
+    semi: 0,
+    'space-before-function-paren': 0,
+    '@typescript-eslint/no-unused-vars': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    'no-unused-vars': 0,
+    'no-unreachable-loop': 0,
+    '@typescript-eslint/no-empty-function': 0,
+    'import/no-absolute-path': 0,
+    "multiline-ternary": 0,
+    "react/no-unescaped-entities": "off",
+    indent: 0,
+    "linebreak-style": 0
   },
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  }
 }

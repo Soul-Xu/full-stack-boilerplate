@@ -17,7 +17,6 @@ export class LoginController {
 
   @Post()
   async login(@Body() body: any) {
-    console.log("nest-login", body)
     return this.loginService.login(body);
   }
 }

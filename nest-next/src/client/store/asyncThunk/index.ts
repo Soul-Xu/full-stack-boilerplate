@@ -9,6 +9,7 @@ type Thunk = Record<AsyncThunkMap, (data?: any) => AsyncThunk<any, void, {}>>;
 // 自动生成thunk
 const autoAsyncThunk = (name: string, method: Method, url: string) => {
   return createAsyncThunk(name, async (data?: any) => {
+    console.log("autoAsyncThunk", name, data)
     return await settingServe({ data, method, url });
   });
 };
@@ -19,7 +20,7 @@ for (const key in asyncThunkMap) {
   let url: string;
   if (typeof asyncThunkMap[key] === "string") {
     customMethod = (asyncThunkMap[key] as Method).toLocaleLowerCase() as Method;
-    url = "/api/setting/settings_by_main_type_sub_type";
+    url = "";
   } else {
     customMethod = (asyncThunkMap[key] as AsyncThunkValueObject).method.toLocaleLowerCase() as Method;
     url = (asyncThunkMap[key] as AsyncThunkValueObject).url;
