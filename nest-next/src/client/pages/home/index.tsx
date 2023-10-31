@@ -7,6 +7,11 @@ const classNames = classnames.bind(styles);
 
 /** components */
 import BasicInformation from '../../funcComponents/basicInformation/index';
+import HandleInformation from '../../funcComponents/handleInformation/index';
+import ReasonAnalysis from '../../funcComponents/reasonAnalysis/index';
+import RecoveryProcess from '../../funcComponents/recoveryProcess/index';
+import EffectAnalysis from '../../funcComponents/effectAnalysis/index';
+import AttachmentUpload from '../../funcComponents/attachmentUpload/index';
 
 interface HomeProps {
 }
@@ -19,6 +24,11 @@ const Home: NextPage = () => {
         <div className={classNames("container-title")}>事件管理</div>
         <div className={classNames("container-content")}>
           <BasicInformation />
+          <HandleInformation />
+          <ReasonAnalysis />
+          <RecoveryProcess />
+          <EffectAnalysis />
+          <AttachmentUpload />
         </div>
       </section>
     </PageLayout>

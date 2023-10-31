@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Suspense fallback="loading">
       <Head>
         <link rel="icon" href="../public/favicon.ico" />
-        <title>云速易连</title>
+        <title>ITTL流程开发</title>
       </Head>
       <Component {...pageProps} />
     </Suspense>

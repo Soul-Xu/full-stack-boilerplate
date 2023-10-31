@@ -27,10 +27,16 @@ const BasicInformation = () => {
     dispatch({ type, payload: val });
   };
   
-  const formObj = {
-    name: 'form',
-    layout: '',
-    labelAlign: "right",
+  const formObj1 = {
+    name: 'form1',
+    layout: "horizontal",
+    labelCol: {
+      span: 3
+    },
+    wrapperCol: {
+      span: 24
+    },
+    labelAlign: "left",
     items: [
       {
         type: 'input',
@@ -39,6 +45,17 @@ const BasicInformation = () => {
         value: title,
         label: '标题',
         name: 'title',
+        useItemStyle: true,
+        style: {
+          width: "100%",
+          height: "30px",
+          fontSize: "14px",
+          color: "rgba(0, 0, 0, 0.25)",
+          border: "1px solid #9d9d9d",
+          borderRadius: "6px",
+          background: "#ffffff",
+          padding: "4px 11px"
+        },
         require,
         placeholder: '请输入标题',
         callback: (e: any) => {
@@ -52,12 +69,38 @@ const BasicInformation = () => {
         value: description,
         label: '描述',
         name: 'description',
+        useItemStyle: true,
+        style: {
+          width: "100%",
+          // height: "30px",
+          fontSize: "14px",
+          color: "rgba(0, 0, 0, 0.25)",
+          border: "1px solid #9d9d9d",
+          borderRadius: "6px",
+          background: "#ffffff",
+          // padding: "4px 11px"
+        },
         require,
         placeholder: '请输入描述',
         callback: (e: any) => {
           setState("update", { description: e.target.value.trim()})
         }
       },
+    ],
+  }
+
+  const formObj2 = {
+    name: 'form2',
+    inRow: true,
+    layout: "horizontal",
+    labelCol: {
+      span: 10
+    },
+    wrapperCol: {
+      span: 14
+    },
+    labelAlign: "right",
+    items: [
       {
         type: 'input',
         subType: "text",
@@ -65,7 +108,8 @@ const BasicInformation = () => {
         value: taskId,
         label: '事件编号',
         name: 'taskId',
-        placeholder: '请输入事件编号',
+        disabled: true,
+        placeholder: '自动获取',
         callback: (e: any) => {
           setState("update", { taskId: e.target.value.trim()})
         }
@@ -77,7 +121,8 @@ const BasicInformation = () => {
         value: registrant,
         label: '登记人',
         name: 'registrant',
-        placeholder: '请输入登记人',
+        disabled: true,
+        placeholder: '自动获取',
         callback: (e: any) => {
           setState("update", { registrant: e.target.value.trim()})
         }
@@ -89,56 +134,46 @@ const BasicInformation = () => {
         value: registrationTime,
         label: '登记时间',
         name: 'registrationTime',
-        placeholder: '请输入登记时间',
+        disabled: true,
+        placeholder: '自动获取',
         callback: (e: any) => {
           setState("update", { registrationTime: e.target.value.trim()})
         }
       },
       {
-        type: 'input',
-        subType: "text",
+        type: 'select',
         key: 'discoveryChannels',
         value: discoveryChannels,
         label: '发现渠道',
         name: 'discoveryChannels',
+        require: true,
         placeholder: '请输入发现渠道',
-        callback: (e: any) => {
-          setState("update", { discoveryChannels: e.target.value.trim()})
+        callback: (value: any) => {
+          setState("update", { discoveryChannels: value})
         }
       },
       {
-        type: 'input',
-        subType: "text",
+        type: 'select',
         key: 'reportedBy',
         value: reportedBy,
         label: '报告人',
         name: 'reportedBy',
+        require: true,
         placeholder: '请输入报告人',
-        callback: (e: any) => {
-          setState("update", { reportedBy: e.target.value.trim()})
+        callback: (value: any) => {
+          setState("update", { reportedBy: value})
         }
-      },
-      {
-        type: 'input',
-        subType: "text",
-        key: 'discoverer',
-        value: discoverer,
-        label: '发现人',
-        name: 'discoverer',
-        placeholder: '请输入发现人',
-        callback: (e: any) => {
-          setState("update", { discoverer: e.target.value.trim()})
-        }
-      },
+      }
     ],
   }
-
 
   return (
     <>
       <CustomLayout title="基本信息" />
       <div>
-        <FormLayout formObj={formObj} />
+        <FormLayout formObj={formObj1} />
+        <div className={classNames("divide-line")}></div>
+        <FormLayout formObj={formObj2} />
       </div>
     </>
   )

@@ -67,7 +67,7 @@ const Login: React.FC = () => {
   }, [password, username])
 
   const formObj = {
-    name: 'form',
+    name: 'login-form',
     layout: 'vertical',
     labelAlign: "right",
     style: { maxWidth: 600 },
@@ -94,7 +94,7 @@ const Login: React.FC = () => {
           color: "#242424",
           lineHeight: "24px"
         },
-        name: 'username',
+        // name: 'username',
         placeholder: '请输入账号',
         callback: (e: any) => {
           setState("update", { username: e.target.value.trim()})
@@ -122,7 +122,7 @@ const Login: React.FC = () => {
           color: "#242424",
           lineHeight: "24px"
         },
-        name: 'password',
+        // name: 'password',
         placeholder: '请输入密码',
         callback: (e: any) => setState("update", { password: e.target.value.trim()})
       }
