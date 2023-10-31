@@ -32,7 +32,7 @@ function getItem(
 
 const items: MenuItem[] = [
   // @ts-ignore
-  getItem('首页', '0', <HomeOutlined />),
+  getItem('事件管理', '0', <HomeOutlined />),
   // @ts-ignore
   getItem('接收和分配', '1', <ApartmentOutlined />),
   // @ts-ignore
@@ -57,8 +57,8 @@ const itemsMap = {
   "2": "diagnosisRecovery",
   "3": "review",
   "4": "secondLevelAudit",
-  "5": "departmentCounterSign",
-  "6": "eventReportAudit",
+  "5": "eventReportAudit",
+  "6": "departmentCounterSign",
   "7": "reportCoordination",
   "8": "statement"
 }

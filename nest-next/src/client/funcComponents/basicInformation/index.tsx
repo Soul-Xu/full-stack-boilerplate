@@ -19,7 +19,8 @@ const initialState = {
   discoverer: "", // 发现者
 }
 
-const BasicInformation = () => {
+const BasicInformation = (props: any) => {
+  const { basicFormDetail } = props
   const dispatchRedux = useDispatch();
   const [data, dispatch] = useImmerReducer(reducer, initialState);
   const { title, description, taskId, registrant, registrationTime, discoveryChannels, reportedBy, discoverer } = data as any;
@@ -167,13 +168,16 @@ const BasicInformation = () => {
     ],
   }
 
+  const formRenderMain = formObj1
+  const formRenderDetail = basicFormDetail || formObj2
+
   return (
     <>
       <CustomLayout title="基本信息" />
       <div>
-        <FormLayout formObj={formObj1} />
+        <FormLayout formObj={formRenderMain} />
         <div className={classNames("divide-line")}></div>
-        <FormLayout formObj={formObj2} />
+        <FormLayout formObj={formRenderDetail} />
       </div>
     </>
   )

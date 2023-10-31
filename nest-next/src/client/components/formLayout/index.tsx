@@ -4,8 +4,6 @@ import { Form, Input, Select, DatePicker, Upload, Button, Row, Col } from 'antd'
 import classnames from 'classnames/bind';
 import style from './index.module.scss';
 import dayjs from 'dayjs'
-import CustomUploadFile from '../uploadFile/index';
-import CustomUploadImage from '../uploadImage/index';
 
 const { RangePicker } = DatePicker;
 const { Option } = Select;
@@ -236,6 +234,7 @@ const FormLayout = ({
                 label={item.label || ""} key={item.key} name={item.name} className={classNames("form-item")}>
                 <Dragger>
                   <p className="ant-upload-drag-icon">
+                    {/* @ts-ignore */}
                     <InboxOutlined />
                   </p>
                   <p className="ant-upload-hint">{item.title}</p>

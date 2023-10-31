@@ -25,7 +25,8 @@ const initialState = {
   problemSolvedTime: "" // 问题解决时间
 }
 
-const HandleInformation = () => {
+const HandleInformation = (props) => {
+  const { handleForm } = props
   const dispatchRedux = useDispatch();
   const [data, dispatch] = useImmerReducer(reducer, initialState);
   const { 
@@ -162,8 +163,9 @@ const HandleInformation = () => {
         type: 'select',
         key: 'processingPriority',
         value: processingPriority,
-        label: '影响',
+        label: '处理优先级',
         name: 'processingPriority',
+        disabled: true,
         callback: (value) => {
           setState("update", { processingPriority: value})
         }
@@ -205,11 +207,13 @@ const HandleInformation = () => {
     ],
   }
 
+  const handleRender = handleForm || formObj
+
   return (
     <>
       <CustomLayout title="处理信息" />
       <div>
-        <FormLayout formObj={formObj} />
+        <FormLayout formObj={handleRender} />
       </div>
     </>
   )

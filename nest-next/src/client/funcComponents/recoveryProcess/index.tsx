@@ -1,6 +1,7 @@
 import FormLayout from '../../components/formLayout';
 import CustomLayout from '../customLayout/index';
 import { Checkbox } from 'antd'
+import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import styles from "./index.module.scss"
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
@@ -25,7 +26,8 @@ const initialState = {
   businessImpactOverview: "" // 业务影响概述
 }
 
-const RecoveryProcess = () => {
+const RecoveryProcess = (props) => {
+  const { form3, showForm4 } = props
   const dispatchRedux = useDispatch();
   const [data, dispatch] = useImmerReducer(reducer, initialState);
   const { 
@@ -239,6 +241,7 @@ const RecoveryProcess = () => {
     wrapperCol: {
       span: 20
     },
+    useItemStyle: false,
     labelAlign: "left",
     items: [
       {
@@ -267,6 +270,9 @@ const RecoveryProcess = () => {
     ],
   }
 
+  const formRender3 = form3 || formObj3
+  const formRender4 = showForm4 || true
+
   return (
     <>
       <CustomLayout title="恢复过程" />
@@ -275,8 +281,8 @@ const RecoveryProcess = () => {
         <div className={classNames("divide-line")}></div>
         <FormLayout formObj={formObj2} />
         <div className={classNames("divide-line")}></div>
-        <FormLayout formObj={formObj3} />
-        <FormLayout formObj={formObj4} />
+        <FormLayout formObj={formRender3} />
+        { formRender4 && <FormLayout formObj={formObj4} /> }
       </div>
     </>
   )

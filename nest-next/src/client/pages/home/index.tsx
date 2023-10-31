@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   return(
     // @ts-ignore
     <PageLayout>
-      <section className={classNames("home-container")}>
+      <section className={classNames("container")}>
         <div className={classNames("container-title")}>事件管理</div>
         <div className={classNames("container-content")}>
           <BasicInformation />
