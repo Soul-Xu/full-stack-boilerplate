@@ -87,6 +87,20 @@ export class ViewController {
     await this.viewService.handler(req, res);
   }
 
+  @Get('404')
+  @ApiTags('404')
+  @ApiResponse({ status: 200, description: '404' })
+  public async show404(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
+  @Get('500')
+  @ApiTags('500')
+  @ApiResponse({ status: 200, description: '500' })
+  public async show500(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
   @Get('_next*')
   @ApiTags('_next*')
   public async assets(@Req() req: Request, @Res() res: Response) {
