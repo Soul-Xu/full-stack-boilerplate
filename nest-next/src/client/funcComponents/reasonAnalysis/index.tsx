@@ -50,7 +50,7 @@ const ReasonAnalysis = () => {
   };
   
   const formObj = {
-    name: 'form',
+    name: 'reason-analysis-form',
     layout: "horizontal",
     labelAlign: "left",
     items: [
@@ -64,34 +64,34 @@ const ReasonAnalysis = () => {
         name: 'reasonClassify',
         options: reasons,
         placeholder: '请选择原因分类',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           console.log("select", value)
           setState("update", { reasonClassify: value})
         }
       },
       {
         type: 'input',
-        subType: "area",
+        subtype: "area",
         key: 'luckyTip',
         value: luckyTip,
         label: (
           <span className={classNames("form-item-label-option")}>做得好及幸运的地方</span>
         ),
         name: 'luckyTip',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { luckyTip: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "area",
+        subtype: "area",
         key: 'triggerAnalysis',
         value: triggerAnalysis,
         label: (
           <span className={classNames("form-item-label-option")}>触发条件及原因分析</span>
         ),
         name: 'triggerAnalysis',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { triggerAnalysis: e.target.value.trim()})
         }
       },

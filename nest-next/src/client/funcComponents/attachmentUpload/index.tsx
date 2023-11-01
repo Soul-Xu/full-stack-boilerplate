@@ -24,31 +24,25 @@ const AttachmentUpload = () => {
   const formObj = {
     name: 'upload-form',
     layout: "horizontal",
-    labelCol: {
-      span: 4
-    },
-    wrapperCol: {
-      span: 8
-    },
     labelAlign: "left",
     items: [
       {
         type: 'uploadFile',
         key: 'files',
-        value: files,
+        fileList: [],
         label: (
           <span className={classNames("form-item-label-option")}>上传附件</span>
         ),
         name: 'files',
         title: "上传附件",
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { files: e.target.value.trim()})
         }
       },
       {
         type: 'uploadImage',
         key: 'images',
-        value: images,
+        fileList: [],
         label: (
           <span className={classNames("form-item-label-option")}>图片上传</span>
         ),
@@ -59,7 +53,7 @@ const AttachmentUpload = () => {
           width: "70%",
           margin: "0 auto"
         },
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { images: e.target.value.trim()})
         }
       },

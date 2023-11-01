@@ -13,6 +13,7 @@ import PageLayout from '../../layout/PageLayout'
 import BasicInformation from '../../funcComponents/basicInformation/index';
 import HandleInformation from '../../funcComponents/handleInformation/index';
 import AttachmentUpload from '../../funcComponents/attachmentUpload/index';
+import SubmitElement from '../../funcComponents/submitElement/index';
 
 interface ReceiveAssignProps {
 }
@@ -44,54 +45,51 @@ const ReceiveAssign: NextPage = () => {
   };
 
   const basicForm = {
-    name: 'form2',
+    name: 'receive-basic-form',
     inRow: true,
     layout: "horizontal",
     labelAlign: "left",
     items: [
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'taskId',
         value: taskId,
         label: (
-          <span className={classNames("form-item-label")}>事件编号</span>
+          <span className={classNames("form-item-label-option")}>事件编号</span>
         ),
         name: 'taskId',
-        require: true,
         disabled: true,
         placeholder: '自动获取',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { taskId: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'registrant',
         value: registrant,
         label: (
-          <span className={classNames("form-item-label")}>登记人</span>
+          <span className={classNames("form-item-label-option")}>登记人</span>
         ),
         name: 'registrant',
-        require: true,
         placeholder: '自动获取',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { registrant: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'registrationTime',
         value: registrationTime,
         label: (
-          <span className={classNames("form-item-label")}>登记时间</span>
+          <span className={classNames("form-item-label-option")}>登记时间</span>
         ),
         name: 'registrationTime',
-        require: true,
         placeholder: '自动获取',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { registrationTime: e.target.value.trim()})
         }
       },
@@ -103,9 +101,9 @@ const ReceiveAssign: NextPage = () => {
           <span className={classNames("form-item-label")}>发现渠道</span>
         ),
         name: 'discoveryChannels',
-        require: true,
+        require: 1,
         placeholder: '请输入报告人',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { discoveryChannels: value})
         }
       },
@@ -114,25 +112,24 @@ const ReceiveAssign: NextPage = () => {
         key: 'reportedBy',
         value: reportedBy,
         label: (
-          <span className={classNames("form-item-label")}>报告人</span>
+          <span className={classNames("form-item-label-option")}>报告人</span>
         ),
         name: 'reportedBy',
-        require: true,
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { reportedBy: value})
         }
       },
       {
-        type: 'select',
+        type: 'datepicker',
         key: 'discoveryTime',
         value: discoveryTime,
         label: (
           <span className={classNames("form-item-label")}>发现时间</span>
         ),
         name: 'discoveryTime',
-        require: true,
+        require: 1,
         placeholder: '请输入报告人',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { discoveryTime: value})
         }
       }
@@ -140,23 +137,22 @@ const ReceiveAssign: NextPage = () => {
   }
 
   const handleForm = {
-    name: 'form',
+    name: 'receive-handle-form',
     inRow: true,
     layout: "horizontal",
     labelAlign: "left",
     items: [
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'status',
         value: status,
         label: (
-          <span className={classNames("form-item-label")}>状态</span>
+          <span className={classNames("form-item-label-option")}>状态</span>
         ),
         name: 'status',
-        require: true,
         disabled: true,
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { status: e.target.value.trim()})
         }
       },
@@ -165,11 +161,10 @@ const ReceiveAssign: NextPage = () => {
         key: 'impactSystem',
         value: impactSystem,
         label: (
-          <span className={classNames("form-item-label")}>影响系统</span>
+          <span className={classNames("form-item-label-option")}>影响系统</span>
         ),
         name: 'impactSystem',
-        require: true,
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { impactSystem: value})
         }
       },
@@ -181,8 +176,8 @@ const ReceiveAssign: NextPage = () => {
           <span className={classNames("form-item-label")}>处理组</span>
         ),
         name: 'handleGroup',
-        require: true,
-        callback: (value: any) => {
+        require: 1,
+        onChange: (value: any) => {
           setState("update", { handleGroup: value})
         }
       },
@@ -194,8 +189,8 @@ const ReceiveAssign: NextPage = () => {
           <span className={classNames("form-item-label")}>处理人</span>
         ),
         name: 'handler',
-        require: true,
-        callback: (value: any) => {
+        require: 1,
+        onChange: (value: any) => {
           setState("update", { handler: value})
         }
       },
@@ -211,6 +206,7 @@ const ReceiveAssign: NextPage = () => {
           <BasicInformation basicFormDetail={basicForm} />
           <HandleInformation handleForm={handleForm}/>
           <AttachmentUpload />
+          <SubmitElement />
         </div>
       </section>
     </PageLayout>

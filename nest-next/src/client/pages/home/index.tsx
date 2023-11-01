@@ -12,6 +12,7 @@ import ReasonAnalysis from '../../funcComponents/reasonAnalysis/index';
 import RecoveryProcess from '../../funcComponents/recoveryProcess/index';
 import EffectAnalysis from '../../funcComponents/effectAnalysis/index';
 import AttachmentUpload from '../../funcComponents/attachmentUpload/index';
+import SubmitElement from '../../funcComponents/submitElement/index';
 
 interface HomeProps {
 }
@@ -24,11 +25,12 @@ const Home: NextPage = () => {
         <h1 className={classNames("container-title")}>事件管理</h1>
         <div className={classNames("container-content")}>
           <BasicInformation />
-          <HandleInformation />
+          {/* <HandleInformation />
           <ReasonAnalysis />
           <RecoveryProcess />
           <EffectAnalysis />
           <AttachmentUpload />
+          <SubmitElement /> */}
         </div>
       </section>
     </PageLayout>

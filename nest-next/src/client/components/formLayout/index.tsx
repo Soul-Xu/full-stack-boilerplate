@@ -59,7 +59,7 @@ const FormLayout = ({
               { item.type === "select" && <Select {...item} /> }
               { item.type === "checkout" && 
                 <span>
-                  <Checkbox {...item} onChange={item.callback} />
+                  <Checkbox {...item} onChange={item.onChange} />
                   <span style={{marginLeft: "8px"}}>{item.name}</span>
                 </span>
               }
@@ -120,26 +120,11 @@ const FormLayout = ({
                     name={item.name} 
                     rules={item?.rules}
                   >
-                    { item?.subType !== "area" && (
-                      // <input
-                      //   style={item.style}
-                      //   value={item.value}
-                      //   onChange={(e) => item.callback(e)}
-                      //   placeholder={item.placeholder}
-                      //   placeholder-class={item.placeholderStyle}
-                      //   type={item?.subType }
-                      // />
+                    { item?.subtype !== "area" && (
                       <Input />
                     )}
-                    { item?.subType === "area" && (
+                    { item?.subtype === "area" && (
                       <TextArea 
-                        // showCount 
-                        // maxLength={100} 
-                        // style={item.style}
-                        // value={item.value}
-                        // placeholder={item.placeholder}
-                        // placeholder-class="placeholder-class"
-                        // onChange={(e) => item.callback(e)} 
                       />
                     )}
                   </Form.Item>
@@ -157,14 +142,6 @@ const FormLayout = ({
                     key={item.key} 
                     name={item.name} 
                   >
-                    {/* <Select
-                      defaultValue={item.defaultValue}
-                      onChange={(data: any) => item.callback(data)}
-                      placeholder={item.placeholder}
-                      getPopupContainer={(triggerNode) => triggerNode.parentNode}
-                      // suffixIcon={<img src={require("@/assets/images/common/down.png")} />}
-                      options={item.options}
-                    /> */}
                     <Select />
                     {item?.customElement}
                   </Form.Item>
@@ -185,7 +162,7 @@ const FormLayout = ({
                       defaultValue={[dayjs(), dayjs()]}
                       allowClear={false}
                       onChange={(time: any) => {
-                        item.callback(time)
+                        item.onChange(time)
                       }}
                       getPopupContainer={(triggerNode) => triggerNode}
                     />
@@ -230,13 +207,12 @@ const FormLayout = ({
               </Form.Item>
             )
           }
-          if (item.type === 'submit') {
+          if (item.type === 'action') {
             return (
               <Form.Item 
                 required={item?.require} 
-                // colon={false} 
                 label={item.label || ""} key={item.key} name={item.name}>
-                <Button type="primary" htmlType="submit">{item.name}</Button>
+                { item.customElement }
               </Form.Item>
             )
           }

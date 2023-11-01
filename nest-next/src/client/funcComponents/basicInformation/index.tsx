@@ -37,7 +37,7 @@ const BasicInformation = (props: any) => {
     items: [
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'title',
         value: title,
         label: (
@@ -45,13 +45,13 @@ const BasicInformation = (props: any) => {
         ),
         name: 'title',
         require,
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { title: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "area",
+        subtype: "area",
         key: 'description',
         value: description,
         label: (
@@ -60,7 +60,7 @@ const BasicInformation = (props: any) => {
         name: 'description',
         require,
         placeholder: '请输入描述',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { description: e.target.value.trim()})
         }
       },
@@ -68,14 +68,14 @@ const BasicInformation = (props: any) => {
   }
 
   const formObj2 = {
-    name: 'form2',
+    name: 'basic-form2',
     inRow: true,
     layout: "horizontal",
     labelAlign: "left",
     items: [
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'taskId',
         value: taskId,
         label: (
@@ -84,13 +84,13 @@ const BasicInformation = (props: any) => {
         name: 'taskId',
         disabled: true,
         placeholder: '自动获取',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { taskId: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'registrant',
         value: registrant,
         label: (
@@ -99,13 +99,13 @@ const BasicInformation = (props: any) => {
         name: 'registrant',
         disabled: true,
         placeholder: '自动获取',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { registrant: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'registrationTime',
         value: registrationTime,
         label: (
@@ -114,7 +114,7 @@ const BasicInformation = (props: any) => {
         name: 'registrationTime',
         disabled: true,
         placeholder: '自动获取',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { registrationTime: e.target.value.trim()})
         }
       },
@@ -126,9 +126,9 @@ const BasicInformation = (props: any) => {
           <span className={classNames("form-item-label")}>发现渠道</span>
         ),
         name: 'discoveryChannels',
-        require: true,
+        require: 1,
         placeholder: '请输入发现渠道',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { discoveryChannels: value})
         }
       },
@@ -141,7 +141,7 @@ const BasicInformation = (props: any) => {
         ),
         name: 'reportedBy',
         placeholder: '请输入报告人',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { reportedBy: value})
         }
       }

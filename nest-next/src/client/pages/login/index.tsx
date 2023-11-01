@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useReducer, useState } from "react";
+import { ChangeEvent, useonChange, useEffect, useReducer, useState } from "react";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Button, Checkbox, Form, Input, message } from 'antd';
@@ -38,7 +38,7 @@ const Login: React.FC = () => {
     dispatch({ type, payload: val });
   };
 
-  const onLogin = useCallback(async () => {
+  const onLogin = useonChange(async () => {
     if (!username) {
       message.warning("账号不能为空");
       return;
@@ -74,7 +74,7 @@ const Login: React.FC = () => {
     items: [
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'username',
         value: username,
         style: {
@@ -96,13 +96,13 @@ const Login: React.FC = () => {
         },
         // name: 'username',
         placeholder: '请输入账号',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { username: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "password",
+        subtype: "password",
         key: 'password',
         value: password,
         style: {
@@ -124,7 +124,7 @@ const Login: React.FC = () => {
         },
         // name: 'password',
         placeholder: '请输入密码',
-        callback: (e: any) => setState("update", { password: e.target.value.trim()})
+        onChange: (e: any) => setState("update", { password: e.target.value.trim()})
       }
     ],
     customElements: () => (

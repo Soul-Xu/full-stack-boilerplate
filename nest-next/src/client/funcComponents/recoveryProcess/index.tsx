@@ -29,7 +29,7 @@ const initialState = {
 }
 
 const RecoveryProcess = (props) => {
-  const { form3, showForm4 } = props
+  const { form4, showForm5 } = props
   const dispatchRedux = useDispatch();
   const [data, dispatch] = useImmerReducer(reducer, initialState);
   const { 
@@ -61,7 +61,7 @@ const RecoveryProcess = (props) => {
           <span className={classNames("form-item-label-option")}>恢复代码</span>
         ),
         name: 'recoveryCode',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { recoveryCode: value})
         },
       },
@@ -70,7 +70,7 @@ const RecoveryProcess = (props) => {
         key: 'potentialProblem',
         checked: potentialProblem,
         name: '潜在问题',
-        callback: (checked: any) => {
+        onChange: (checked: any) => {
           console.log("checked", checked)
           // setState("update", { potentialProblem: e.target.value.trim()})
         }
@@ -85,14 +85,14 @@ const RecoveryProcess = (props) => {
     items: [
       {
         type: 'input',
-        subType: "area",
+        subtype: "area",
         key: 'recoveryProcessDescription',
         value: recoveryProcessDescription,
         label: (
           <span className={classNames("form-item-label-option")}>恢复过程描述</span>
         ),
         name: 'recoveryProcessDescription',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { recoveryProcessDescription: e.target.value.trim()})
         }
       },
@@ -113,7 +113,7 @@ const RecoveryProcess = (props) => {
           <span className={classNames("form-item-label-option")}>可用性影响初步评估</span>
         ),
         name: 'availabilityImpact',        
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { availabilityImpact: value})
         }
       },
@@ -134,7 +134,7 @@ const RecoveryProcess = (props) => {
           <span className={classNames("form-item-label-option")}>主要跟进团队</span>
         ),
         name: 'mainFollowUpTeam',        
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { mainFollowUpTeam: value})
         }
       },
@@ -146,7 +146,7 @@ const RecoveryProcess = (props) => {
           <span className={classNames("form-item-label-option")}>可用性跟进人</span>
         ),
         name: 'availabilityFollowUpEr',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { availabilityFollowUpEr: value})
         }
       },
@@ -158,20 +158,20 @@ const RecoveryProcess = (props) => {
           <span className={classNames("form-item-label-option")}>协助跟进团队</span>
         ),
         name: 'assistFollowUpTeam',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { assistFollowUpTeam: value})
         }
       },
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'businessRecoveryTime',
         value: businessRecoveryTime,
         label: (
           <span className={classNames("form-item-label-option")}>业务恢复时间</span>
         ),
         name: 'businessRecoveryTime',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { businessRecoveryTime: e.target.value.trim()})
         }
       },
@@ -183,7 +183,7 @@ const RecoveryProcess = (props) => {
           <span className={classNames("form-item-label-option")}>受影响时长</span>
         ),
         name: 'affectedDuration',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { affectedDuration: value})
         }
       },
@@ -195,33 +195,33 @@ const RecoveryProcess = (props) => {
           <span className={classNames("form-item-label-option")}>可用性定级</span>
         ),
         name: 'availabilityRate',        
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { availabilityRate: value})
         }
       },
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'businessImpactRatio',
         value: businessImpactRatio,
         label: (
           <span className={classNames("form-item-label-option")}>业务影响比例</span>
         ),
         name: 'businessImpactRatio',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { businessImpactRatio: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'responsibleTeamAndProportion',
         value: responsibleTeamAndProportion,
         label: (
           <span className={classNames("form-item-label-option")}>责任团队及承担比例</span>
         ),
         name: 'responsibleTeamAndProportion',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { responsibleTeamAndProportion: e.target.value.trim()})
         }
       }
@@ -235,22 +235,22 @@ const RecoveryProcess = (props) => {
     items: [
       {
         type: 'input',
-        subType: "area",
+        subtype: "area",
         key: 'businessImpactOverview',
         value: businessImpactOverview,
         label: (
           <span className={classNames("form-item-label-option")}>业务影响概述</span>
         ),
         name: 'businessImpactOverview',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { businessImpactOverview: e.target.value.trim()})
         }
       },
     ],
   }
 
-  const formRender3 = form3 || formObj3
-  const formRender4 = showForm4 || true
+  const formRender4 = form4 || formObj4
+  const formRender5 = showForm5 === undefined ? true : false 
 
   return (
     <>
@@ -258,10 +258,9 @@ const RecoveryProcess = (props) => {
       <div>
         <FormLayout formObj={formObj1} />
         <FormLayout formObj={formObj2} />
-        <FormLayout formObj={formRender3} />
-        <FormLayout formObj={formObj4} />
-        <FormLayout formObj={formObj5} />
-        {/* { formRender4 && <FormLayout formObj={formObj4} /> } */}
+        <FormLayout formObj={formObj3} />
+        <FormLayout formObj={formRender4} />
+        { formRender5 && <FormLayout formObj={formObj5} /> }
       </div>
     </>
   )

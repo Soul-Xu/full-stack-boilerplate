@@ -25,72 +25,72 @@ const EffectAnalysis = () => {
   };
   
   const formObj = {
-    name: 'form',
+    name: 'effect-form',
     layout: "horizontal",
     labelAlign: "left",
     items: [
       {
         type: 'input',
-        subType: "area",
+        subtype: "area",
         key: 'legalCompliance',
         value: legalCompliance,
         label: (
           <span className={classNames("form-item-label-option")}>合法合规</span>
         ),
         name: 'legalCompliance',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { legalCompliance: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "area",
+        subtype: "area",
         key: 'corporateBusiness',
         value: corporateBusiness,
         label: (
           <span className={classNames("form-item-label-option")}>公司业务</span>
         ),
         name: 'corporateBusiness',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { corporateBusiness: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "area",
+        subtype: "area",
         key: 'informationSystem',
         value: informationSystem,
         label: (
           <span className={classNames("form-item-label-option")}>信息系统</span>
         ),
         name: 'informationSystem',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { informationSystem: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "area",
+        subtype: "area",
         key: 'impactReputation',
         value: impactReputation,
         label: (
           <span className={classNames("form-item-label-option")}>影响声誉</span>
         ),
         name: 'impactReputation',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { impactReputation: e.target.value.trim()})
         }
       },
       {
         type: 'input',
-        subType: "area",
+        subtype: "area",
         key: 'others',
         value: others,
         label: (
           <span className={classNames("form-item-label-option")}>其他</span>
         ),
         name: 'others',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { others: e.target.value.trim()})
         }
       },

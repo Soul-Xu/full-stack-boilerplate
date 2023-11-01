@@ -12,7 +12,7 @@ import ReasonAnalysis from '../../funcComponents/reasonAnalysis/index';
 import RecoveryProcess from '../../funcComponents/recoveryProcess/index';
 import EffectAnalysis from '../../funcComponents/effectAnalysis/index';
 import AttachmentUpload from '../../funcComponents/attachmentUpload/index';
-
+import SubmitElement from '../../funcComponents/submitElement/index';
 interface DepartmentCounterSignProps {
 }
 
@@ -29,6 +29,7 @@ const DepartmentCounterSign: NextPage = () => {
           <RecoveryProcess />
           <EffectAnalysis />
           <AttachmentUpload />
+          <SubmitElement />
         </div>
       </section>
     </PageLayout>

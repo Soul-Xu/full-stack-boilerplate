@@ -39,14 +39,14 @@ const HandleInformation = (props) => {
   };
 
   const formObj = {
-    name: 'form',
+    name: 'handle-form',
     inRow: true,
     layout: "horizontal",
     labelAlign: "left",
     items: [
       {
         type: 'input',
-        subType: "text",
+        subtype: "text",
         key: 'status',
         value: status,
         label: (
@@ -54,7 +54,7 @@ const HandleInformation = (props) => {
         ),
         name: 'status',
         disabled: true,
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { status: e.target.value.trim()})
         }
       },
@@ -66,7 +66,7 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label-option")}>影响系统</span>
         ),
         name: 'impactSystem',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { impactSystem: value})
         }
       },
@@ -78,8 +78,8 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label")}>发现时间</span>
         ),
         name: 'discoveryTime',
-        require: true,
-        callback: (e: any) => {
+        require: 1,
+        onChange: (e: any) => {
           setState("update", { discoveryTime: e.target.value.trim()})
         }
       },
@@ -91,8 +91,8 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label")}>处理组</span>
         ),
         name: 'handleGroup',
-        require: true,
-        callback: (value: any) => {
+        require: 1,
+        onChange: (value: any) => {
           setState("update", { handleGroup: value})
         }
       },
@@ -104,7 +104,7 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label-option")}>子类</span>
         ),
         name: 'subClass',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { subClass: value})
         }
       },
@@ -116,7 +116,7 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label-option")}>发生时间</span>
         ),
         name: 'occurrenceTime',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { occurrenceTime: e.target.value.trim()})
         }
       },
@@ -128,8 +128,8 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label")}>处理人</span>
         ),
         name: 'handler',
-        require: true,
-        callback: (value: any) => {
+        require: 1,
+        onChange: (value: any) => {
           setState("update", { handler: value})
         }
       },
@@ -141,7 +141,7 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label-option")}>区域</span>
         ),
         name: 'region',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { region: value})
         }
       },
@@ -153,7 +153,7 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label-option")}>上报时间</span>
         ),
         name: 'reportTime',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { reportTime: e.target.value.trim()})
         }
       },
@@ -165,7 +165,7 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label-option")}>影响</span>
         ),
         name: 'effect',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { effect: value})
         }
       },
@@ -178,7 +178,7 @@ const HandleInformation = (props) => {
         ),
         name: 'processingPriority',
         disabled: true,
-        callback: (value) => {
+        onChange: (value) => {
           setState("update", { processingPriority: value})
         }
       },
@@ -190,7 +190,7 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label-option")}>处理完成时间</span>
         ),
         name: 'processingFinishTime',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { processingFinishTime: e.target.value.trim()})
         }
       },
@@ -202,7 +202,7 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label-option")}>紧急程度</span>
         ),
         name: 'urgency',
-        callback: (value: any) => {
+        onChange: (value: any) => {
           setState("update", { urgency: value})
         }
       },
@@ -214,7 +214,7 @@ const HandleInformation = (props) => {
           <span className={classNames("form-item-label-option")}>问题解决时间</span>
         ),
         name: 'problemSolvedTime',
-        callback: (e: any) => {
+        onChange: (e: any) => {
           setState("update", { problemSolvedTime: e.target.value.trim()})
         }
       },
