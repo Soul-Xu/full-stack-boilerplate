@@ -25,12 +25,12 @@ const Home: NextPage = () => {
         <h1 className={classNames("container-title")}>事件管理</h1>
         <div className={classNames("container-content")}>
           <BasicInformation />
-          {/* <HandleInformation />
+          <HandleInformation />
           <ReasonAnalysis />
           <RecoveryProcess />
           <EffectAnalysis />
           <AttachmentUpload />
-          <SubmitElement /> */}
+          <SubmitElement />
         </div>
       </section>
     </PageLayout>
