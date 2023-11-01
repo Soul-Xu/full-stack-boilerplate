@@ -16,15 +16,6 @@ const initialState = {
   others: "" // 其他
 }
 
-const areaStyle = {
-  width: "100%",
-  fontSize: "14px",
-  color: "rgba(0, 0, 0, 0.25)",
-  border: "1px solid #9d9d9d",
-  borderRadius: "6px",
-  background: "#ffffff",
-}
-
 const EffectAnalysis = () => {
   const dispatchRedux = useDispatch();
   const [data, dispatch] = useImmerReducer(reducer, initialState);
@@ -36,12 +27,6 @@ const EffectAnalysis = () => {
   const formObj = {
     name: 'form',
     layout: "horizontal",
-    labelCol: {
-      span: 4
-    },
-    wrapperCol: {
-      span: 20
-    },
     labelAlign: "left",
     items: [
       {
@@ -49,10 +34,10 @@ const EffectAnalysis = () => {
         subType: "area",
         key: 'legalCompliance',
         value: legalCompliance,
-        label: '合法合规',
+        label: (
+          <span className={classNames("form-item-label-option")}>合法合规</span>
+        ),
         name: 'legalCompliance',
-        useItemStyle: false,
-        style: areaStyle,
         callback: (e: any) => {
           setState("update", { legalCompliance: e.target.value.trim()})
         }
@@ -62,10 +47,10 @@ const EffectAnalysis = () => {
         subType: "area",
         key: 'corporateBusiness',
         value: corporateBusiness,
-        label: '公司业务',
+        label: (
+          <span className={classNames("form-item-label-option")}>公司业务</span>
+        ),
         name: 'corporateBusiness',
-        useItemStyle: false,
-        style: areaStyle,
         callback: (e: any) => {
           setState("update", { corporateBusiness: e.target.value.trim()})
         }
@@ -75,10 +60,10 @@ const EffectAnalysis = () => {
         subType: "area",
         key: 'informationSystem',
         value: informationSystem,
-        label: '信息系统',
+        label: (
+          <span className={classNames("form-item-label-option")}>信息系统</span>
+        ),
         name: 'informationSystem',
-        useItemStyle: false,
-        style: areaStyle,
         callback: (e: any) => {
           setState("update", { informationSystem: e.target.value.trim()})
         }
@@ -88,10 +73,10 @@ const EffectAnalysis = () => {
         subType: "area",
         key: 'impactReputation',
         value: impactReputation,
-        label: '影响声誉',
+        label: (
+          <span className={classNames("form-item-label-option")}>影响声誉</span>
+        ),
         name: 'impactReputation',
-        useItemStyle: false,
-        style: areaStyle,
         callback: (e: any) => {
           setState("update", { impactReputation: e.target.value.trim()})
         }
@@ -101,10 +86,10 @@ const EffectAnalysis = () => {
         subType: "area",
         key: 'others',
         value: others,
-        label: '其他',
+        label: (
+          <span className={classNames("form-item-label-option")}>其他</span>
+        ),
         name: 'others',
-        useItemStyle: false,
-        style: areaStyle,
         callback: (e: any) => {
           setState("update", { others: e.target.value.trim()})
         }

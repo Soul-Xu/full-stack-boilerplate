@@ -17,9 +17,6 @@ interface EventReportAuditProps {
 }
 
 const EventReportAudit: NextPage = () => {
-  useEffect(() => {
-    console.log("client-home")
-  }, [])
 
   return(
     // @ts-ignore

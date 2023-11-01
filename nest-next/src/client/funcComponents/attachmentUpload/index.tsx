@@ -36,10 +36,11 @@ const AttachmentUpload = () => {
         type: 'uploadFile',
         key: 'files',
         value: files,
-        label: '附件上传',
+        label: (
+          <span className={classNames("form-item-label-option")}>上传附件</span>
+        ),
         name: 'files',
         title: "上传附件",
-        useItemStyle: false,
         callback: (e: any) => {
           setState("update", { files: e.target.value.trim()})
         }
@@ -48,7 +49,9 @@ const AttachmentUpload = () => {
         type: 'uploadImage',
         key: 'images',
         value: images,
-        label: '图片上传',
+        label: (
+          <span className={classNames("form-item-label-option")}>图片上传</span>
+        ),
         name: 'images',
         title: "点击或拖拽添加图片",
         tip: "注：支持上传jpg/gif/png格式，单张不超过5M",
@@ -56,7 +59,6 @@ const AttachmentUpload = () => {
           width: "70%",
           margin: "0 auto"
         },
-        useItemStyle: false,
         callback: (e: any) => {
           setState("update", { images: e.target.value.trim()})
         }

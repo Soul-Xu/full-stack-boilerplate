@@ -17,10 +17,6 @@ interface DepartmentCounterSignProps {
 }
 
 const DepartmentCounterSign: NextPage = () => {
-  useEffect(() => {
-    console.log("client-home")
-  }, [])
-
   return(
     // @ts-ignore
     <PageLayout>

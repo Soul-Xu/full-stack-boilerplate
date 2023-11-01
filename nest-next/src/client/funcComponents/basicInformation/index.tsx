@@ -8,6 +8,8 @@ import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Divider } from 'antd';
+
 const initialState = {
   title: "", // 标题
   description: "", // 描述
@@ -29,14 +31,8 @@ const BasicInformation = (props: any) => {
   };
   
   const formObj1 = {
-    name: 'form1',
+    name: 'basic-form1',
     layout: "horizontal",
-    labelCol: {
-      span: 3
-    },
-    wrapperCol: {
-      span: 24
-    },
     labelAlign: "left",
     items: [
       {
@@ -44,21 +40,11 @@ const BasicInformation = (props: any) => {
         subType: "text",
         key: 'title',
         value: title,
-        label: '标题',
+        label: (
+          <span className={classNames("form-item-label")}>标题</span>
+        ),
         name: 'title',
-        useItemStyle: true,
-        style: {
-          width: "100%",
-          height: "30px",
-          fontSize: "14px",
-          color: "rgba(0, 0, 0, 0.25)",
-          border: "1px solid #9d9d9d",
-          borderRadius: "6px",
-          background: "#ffffff",
-          padding: "4px 11px"
-        },
         require,
-        placeholder: '请输入标题',
         callback: (e: any) => {
           setState("update", { title: e.target.value.trim()})
         }
@@ -68,19 +54,10 @@ const BasicInformation = (props: any) => {
         subType: "area",
         key: 'description',
         value: description,
-        label: '描述',
+        label: (
+          <span className={classNames("form-item-label")}>描述</span>
+        ),
         name: 'description',
-        useItemStyle: true,
-        style: {
-          width: "100%",
-          // height: "30px",
-          fontSize: "14px",
-          color: "rgba(0, 0, 0, 0.25)",
-          border: "1px solid #9d9d9d",
-          borderRadius: "6px",
-          background: "#ffffff",
-          // padding: "4px 11px"
-        },
         require,
         placeholder: '请输入描述',
         callback: (e: any) => {
@@ -94,20 +71,16 @@ const BasicInformation = (props: any) => {
     name: 'form2',
     inRow: true,
     layout: "horizontal",
-    labelCol: {
-      span: 10
-    },
-    wrapperCol: {
-      span: 14
-    },
-    labelAlign: "right",
+    labelAlign: "left",
     items: [
       {
         type: 'input',
         subType: "text",
         key: 'taskId',
         value: taskId,
-        label: '事件编号',
+        label: (
+          <span className={classNames("form-item-label-option")}>事件编号</span>
+        ),
         name: 'taskId',
         disabled: true,
         placeholder: '自动获取',
@@ -120,7 +93,9 @@ const BasicInformation = (props: any) => {
         subType: "text",
         key: 'registrant',
         value: registrant,
-        label: '登记人',
+        label: (
+          <span className={classNames("form-item-label-option")}>登记人</span>
+        ),
         name: 'registrant',
         disabled: true,
         placeholder: '自动获取',
@@ -133,7 +108,9 @@ const BasicInformation = (props: any) => {
         subType: "text",
         key: 'registrationTime',
         value: registrationTime,
-        label: '登记时间',
+        label: (
+          <span className={classNames("form-item-label-option")}>登记时间</span>
+        ),
         name: 'registrationTime',
         disabled: true,
         placeholder: '自动获取',
@@ -145,7 +122,9 @@ const BasicInformation = (props: any) => {
         type: 'select',
         key: 'discoveryChannels',
         value: discoveryChannels,
-        label: '发现渠道',
+        label: (
+          <span className={classNames("form-item-label")}>发现渠道</span>
+        ),
         name: 'discoveryChannels',
         require: true,
         placeholder: '请输入发现渠道',
@@ -157,9 +136,10 @@ const BasicInformation = (props: any) => {
         type: 'select',
         key: 'reportedBy',
         value: reportedBy,
-        label: '报告人',
+        label: (
+          <span className={classNames("form-item-label-option")}>报告人</span>
+        ),
         name: 'reportedBy',
-        require: true,
         placeholder: '请输入报告人',
         callback: (value: any) => {
           setState("update", { reportedBy: value})
@@ -176,7 +156,7 @@ const BasicInformation = (props: any) => {
       <CustomLayout title="基本信息" />
       <div>
         <FormLayout formObj={formRenderMain} />
-        <div className={classNames("divide-line")}></div>
+        <Divider />
         <FormLayout formObj={formRenderDetail} />
       </div>
     </>

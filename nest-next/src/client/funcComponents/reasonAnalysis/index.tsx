@@ -52,21 +52,16 @@ const ReasonAnalysis = () => {
   const formObj = {
     name: 'form',
     layout: "horizontal",
-    labelCol: {
-      span: 4
-    },
-    wrapperCol: {
-      span: 20
-    },
     labelAlign: "left",
     items: [
       {
         type: 'select',
         key: 'reasonClassify',
         value: reasonClassify,
-        label: '原因分类',
+        label: (
+          <span className={classNames("form-item-label-option")}>原因分类</span>
+        ),
         name: 'reasonClassify',
-        useItemStyle: false,
         options: reasons,
         placeholder: '请选择原因分类',
         callback: (value: any) => {
@@ -79,17 +74,10 @@ const ReasonAnalysis = () => {
         subType: "area",
         key: 'luckyTip',
         value: luckyTip,
-        label: '做得好及幸运的地方',
+        label: (
+          <span className={classNames("form-item-label-option")}>做得好及幸运的地方</span>
+        ),
         name: 'luckyTip',
-        useItemStyle: false,
-        style: {
-          width: "100%",
-          fontSize: "14px",
-          color: "rgba(0, 0, 0, 0.25)",
-          border: "1px solid #9d9d9d",
-          borderRadius: "6px",
-          background: "#ffffff",
-        },
         callback: (e: any) => {
           setState("update", { luckyTip: e.target.value.trim()})
         }
@@ -99,19 +87,10 @@ const ReasonAnalysis = () => {
         subType: "area",
         key: 'triggerAnalysis',
         value: triggerAnalysis,
-        label: '触发条件及原因分析',
+        label: (
+          <span className={classNames("form-item-label-option")}>触发条件及原因分析</span>
+        ),
         name: 'triggerAnalysis',
-        useItemStyle: false,
-        style: {
-          width: "100%",
-          // height: "30px",
-          fontSize: "14px",
-          color: "rgba(0, 0, 0, 0.25)",
-          border: "1px solid #9d9d9d",
-          borderRadius: "6px",
-          background: "#ffffff",
-          // padding: "4px 11px"
-        },
         callback: (e: any) => {
           setState("update", { triggerAnalysis: e.target.value.trim()})
         }

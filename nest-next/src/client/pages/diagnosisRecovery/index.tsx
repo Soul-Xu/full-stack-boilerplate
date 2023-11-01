@@ -40,20 +40,17 @@ const DiagnosisRecovery: NextPage = () => {
     name: 'recovery-form-three',
     inRow: true,
     layout: "horizontal",
-    labelCol: {
-      span: 10
-    },
-    wrapperCol: {
-      span: 16
-    },
-    labelAlign: "right",
+    labelAlign: "left",
     items: [
       {
         type: 'select',
         key: 'mainFollowUpTeam',
         value: mainFollowUpTeam,
-        label: '主要跟进团队',
+        label: (
+          <span className={classNames("form-item-label")}>主要跟进团队</span>
+        ),
         name: 'mainFollowUpTeam',
+        require: true,
         callback: (value: any) => {
           setState("update", { mainFollowUpTeam: value})
         }
@@ -62,7 +59,9 @@ const DiagnosisRecovery: NextPage = () => {
         type: 'select',
         key: 'availabilityFollowUpEr',
         value: availabilityFollowUpEr,
-        label: '可用性跟进人',
+        label: (
+          <span className={classNames("form-item-label")}>可用性跟进人</span>
+        ),
         name: 'availabilityFollowUpEr',
         callback: (value: any) => {
           setState("update", { availabilityFollowUpEr: value})
@@ -72,8 +71,11 @@ const DiagnosisRecovery: NextPage = () => {
         type: 'select',
         key: 'assistFollowUpTeam',
         value: assistFollowUpTeam,
-        label: '协助跟进团队',
+        label: (
+          <span className={classNames("form-item-label")}>协助跟进团队</span>
+        ),
         name: 'assistFollowUpTeam',
+        require: true,
         callback: (value: any) => {
           setState("update", { assistFollowUpTeam: value})
         }
@@ -85,7 +87,7 @@ const DiagnosisRecovery: NextPage = () => {
     // @ts-ignore
     <PageLayout>
       <section className={classNames("container")}>
-        <div className={classNames("container-title")}>事件管理</div>
+        <h1 className={classNames("container-title")}>事件管理</h1>
         <div className={classNames("container-content")}>
           <BasicInformation />
           <HandleInformation />

@@ -17,15 +17,12 @@ interface SecondLevelAuditProps {
 }
 
 const SecondLevelAudit: NextPage = () => {
-  useEffect(() => {
-    console.log("client-home")
-  }, [])
 
   return(
     // @ts-ignore
     <PageLayout>
       <section className={classNames("container")}>
-        <div className={classNames("container-title")}>事件管理</div>
+        <h1 className={classNames("container-title")}>事件管理</h1>
         <div className={classNames("container-content")}>
           <BasicInformation />
           <HandleInformation />

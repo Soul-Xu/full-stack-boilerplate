@@ -1,3 +1,4 @@
+import { Divider } from "antd"
 import styles from "./index.module.scss"
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
@@ -15,6 +16,7 @@ const CustomLayout = (props: customLayoutProps) => {
         <div className={classNames("form-title-line")}></div>
         <div className={classNames("form-title-main")}>{title}</div>
       </section>
+      <Divider />
     </div>
   )
 }

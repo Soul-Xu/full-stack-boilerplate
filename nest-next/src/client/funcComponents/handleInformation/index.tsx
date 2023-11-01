@@ -42,20 +42,16 @@ const HandleInformation = (props) => {
     name: 'form',
     inRow: true,
     layout: "horizontal",
-    labelCol: {
-      span: 10
-    },
-    wrapperCol: {
-      span: 16
-    },
-    labelAlign: "right",
+    labelAlign: "left",
     items: [
       {
         type: 'input',
         subType: "text",
         key: 'status',
         value: status,
-        label: '状态',
+        label: (
+          <span className={classNames("form-item-label-option")}>状态</span>
+        ),
         name: 'status',
         disabled: true,
         callback: (e: any) => {
@@ -66,18 +62,21 @@ const HandleInformation = (props) => {
         type: 'select',
         key: 'impactSystem',
         value: impactSystem,
-        label: '影响系统',
+        label: (
+          <span className={classNames("form-item-label-option")}>影响系统</span>
+        ),
         name: 'impactSystem',
         callback: (value: any) => {
           setState("update", { impactSystem: value})
         }
       },
       {
-        type: 'input',
-        subType: "text",
+        type: 'datepicker',
         key: 'discoveryTime',
         value: discoveryTime,
-        label: '发现时间',
+        label: (
+          <span className={classNames("form-item-label")}>发现时间</span>
+        ),
         name: 'discoveryTime',
         require: true,
         callback: (e: any) => {
@@ -88,7 +87,9 @@ const HandleInformation = (props) => {
         type: 'select',
         key: 'handleGroup',
         value: handleGroup,
-        label: '处理组',
+        label: (
+          <span className={classNames("form-item-label")}>处理组</span>
+        ),
         name: 'handleGroup',
         require: true,
         callback: (value: any) => {
@@ -99,20 +100,22 @@ const HandleInformation = (props) => {
         type: 'select',
         key: 'subClass',
         value: subClass,
-        label: '子类',
+        label: (
+          <span className={classNames("form-item-label-option")}>子类</span>
+        ),
         name: 'subClass',
         callback: (value: any) => {
           setState("update", { subClass: value})
         }
       },
       {
-        type: 'input',
-        subType: "text",
+        type: 'datepicker',
         key: 'occurrenceTime',
         value: occurrenceTime,
-        label: '发生时间',
+        label: (
+          <span className={classNames("form-item-label-option")}>发生时间</span>
+        ),
         name: 'occurrenceTime',
-        require: true,
         callback: (e: any) => {
           setState("update", { occurrenceTime: e.target.value.trim()})
         }
@@ -121,7 +124,9 @@ const HandleInformation = (props) => {
         type: 'select',
         key: 'handler',
         value: handler,
-        label: '处理人',
+        label: (
+          <span className={classNames("form-item-label")}>处理人</span>
+        ),
         name: 'handler',
         require: true,
         callback: (value: any) => {
@@ -132,18 +137,21 @@ const HandleInformation = (props) => {
         type: 'select',
         key: 'region',
         value: region,
-        label: '区域',
+        label: (
+          <span className={classNames("form-item-label-option")}>区域</span>
+        ),
         name: 'region',
         callback: (value: any) => {
           setState("update", { region: value})
         }
       },
       {
-        type: 'input',
-        subType: "text",
+        type: 'datepicker',
         key: 'reportTime',
         value: reportTime,
-        label: '上报时间',
+        label: (
+          <span className={classNames("form-item-label-option")}>上报时间</span>
+        ),
         name: 'reportTime',
         callback: (e: any) => {
           setState("update", { reportTime: e.target.value.trim()})
@@ -153,7 +161,9 @@ const HandleInformation = (props) => {
         type: 'select',
         key: 'effect',
         value: effect,
-        label: '影响',
+        label: (
+          <span className={classNames("form-item-label-option")}>影响</span>
+        ),
         name: 'effect',
         callback: (value: any) => {
           setState("update", { effect: value})
@@ -163,7 +173,9 @@ const HandleInformation = (props) => {
         type: 'select',
         key: 'processingPriority',
         value: processingPriority,
-        label: '处理优先级',
+        label: (
+          <span className={classNames("form-item-label-option")}>处理优先级</span>
+        ),
         name: 'processingPriority',
         disabled: true,
         callback: (value) => {
@@ -171,13 +183,13 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'input',
-        subType: "text",
+        type: 'datepicker',
         key: 'processingFinishTime',
         value: processingFinishTime,
-        label: '处理完成时间',
+        label: (
+          <span className={classNames("form-item-label-option")}>处理完成时间</span>
+        ),
         name: 'processingFinishTime',
-        require: true,
         callback: (e: any) => {
           setState("update", { processingFinishTime: e.target.value.trim()})
         }
@@ -186,20 +198,22 @@ const HandleInformation = (props) => {
         type: 'select',
         key: 'urgency',
         value: urgency,
-        label: '紧急程度',
+        label: (
+          <span className={classNames("form-item-label-option")}>紧急程度</span>
+        ),
         name: 'urgency',
         callback: (value: any) => {
           setState("update", { urgency: value})
         }
       },
       {
-        type: 'input',
-        subType: "text",
+        type: 'datepicker',
         key: 'problemSolvedTime',
         value: problemSolvedTime,
-        label: '问题解决时间',
+        label: (
+          <span className={classNames("form-item-label-option")}>问题解决时间</span>
+        ),
         name: 'problemSolvedTime',
-        require: true,
         callback: (e: any) => {
           setState("update", { problemSolvedTime: e.target.value.trim()})
         }

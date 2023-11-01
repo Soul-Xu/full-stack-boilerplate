@@ -47,21 +47,18 @@ const ReceiveAssign: NextPage = () => {
     name: 'form2',
     inRow: true,
     layout: "horizontal",
-    labelCol: {
-      span: 10
-    },
-    wrapperCol: {
-      span: 14
-    },
-    labelAlign: "right",
+    labelAlign: "left",
     items: [
       {
         type: 'input',
         subType: "text",
         key: 'taskId',
         value: taskId,
-        label: '事件编号',
+        label: (
+          <span className={classNames("form-item-label")}>事件编号</span>
+        ),
         name: 'taskId',
+        require: true,
         disabled: true,
         placeholder: '自动获取',
         callback: (e: any) => {
@@ -73,8 +70,11 @@ const ReceiveAssign: NextPage = () => {
         subType: "text",
         key: 'registrant',
         value: registrant,
-        label: '登记人',
+        label: (
+          <span className={classNames("form-item-label")}>登记人</span>
+        ),
         name: 'registrant',
+        require: true,
         placeholder: '自动获取',
         callback: (e: any) => {
           setState("update", { registrant: e.target.value.trim()})
@@ -85,8 +85,11 @@ const ReceiveAssign: NextPage = () => {
         subType: "text",
         key: 'registrationTime',
         value: registrationTime,
-        label: '登记时间',
+        label: (
+          <span className={classNames("form-item-label")}>登记时间</span>
+        ),
         name: 'registrationTime',
+        require: true,
         placeholder: '自动获取',
         callback: (e: any) => {
           setState("update", { registrationTime: e.target.value.trim()})
@@ -96,7 +99,9 @@ const ReceiveAssign: NextPage = () => {
         type: 'select',
         key: 'discoveryChannels',
         value: discoveryChannels,
-        label: '发现渠道',
+        label: (
+          <span className={classNames("form-item-label")}>发现渠道</span>
+        ),
         name: 'discoveryChannels',
         require: true,
         placeholder: '请输入报告人',
@@ -108,8 +113,11 @@ const ReceiveAssign: NextPage = () => {
         type: 'select',
         key: 'reportedBy',
         value: reportedBy,
-        label: '报告人',
+        label: (
+          <span className={classNames("form-item-label")}>报告人</span>
+        ),
         name: 'reportedBy',
+        require: true,
         callback: (value: any) => {
           setState("update", { reportedBy: value})
         }
@@ -118,7 +126,9 @@ const ReceiveAssign: NextPage = () => {
         type: 'select',
         key: 'discoveryTime',
         value: discoveryTime,
-        label: '发现时间',
+        label: (
+          <span className={classNames("form-item-label")}>发现时间</span>
+        ),
         name: 'discoveryTime',
         require: true,
         placeholder: '请输入报告人',
@@ -133,21 +143,18 @@ const ReceiveAssign: NextPage = () => {
     name: 'form',
     inRow: true,
     layout: "horizontal",
-    labelCol: {
-      span: 10
-    },
-    wrapperCol: {
-      span: 16
-    },
-    labelAlign: "right",
+    labelAlign: "left",
     items: [
       {
         type: 'input',
         subType: "text",
         key: 'status',
         value: status,
-        label: '状态',
+        label: (
+          <span className={classNames("form-item-label")}>状态</span>
+        ),
         name: 'status',
+        require: true,
         disabled: true,
         callback: (e: any) => {
           setState("update", { status: e.target.value.trim()})
@@ -157,8 +164,11 @@ const ReceiveAssign: NextPage = () => {
         type: 'select',
         key: 'impactSystem',
         value: impactSystem,
-        label: '影响系统',
+        label: (
+          <span className={classNames("form-item-label")}>影响系统</span>
+        ),
         name: 'impactSystem',
+        require: true,
         callback: (value: any) => {
           setState("update", { impactSystem: value})
         }
@@ -167,7 +177,9 @@ const ReceiveAssign: NextPage = () => {
         type: 'select',
         key: 'handleGroup',
         value: handleGroup,
-        label: '处理组',
+        label: (
+          <span className={classNames("form-item-label")}>处理组</span>
+        ),
         name: 'handleGroup',
         require: true,
         callback: (value: any) => {
@@ -178,7 +190,9 @@ const ReceiveAssign: NextPage = () => {
         type: 'select',
         key: 'handler',
         value: handler,
-        label: '处理人',
+        label: (
+          <span className={classNames("form-item-label")}>处理人</span>
+        ),
         name: 'handler',
         require: true,
         callback: (value: any) => {
@@ -192,7 +206,7 @@ const ReceiveAssign: NextPage = () => {
     // @ts-ignore
     <PageLayout>
       <section className={classNames("container")}>
-        <div className={classNames("container-title")}>事件管理</div>
+        <h1 className={classNames("container-title")}>事件管理</h1>
         <div className={classNames("container-content")}>
           <BasicInformation basicFormDetail={basicForm} />
           <HandleInformation handleForm={handleForm}/>

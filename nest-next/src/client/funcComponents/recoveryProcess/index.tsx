@@ -10,9 +10,11 @@ import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Divider } from 'antd';
+
 const initialState = {
   recoveryCode: "", // 恢复代码
-  potentialProblem: "", // 潜在问题
+  potentialProblem: false, // 潜在问题
   recoveryProcessDescription: "", // 恢复过程描述
   availabilityImpact: "", // 可用性影响初步评估
   mainFollowUpTeam: "", // 主要跟进团队
@@ -35,7 +37,7 @@ const RecoveryProcess = (props) => {
     mainFollowUpTeam, availabilityFollowUpEr, assistFollowUpTeam,
     businessRecoveryTime, affectedDuration, availabilityRate,
     businessImpactRatio, responsibleTeamAndProportion,
-    businessImpactOverview
+    businessImpactOverview, potentialProblem
   } = data as any;
   const setState = (type: string, val: Record<string, any>) => {
     dispatch({ type, payload: val });
@@ -46,50 +48,50 @@ const RecoveryProcess = (props) => {
   };
 
   const formObj1 = {
+    inRow: true,
     name: 'recovery-form-one',
     layout: "horizontal",
-    labelCol: {
-      span: 4
-    },
-    wrapperCol: {
-      span: 20
-    },
     labelAlign: "left",
     items: [
       {
         type: 'select',
         key: 'recoveryCode',
         value: recoveryCode,
-        label: '恢复代码',
+        label: (
+          <span className={classNames("form-item-label-option")}>恢复代码</span>
+        ),
         name: 'recoveryCode',
         callback: (value: any) => {
           setState("update", { recoveryCode: value})
         },
-        customElement: (
-          <>
-            <Checkbox onChange={onChange}>潜在问题</Checkbox>
-          </>
-        )
       },
+      {
+        type: 'checkout',
+        key: 'potentialProblem',
+        checked: potentialProblem,
+        name: '潜在问题',
+        callback: (checked: any) => {
+          console.log("checked", checked)
+          // setState("update", { potentialProblem: e.target.value.trim()})
+        }
+      },
+    ],
+  }
+
+  const formObj2 = {
+    name: 'recovery-form-one',
+    layout: "horizontal",
+    labelAlign: "left",
+    items: [
       {
         type: 'input',
         subType: "area",
         key: 'recoveryProcessDescription',
         value: recoveryProcessDescription,
-        label: '恢复过程描述',
+        label: (
+          <span className={classNames("form-item-label-option")}>恢复过程描述</span>
+        ),
         name: 'recoveryProcessDescription',
-        useItemStyle: false,
-        style: {
-          width: "100%",
-          // height: "30px",
-          fontSize: "14px",
-          color: "rgba(0, 0, 0, 0.25)",
-          border: "1px solid #9d9d9d",
-          borderRadius: "6px",
-          background: "#ffffff",
-          // padding: "4px 11px"
-        },
-        // placeholder: '请输入描述',
         callback: (e: any) => {
           setState("update", { recoveryProcessDescription: e.target.value.trim()})
         }
@@ -97,24 +99,20 @@ const RecoveryProcess = (props) => {
     ],
   }
 
-  const formObj2 = {
+  const formObj3 = {
     name: 'recovery-form-two',
     inRow: true,
     layout: "horizontal",
-    labelCol: {
-      span: 12
-    },
-    wrapperCol: {
-      span: 12
-    },
     labelAlign: "left",
     items: [
       {
         type: 'select',
         key: 'availabilityImpact',
         value: availabilityImpact,
-        label: '可用性影响初步评估',
-        name: 'availabilityImpact',
+        label: (
+          <span className={classNames("form-item-label-option")}>可用性影响初步评估</span>
+        ),
+        name: 'availabilityImpact',        
         callback: (value: any) => {
           setState("update", { availabilityImpact: value})
         }
@@ -122,24 +120,20 @@ const RecoveryProcess = (props) => {
     ],
   }
 
-  const formObj3 = {
+  const formObj4 = {
     name: 'recovery-form-three',
     inRow: true,
     layout: "horizontal",
-    labelCol: {
-      span: 10
-    },
-    wrapperCol: {
-      span: 16
-    },
-    labelAlign: "right",
+    labelAlign: "left",
     items: [
       {
         type: 'select',
         key: 'mainFollowUpTeam',
         value: mainFollowUpTeam,
-        label: '主要跟进团队',
-        name: 'mainFollowUpTeam',
+        label: (
+          <span className={classNames("form-item-label-option")}>主要跟进团队</span>
+        ),
+        name: 'mainFollowUpTeam',        
         callback: (value: any) => {
           setState("update", { mainFollowUpTeam: value})
         }
@@ -148,7 +142,9 @@ const RecoveryProcess = (props) => {
         type: 'select',
         key: 'availabilityFollowUpEr',
         value: availabilityFollowUpEr,
-        label: '可用性跟进人',
+        label: (
+          <span className={classNames("form-item-label-option")}>可用性跟进人</span>
+        ),
         name: 'availabilityFollowUpEr',
         callback: (value: any) => {
           setState("update", { availabilityFollowUpEr: value})
@@ -158,7 +154,9 @@ const RecoveryProcess = (props) => {
         type: 'select',
         key: 'assistFollowUpTeam',
         value: assistFollowUpTeam,
-        label: '协助跟进团队',
+        label: (
+          <span className={classNames("form-item-label-option")}>协助跟进团队</span>
+        ),
         name: 'assistFollowUpTeam',
         callback: (value: any) => {
           setState("update", { assistFollowUpTeam: value})
@@ -169,19 +167,9 @@ const RecoveryProcess = (props) => {
         subType: "text",
         key: 'businessRecoveryTime',
         value: businessRecoveryTime,
-        label: '业务恢复时间',
-        name: 'businessRecoveryTime',
-        require: true,
-        callback: (e: any) => {
-          setState("update", { businessRecoveryTime: e.target.value.trim()})
-        }
-      },
-      {
-        type: 'input',
-        subType: "text",
-        key: 'businessRecoveryTime',
-        value: businessRecoveryTime,
-        label: '业务恢复时间',
+        label: (
+          <span className={classNames("form-item-label-option")}>业务恢复时间</span>
+        ),
         name: 'businessRecoveryTime',
         callback: (e: any) => {
           setState("update", { businessRecoveryTime: e.target.value.trim()})
@@ -191,7 +179,9 @@ const RecoveryProcess = (props) => {
         type: 'select',
         key: 'affectedDuration',
         value: affectedDuration,
-        label: '受影响时长',
+        label: (
+          <span className={classNames("form-item-label-option")}>受影响时长</span>
+        ),
         name: 'affectedDuration',
         callback: (value: any) => {
           setState("update", { affectedDuration: value})
@@ -201,8 +191,10 @@ const RecoveryProcess = (props) => {
         type: 'select',
         key: 'availabilityRate',
         value: availabilityRate,
-        label: '可用性定级',
-        name: 'availabilityRate',
+        label: (
+          <span className={classNames("form-item-label-option")}>可用性定级</span>
+        ),
+        name: 'availabilityRate',        
         callback: (value: any) => {
           setState("update", { availabilityRate: value})
         }
@@ -212,7 +204,9 @@ const RecoveryProcess = (props) => {
         subType: "text",
         key: 'businessImpactRatio',
         value: businessImpactRatio,
-        label: '业务影响比例',
+        label: (
+          <span className={classNames("form-item-label-option")}>业务影响比例</span>
+        ),
         name: 'businessImpactRatio',
         callback: (e: any) => {
           setState("update", { businessImpactRatio: e.target.value.trim()})
@@ -223,7 +217,9 @@ const RecoveryProcess = (props) => {
         subType: "text",
         key: 'responsibleTeamAndProportion',
         value: responsibleTeamAndProportion,
-        label: '责任团队及承担比例',
+        label: (
+          <span className={classNames("form-item-label-option")}>责任团队及承担比例</span>
+        ),
         name: 'responsibleTeamAndProportion',
         callback: (e: any) => {
           setState("update", { responsibleTeamAndProportion: e.target.value.trim()})
@@ -232,16 +228,9 @@ const RecoveryProcess = (props) => {
     ],
   }
 
-  const formObj4 = {
+  const formObj5 = {
     name: 'recovery-form-four',
     layout: "horizontal",
-    labelCol: {
-      span: 4
-    },
-    wrapperCol: {
-      span: 20
-    },
-    useItemStyle: false,
     labelAlign: "left",
     items: [
       {
@@ -249,20 +238,10 @@ const RecoveryProcess = (props) => {
         subType: "area",
         key: 'businessImpactOverview',
         value: businessImpactOverview,
-        label: '业务影响概述',
+        label: (
+          <span className={classNames("form-item-label-option")}>业务影响概述</span>
+        ),
         name: 'businessImpactOverview',
-        useItemStyle: false,
-        style: {
-          width: "100%",
-          // height: "30px",
-          fontSize: "14px",
-          color: "rgba(0, 0, 0, 0.25)",
-          border: "1px solid #9d9d9d",
-          borderRadius: "6px",
-          background: "#ffffff",
-          // padding: "4px 11px"
-        },
-        // placeholder: '请输入描述',
         callback: (e: any) => {
           setState("update", { businessImpactOverview: e.target.value.trim()})
         }
@@ -278,11 +257,11 @@ const RecoveryProcess = (props) => {
       <CustomLayout title="恢复过程" />
       <div>
         <FormLayout formObj={formObj1} />
-        <div className={classNames("divide-line")}></div>
         <FormLayout formObj={formObj2} />
-        <div className={classNames("divide-line")}></div>
         <FormLayout formObj={formRender3} />
-        { formRender4 && <FormLayout formObj={formObj4} /> }
+        <FormLayout formObj={formObj4} />
+        <FormLayout formObj={formObj5} />
+        {/* { formRender4 && <FormLayout formObj={formObj4} /> } */}
       </div>
     </>
   )

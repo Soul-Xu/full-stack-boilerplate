@@ -1,6 +1,9 @@
 import { useState } from 'react'
+// import locale from 'antd/es/date-picker/locale/zh_CN';
+// import 'dayjs/locale/zh-cn';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
-import { Form, Input, Select, DatePicker, Upload, Button, Row, Col } from 'antd'
+import { Form, Input, Select, DatePicker, Upload, Checkbox, Button, Row, Col, Space } from 'antd'
+import type { DatePickerProps } from 'antd';
 import classnames from 'classnames/bind';
 import style from './index.module.scss';
 import dayjs from 'dayjs'
@@ -11,12 +14,6 @@ const { TextArea } = Input
 const { Dragger } = Upload;
 const classNames = classnames.bind(style);
 
-interface IPagination {
-  page: number,
-  pageSize: number,
-  total: number
-}
-
 interface IFormObjProps {
   name: string,
   layout?: string | any,
@@ -26,19 +23,6 @@ interface IFormObjProps {
   customElements?: any
 }
 
-interface IChangePageFunc {
-  (page: number, pageSize: number): void
-}
-
-interface ITableObjProps {
-  columns?: Array<any>,
-  datasource?: any,
-  api?: string,
-  customElements?: any,
-  pagination: IPagination,
-  onChangePage: IChangePageFunc
-}
-
 interface FormLayoutProps {
   formObj: IFormObjProps,
 }
@@ -46,7 +30,7 @@ interface FormLayoutProps {
 const FormLayout = ({
   formObj = {
     name: '', // Form名称
-    layout: 'inline',
+    layout: 'inline', // Form布局
     items: [], // FormItem类型
     customElements: (params: any) => (<></>) // 附加的dom，eg: button
   }
@@ -55,39 +39,41 @@ const FormLayout = ({
     const children = [];
     items.map((item: any, index: number) => {
       children.push(
-        <Col span={8} key={item.key}>
-           {
-             (index + 1) % 3 !== 0 ? (
-                <Form.Item 
-                  {...item?.formItemLayout} 
-                  required={item?.require} 
-                  colon={false} 
-                  label={item.label || ""} 
-                  key={item.key} 
-                  name={item.name} 
-                  className={classNames("form-item")}
-                  rules={item?.rules}
-                >
-                  { item.type === "input" && <Input {...item} /> }
-                  { item.type === "select" && <Select {...item} /> }
-                </Form.Item>
-             ) : 
-             (
-              <Form.Item 
-                {...item?.formItemLayout} 
-                required={item?.require} 
-                colon={false} 
-                label={item.label || ""} 
-                key={item.key} 
-                name={item.name} 
-                className={classNames("form-input")}
-                rules={item?.rules}
-              >
-                { item.type === "input" && <Input {...item} /> }
-                { item.type === "select" && <Select {...item} /> }
-              </Form.Item>
-             )
-           }
+        <Col 
+          span={8} 
+          key={item.key} 
+          style={(index) % 3 === 0 ? { 
+            paddingLeft: "0", paddingRight: "8px"
+          }: { 
+            paddingLeft: "8px", paddingRight: "8px"
+          }}>
+           <Form.Item 
+              required={item?.require} 
+              // colon={false} 
+              label={item.label} 
+              key={item.key} 
+              name={item.name}
+              rules={item?.rules}
+            >
+              { item.type === "input" && <Input {...item} /> }
+              { item.type === "select" && <Select {...item} /> }
+              { item.type === "checkout" && 
+                <span>
+                  <Checkbox {...item} onChange={item.callback} />
+                  <span style={{marginLeft: "8px"}}>{item.name}</span>
+                </span>
+              }
+              { item.type === "datepicker" && 
+                <Space direction="vertical">
+                  <RangePicker 
+                    // locale={locale}
+                    showTime
+                    format={"YYYY-MM-DD"}
+                    placement={"bottomLeft"}
+                  />
+                </Space>
+              }
+            </Form.Item>
         </Col>,
       );
     })
@@ -103,11 +89,9 @@ const FormLayout = ({
         <Form
           {...rest} 
           form={form} 
-          layout={layout} 
           labelAlign={labelAlign} 
           id={formObj.name} 
           name={formObj.name} 
-          className={classNames("form-content")}
         >
           <Row>{getFields(items)}</Row>
         </Form>
@@ -122,7 +106,6 @@ const FormLayout = ({
         labelAlign={labelAlign} 
         id={formObj.name} 
         name={formObj.name} 
-        className={classNames("form-content")}
       >
         {/* <Row> */}
         { items.length > 0 && items.map((item: any, index: number) => {
@@ -131,34 +114,32 @@ const FormLayout = ({
               <Row>
                 <Col span={24} className={item?.classname}>
                   <Form.Item 
-                    {...item?.formItemLayout} 
                     required={item?.require} 
-                    colon={false} 
-                    label={item.label || ""} 
+                    label={item.label} 
                     key={item.key} 
                     name={item.name} 
-                    className={classNames(item?.useItemStyle ? "form-label" : "")}
                     rules={item?.rules}
                   >
                     { item?.subType !== "area" && (
-                      <input
-                        style={item.style}
-                        value={item.value}
-                        onChange={(e) => item.callback(e)}
-                        placeholder={item.placeholder}
-                        placeholder-class="placeholder-class"
-                        type={item?.subType }
-                      />
+                      // <input
+                      //   style={item.style}
+                      //   value={item.value}
+                      //   onChange={(e) => item.callback(e)}
+                      //   placeholder={item.placeholder}
+                      //   placeholder-class={item.placeholderStyle}
+                      //   type={item?.subType }
+                      // />
+                      <Input />
                     )}
                     { item?.subType === "area" && (
                       <TextArea 
-                        showCount 
-                        maxLength={100} 
-                        style={item.style}
-                        value={item.value}
-                        placeholder={item.placeholder}
-                        placeholder-class="placeholder-class"
-                        onChange={(e) => item.callback(e)} 
+                        // showCount 
+                        // maxLength={100} 
+                        // style={item.style}
+                        // value={item.value}
+                        // placeholder={item.placeholder}
+                        // placeholder-class="placeholder-class"
+                        // onChange={(e) => item.callback(e)} 
                       />
                     )}
                   </Form.Item>
@@ -171,20 +152,20 @@ const FormLayout = ({
               <Row>
                 <Col span={24}>
                   <Form.Item 
-                    {...item?.formItemLayout} 
-                    colon={false} 
-                    label={item.label || "" } 
+                    required={item?.require} 
+                    label={item.label} 
                     key={item.key} 
                     name={item.name} 
-                    className={classNames("form-item")}>
-                    <Select
+                  >
+                    {/* <Select
                       defaultValue={item.defaultValue}
                       onChange={(data: any) => item.callback(data)}
                       placeholder={item.placeholder}
                       getPopupContainer={(triggerNode) => triggerNode.parentNode}
                       // suffixIcon={<img src={require("@/assets/images/common/down.png")} />}
                       options={item.options}
-                    />
+                    /> */}
+                    <Select />
                     {item?.customElement}
                   </Form.Item>
                 </Col>
@@ -196,9 +177,10 @@ const FormLayout = ({
               <Row>
                 <Col span={24}>
                   <Form.Item 
-                    {...item?.formItemLayout} 
-                    colon={false} 
-                    label={item.label || ""} key={item.key} name={item.name} className={classNames("form-item")}>
+                    label={item.label} 
+                    key={item.key} 
+                    name={item.name} 
+                  >
                     <RangePicker
                       defaultValue={[dayjs(), dayjs()]}
                       allowClear={false}
@@ -215,9 +197,12 @@ const FormLayout = ({
           if (item.type === 'uploadFile') {
             return (
               <Form.Item 
-                // {...item?.formItemLayout} 
-                colon={false} 
-                label={item.label || ""} key={item.key} name={item.name} className={classNames("form-item")}>
+                required={item?.require} 
+                // colon={false} 
+                label={item.label} 
+                key={item.key} 
+                name={item.name} 
+              >
                 {/* @ts-ignore */}
                 <Upload>
                   {/* @ts-ignore */}
@@ -229,9 +214,11 @@ const FormLayout = ({
           if (item.type === 'uploadImage') {
             return (
               <Form.Item 
-                {...item?.formItemLayout} 
-                colon={false} 
-                label={item.label || ""} key={item.key} name={item.name} className={classNames("form-item")}>
+                required={item?.require} 
+                label={item.label} 
+                key={item.key} 
+                name={item.name} 
+              >
                 <Dragger>
                   <p className="ant-upload-drag-icon">
                     {/* @ts-ignore */}
@@ -240,6 +227,16 @@ const FormLayout = ({
                   <p className="ant-upload-hint">{item.title}</p>
                   <p className="ant-upload-hint" style={item.styleTip}>{item.tip}</p>
                 </Dragger>
+              </Form.Item>
+            )
+          }
+          if (item.type === 'submit') {
+            return (
+              <Form.Item 
+                required={item?.require} 
+                // colon={false} 
+                label={item.label || ""} key={item.key} name={item.name}>
+                <Button type="primary" htmlType="submit">{item.name}</Button>
               </Form.Item>
             )
           }
@@ -257,11 +254,7 @@ const FormLayout = ({
 
   return (
     <div>
-      <div className={classNames("basic-wrap")}>
-        <div className={classNames("form-wrap")}>
-          {FormComponent()}
-        </div>
-      </div>
+      {FormComponent()}
     </div>
   )
 }

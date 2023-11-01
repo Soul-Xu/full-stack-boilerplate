@@ -17,9 +17,6 @@ interface ReportCoordinationProps {
 }
 
 const ReportCoordination: NextPage = () => {
-  useEffect(() => {
-    console.log("client-home")
-  }, [])
 
   return(
     // @ts-ignore
