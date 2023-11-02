@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 // 自定义图形
 G2.registerShape('interval', 'hill', {
-  draw(info, container) {
+  draw(info:any, container) {
     const { points, style, defaultStyle = {} } = info;
 
     let path = [

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { NextPage } from "next"
+import dynamic from 'next/dynamic'
 import PageLayout from "../../layout/PageLayout"
 import { Row, Col, Card, Divider } from "antd"
 import styles from "./index.module.scss";
@@ -7,22 +8,34 @@ import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
 
 /** components */
-import LineDemo from "../../components/chartsDemo/line"
-import AreaDemo from "../../components/chartsDemo/area"
-import ColumnDemo from "../../components/chartsDemo/column"
-import BarDemo from "../../components/chartsDemo/bar"
-import PieDemo from "../../components/chartsDemo/pie"
-import DualAxesDemo from "../../components/chartsDemo/dualAxes"
+// import LineDemo from "../../components/chartsDemo/line"
+// import AreaDemo from "../../components/chartsDemo/area"
+// import ColumnDemo from "../../components/chartsDemo/column"
+// import BarDemo from "../../components/chartsDemo/bar"
+// import PieDemo from "../../components/chartsDemo/pie"
+// import DualAxesDemo from "../../components/chartsDemo/dualAxes"
 
-import CustomLineDemo from '../../components/chartsDemo/customLine/index';
-import CustomPieDemo from '../../components/chartsDemo/customPie/index';
-import CustomMixDemo from '../../components/chartsDemo/customMix/index';
+// import CustomLineDemo from '../../components/chartsDemo/customLine/index';
+// import CustomPieDemo from '../../components/chartsDemo/customPie/index';
+// import CustomMixDemo from '../../components/chartsDemo/customMix/index';
+
+const LineDemo = dynamic(() => import("../../components/chartsDemo/line"))
+const AreaDemo = dynamic(() => import("../../components/chartsDemo/area"))
+const ColumnDemo = dynamic(() => import("../../components/chartsDemo/column"))
+const BarDemo = dynamic(() => import("../../components/chartsDemo/bar"))
+const PieDemo = dynamic(() => import("../../components/chartsDemo/pie"))
+const DualAxesDemo = dynamic(() => import("../../components/chartsDemo/dualAxes"))
+
+const CustomLineDemo = dynamic(() => import("../../components/chartsDemo/customLine/index"))
+const CustomPieDemo = dynamic(() => import("../../components/chartsDemo/customPie/index"))
+const CustomMixDemo = dynamic(() => import("../../components/chartsDemo/customMix/index"))
 
 interface ChartsProps {
 }
 
 const Charts: NextPage = () => {
   return(
+    // @ts-ignore
     <PageLayout>
       <section className={classNames("container")}>
         <h1 className={classNames("container-title")}>图表示例</h1>

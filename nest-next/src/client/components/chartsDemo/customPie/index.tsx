@@ -19,7 +19,7 @@ G2.registerShape('interval', 'slice-shape', {
   // 绘制形状
   draw(cfg, container) {
     // 正常的数据位点，由内部计算。 一般为 {x,y} 组成的数组 有四个 对象 代表四个点的位置。 极坐标和坐标翻转会影响 x y 的具体位置 x y 为图表位置的百分比
-    const points = cfg.points;
+    const points: any = cfg.points;
 
     // path 为路径
     let path = [];
