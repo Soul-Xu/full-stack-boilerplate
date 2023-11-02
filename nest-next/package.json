@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@antv/g2plot": "^2.4.31",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",

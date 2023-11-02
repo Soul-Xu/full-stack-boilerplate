@@ -9,6 +9,7 @@ import {
   TableOutlined,
   SolutionOutlined,
   TransactionOutlined,
+  AreaChartOutlined
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 import type { MenuProps, MenuTheme } from 'antd/es/menu';
@@ -49,6 +50,8 @@ const items: MenuItem[] = [
   getItem('报告协调', '7', <SolutionOutlined />),
   // @ts-ignore
   getItem('关闭/结单', '8', <TransactionOutlined />),
+  // @ts-ignore
+  getItem('图表示例', '9', <AreaChartOutlined />),
 ];
 
 const itemsMap = {
@@ -60,20 +63,19 @@ const itemsMap = {
   "5": "eventReportAudit",
   "6": "departmentCounterSign",
   "7": "reportCoordination",
-  "8": "statement"
+  "8": "statement",
+  "9": "charts"
 }
 
-const pathsMap = {
-  "home": "0",
-  "receiveAssign": "1",
-  "diagnosisRecovery": "2",
-  "review": "3",
-  "secondLevelAudit": "4",
-  "departmentCounterSign": "5",
-  "eventReportAudit": "6",
-  "reportCoordination": "7",
-  "statement": "8"
+const transferMaps = (obj: any) => {
+  let res = {}
+  for (let key in obj) {
+    res[obj[key]] = key
+  }
+  return res
 }
+
+const pathsMap = transferMaps(itemsMap)
 
 const MenuLayout: React.FC = () => {
   const [selectKey, setSelectKey] = useState([''])

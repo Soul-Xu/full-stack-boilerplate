@@ -1,4 +1,4 @@
-import { ChangeEvent, useonChange, useEffect, useReducer, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useReducer, useState } from "react";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Button, Checkbox, Form, Input, message } from 'antd';
@@ -38,7 +38,7 @@ const Login: React.FC = () => {
     dispatch({ type, payload: val });
   };
 
-  const onLogin = useonChange(async () => {
+  const onLogin = useCallback(async () => {
     if (!username) {
       message.warning("账号不能为空");
       return;
