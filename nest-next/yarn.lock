@@ -3686,6 +3686,14 @@
     "pkg-dir" "^4.2.0"
     "resolve-cwd" "^3.0.0"
 
+"imports-loader@^4.0.1":
+  "integrity" "sha512-ZiY+1xH5fqAJ1Qu1CFv+zw54rvPCC92DdYRDe0IIUboOhbJPLfOPbF/paA2iipelvMwjQUKWydcFOJ7f1+ZFcA=="
+  "resolved" "https://mirrors.tencent.com/npm/imports-loader/-/imports-loader-4.0.1.tgz"
+  "version" "4.0.1"
+  dependencies:
+    "source-map" "^0.6.1"
+    "strip-comments" "^2.0.1"
+
 "imurmurhash@^0.1.4":
   "integrity" "sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA=="
   "resolved" "https://registry.npmmirror.com/imurmurhash/-/imurmurhash-0.1.4.tgz"
@@ -6175,6 +6183,11 @@
   "integrity" "sha512-3xurFv5tEgii33Zi8Jtp55wEIILR9eh34FAW00PZf+JnSsTmV/ioewSgQl97JHvgjoRGwPShsWm+IdrxB35d0w=="
   "resolved" "https://registry.npmmirror.com/strip-bom/-/strip-bom-4.0.0.tgz"
   "version" "4.0.0"
+
+"strip-comments@^2.0.1":
+  "integrity" "sha512-ZprKx+bBLXv067WTCALv8SSz5l2+XhpYCsVtSqlMnkAXMWDq+/ekVbl1ghqP9rUHTzv6sm/DwCOiYutU/yp1fw=="
+  "resolved" "https://mirrors.tencent.com/npm/strip-comments/-/strip-comments-2.0.1.tgz"
+  "version" "2.0.1"
 
 "strip-final-newline@^2.0.0":
   "integrity" "sha512-BrpvfNAE3dcvq7ll3xVumzjKjZQ5tI1sEUIKr3Uoks0XUl45St3FlatVqef9prk4jRDzhW6WZg+3bk93y6pLjA=="

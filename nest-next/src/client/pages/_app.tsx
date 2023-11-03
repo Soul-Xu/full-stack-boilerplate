@@ -2,6 +2,7 @@ import { Suspense, useEffect } from "react"
 import Head from 'next/head'
 import type { AppProps } from "next/app"
 import { wrapper } from "../store/store"
+import "../styles/global.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

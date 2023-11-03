@@ -22,7 +22,12 @@ const PageLayout: React.FC = ({children}) => {
   return (
     <div>
       <Layout style={{ minHeight: '100vh' }}>
-      <Sider className={classNames("sider-content")} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+      <Sider
+        style={{ position: "fixed", minHeight: '100vh' }} 
+        className={classNames("sider-content")} 
+        collapsible 
+        collapsed={collapsed} 
+        onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
         {/* <div className="demo-logo-vertical">
           <Image src={ImgFormLogo} alt="安信证劵" width={150} height={103} />
@@ -31,7 +36,7 @@ const PageLayout: React.FC = ({children}) => {
       </Sider>
       <Layout>
         {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
-        <Content style={{ margin: '0 16px', marginTop: '16px' }}>
+        <Content style={{ margin: '0 16px', marginTop: '16px', marginLeft: "216px" }}>
           {/* <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>User</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>

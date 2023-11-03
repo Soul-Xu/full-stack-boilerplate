@@ -34,6 +34,14 @@ interface ChartsProps {
 }
 
 const Charts: NextPage = () => {
+  useEffect(() => {
+    try {
+      console.log("charts-111111111")
+    } catch(err: any) {
+      console.error("charts", err)
+    }
+  }, [])
+
   return(
     // @ts-ignore
     <PageLayout>
