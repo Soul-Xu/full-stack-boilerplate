@@ -19,9 +19,11 @@
     "paths": {
       "*": [
         "@/*"
+      ],
+      "components": [
+        "@/components"
       ]
     },
-    "suppressImplicitAnyIndexErrors": true,
     "noImplicitAny": false,
     "noEmit": true,
     "incremental": true

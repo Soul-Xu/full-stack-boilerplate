@@ -14,6 +14,8 @@ import EffectAnalysis from '../../funcComponents/effectAnalysis/index';
 import AttachmentUpload from '../../funcComponents/attachmentUpload/index';
 import SubmitElement from '../../funcComponents/submitElement/index';
 
+// import PersonSelector from 'components/personSelector';
+
 interface HomeProps {
 }
 
@@ -24,6 +26,7 @@ const Home: NextPage = () => {
       <section className={classNames("container")}>
         <h1 className={classNames("container-title")}>事件管理</h1>
         <div className={classNames("container-content")}>
+          {/* <PersonSelector /> */}
           <BasicInformation />
           <HandleInformation />
           <ReasonAnalysis />

@@ -114,7 +114,6 @@ const Login: React.FC = () => {
           borderRadius: "2px",
           border: "1px solid #B4B9C2"
         },
-        // formItemLayout,
         label: '密码',
         labelStyle: {
           height: "24px",
@@ -122,7 +121,7 @@ const Login: React.FC = () => {
           color: "#242424",
           lineHeight: "24px"
         },
-        // name: 'password',
+        name: 'password',
         placeholder: '请输入密码',
         onChange: (e: any) => setState("update", { password: e.target.value.trim()})
       }

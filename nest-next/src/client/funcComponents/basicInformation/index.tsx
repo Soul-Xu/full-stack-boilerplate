@@ -29,7 +29,7 @@ const BasicInformation = (props: any) => {
   const setState = (type: string, val: Record<string, any>) => {
     dispatch({ type, payload: val });
   };
-  
+
   const formObj1 = {
     name: 'basic-form1',
     layout: "horizontal",
