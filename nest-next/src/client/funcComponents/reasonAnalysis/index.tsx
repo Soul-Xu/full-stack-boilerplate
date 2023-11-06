@@ -3,6 +3,7 @@ import CustomLayout from '../customLayout/index';
 import styles from "./index.module.scss"
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
+import debounce from 'lodash/debounce';
 
 import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
@@ -48,6 +49,10 @@ const ReasonAnalysis = () => {
   const setState = (type: string, val: Record<string, any>) => {
     dispatch({ type, payload: val });
   };
+
+  const onHandleChange = debounce((key: string, value: string) => {
+    setState("update", { [key]: value})
+  }, 1000)
   
   const formObj = {
     name: 'reason-analysis-form',
@@ -65,8 +70,7 @@ const ReasonAnalysis = () => {
         options: reasons,
         placeholder: '请选择原因分类',
         onChange: (value: any) => {
-          console.log("select", value)
-          setState("update", { reasonClassify: value})
+          onHandleChange("reasonClassify", value)
         }
       },
       {
@@ -79,7 +83,7 @@ const ReasonAnalysis = () => {
         ),
         name: 'luckyTip',
         onChange: (e: any) => {
-          setState("update", { luckyTip: e.target.value.trim()})
+          onHandleChange("luckyTip", e.target.value.trim())
         }
       },
       {
@@ -92,7 +96,7 @@ const ReasonAnalysis = () => {
         ),
         name: 'triggerAnalysis',
         onChange: (e: any) => {
-          setState("update", { triggerAnalysis: e.target.value.trim()})
+          onHandleChange("triggerAnalysis", e.target.value.trim())
         }
       },
     ],

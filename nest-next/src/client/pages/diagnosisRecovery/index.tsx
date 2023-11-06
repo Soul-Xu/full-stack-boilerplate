@@ -4,6 +4,7 @@ import { NextPage } from 'next'
 import styles from "./index.module.scss";
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
+import debounce from 'lodash/debounce';
 
 import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
@@ -43,6 +44,10 @@ const DiagnosisRecovery: NextPage = () => {
     dispatch({ type, payload: val });
   };
 
+  const onHandleChange = debounce((key: string, value: string) => {
+    setState("update", { [key]: value})
+  }, 1000)
+
   const basicForm = {
     name: 'diagnosis-basic-form',
     inRow: true,
@@ -61,7 +66,7 @@ const DiagnosisRecovery: NextPage = () => {
         disabled: true,
         placeholder: '自动获取',
         onChange: (e: any) => {
-          setState("update", { taskId: e.target.value.trim()})
+          onHandleChange("taskId", e.target.value.trim())
         }
       },
       {
@@ -76,7 +81,7 @@ const DiagnosisRecovery: NextPage = () => {
         disabled: true,
         placeholder: '自动获取',
         onChange: (e: any) => {
-          setState("update", { registrant: e.target.value.trim()})
+          onHandleChange("registrant", e.target.value.trim())
         }
       },
       {
@@ -91,7 +96,7 @@ const DiagnosisRecovery: NextPage = () => {
         disabled: true,
         placeholder: '自动获取',
         onChange: (e: any) => {
-          setState("update", { registrationTime: e.target.value.trim()})
+          onHandleChange("registrationTime", e.target.value.trim())
         }
       },
       {
@@ -106,7 +111,7 @@ const DiagnosisRecovery: NextPage = () => {
         require: 1,
         placeholder: '请输入发现渠道',
         onChange: (value: any) => {
-          setState("update", { discoveryChannels: value})
+          onHandleChange("discoveryChannels", value)
         }
       },
       {
@@ -120,7 +125,7 @@ const DiagnosisRecovery: NextPage = () => {
         disabled: true,
         placeholder: '请输入报告人',
         onChange: (value: any) => {
-          setState("update", { reportedBy: value})
+          onHandleChange("reportedBy", value)
         }
       }
     ],
@@ -141,7 +146,7 @@ const DiagnosisRecovery: NextPage = () => {
         ),
         name: 'mainFollowUpTeam',
         onChange: (value: any) => {
-          setState("update", { mainFollowUpTeam: value})
+          onHandleChange("mainFollowUpTeam", value)
         }
       },
       {
@@ -153,7 +158,7 @@ const DiagnosisRecovery: NextPage = () => {
         ),
         name: 'availabilityFollowUpEr',
         onChange: (value: any) => {
-          setState("update", { availabilityFollowUpEr: value})
+          onHandleChange("availabilityFollowUpEr", value)
         }
       },
       {
@@ -165,7 +170,7 @@ const DiagnosisRecovery: NextPage = () => {
         ),
         name: 'assistFollowUpTeam',
         onChange: (value: any) => {
-          setState("update", { assistFollowUpTeam: value})
+          onHandleChange("assistFollowUpTeam", value)
         }
       },
     ],

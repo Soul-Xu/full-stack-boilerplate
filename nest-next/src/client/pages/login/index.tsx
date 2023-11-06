@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./index.module.scss";
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
+import debounce from 'lodash/debounce';
 
 import FormLayout from "../../components/formLayout"
 import { authState, setAuthState } from "../../store/modules/authSlice"
@@ -37,6 +38,10 @@ const Login: React.FC = () => {
   const setState = (type: string, val: Record<string, any>) => {
     dispatch({ type, payload: val });
   };
+
+  const onHandleChange = debounce((key: string, value: string) => {
+    setState("update", { [key]: value})
+  }, 1000)
 
   const onLogin = useCallback(async () => {
     if (!username) {
@@ -97,7 +102,7 @@ const Login: React.FC = () => {
         // name: 'username',
         placeholder: '请输入账号',
         onChange: (e: any) => {
-          setState("update", { username: e.target.value.trim()})
+          onHandleChange("username", e.target.value.trim())
         }
       },
       {
@@ -123,7 +128,9 @@ const Login: React.FC = () => {
         },
         name: 'password',
         placeholder: '请输入密码',
-        onChange: (e: any) => setState("update", { password: e.target.value.trim()})
+        onChange: (e: any) => {
+          onHandleChange("password", e.target.value.trim())
+        }
       }
     ],
     customElements: () => (

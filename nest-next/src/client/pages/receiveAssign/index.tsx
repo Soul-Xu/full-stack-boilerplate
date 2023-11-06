@@ -3,6 +3,7 @@ import { NextPage } from 'next'
 import styles from "./index.module.scss";
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
+import debounce from 'lodash/debounce';
 
 import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
@@ -44,6 +45,10 @@ const ReceiveAssign: NextPage = () => {
     dispatch({ type, payload: val });
   };
 
+  const onHandleChange = debounce((key: string, value: string) => {
+    setState("update", { [key]: value})
+  }, 1000)
+
   const basicForm = {
     name: 'receive-basic-form',
     inRow: true,
@@ -62,7 +67,7 @@ const ReceiveAssign: NextPage = () => {
         disabled: true,
         placeholder: '自动获取',
         onChange: (e: any) => {
-          setState("update", { taskId: e.target.value.trim()})
+          onHandleChange("taskId", e.target.value.trim())
         }
       },
       {
@@ -76,7 +81,7 @@ const ReceiveAssign: NextPage = () => {
         name: 'registrant',
         placeholder: '自动获取',
         onChange: (e: any) => {
-          setState("update", { registrant: e.target.value.trim()})
+          onHandleChange("registrant", e.target.value.trim())
         }
       },
       {
@@ -90,7 +95,7 @@ const ReceiveAssign: NextPage = () => {
         name: 'registrationTime',
         placeholder: '自动获取',
         onChange: (e: any) => {
-          setState("update", { registrationTime: e.target.value.trim()})
+          onHandleChange("registrationTime", e.target.value.trim())
         }
       },
       {
@@ -104,7 +109,7 @@ const ReceiveAssign: NextPage = () => {
         require: 1,
         placeholder: '请输入报告人',
         onChange: (value: any) => {
-          setState("update", { discoveryChannels: value})
+          onHandleChange("discoveryChannels", value)
         }
       },
       {
@@ -116,7 +121,7 @@ const ReceiveAssign: NextPage = () => {
         ),
         name: 'reportedBy',
         onChange: (value: any) => {
-          setState("update", { reportedBy: value})
+          onHandleChange("reportedBy", value)
         }
       },
       {
@@ -130,7 +135,7 @@ const ReceiveAssign: NextPage = () => {
         require: 1,
         placeholder: '请输入报告人',
         onChange: (value: any) => {
-          setState("update", { discoveryTime: value})
+          onHandleChange("discoveryTime", value)
         }
       }
     ],
@@ -153,7 +158,7 @@ const ReceiveAssign: NextPage = () => {
         name: 'status',
         disabled: true,
         onChange: (e: any) => {
-          setState("update", { status: e.target.value.trim()})
+          onHandleChange("status", e.target.value.trim())
         }
       },
       {
@@ -165,7 +170,7 @@ const ReceiveAssign: NextPage = () => {
         ),
         name: 'impactSystem',
         onChange: (value: any) => {
-          setState("update", { impactSystem: value})
+          onHandleChange("impactSystem", value)
         }
       },
       {
@@ -178,7 +183,7 @@ const ReceiveAssign: NextPage = () => {
         name: 'handleGroup',
         require: 1,
         onChange: (value: any) => {
-          setState("update", { handleGroup: value})
+          onHandleChange("handleGroup", value)
         }
       },
       {
@@ -191,7 +196,7 @@ const ReceiveAssign: NextPage = () => {
         name: 'handler',
         require: 1,
         onChange: (value: any) => {
-          setState("update", { handler: value})
+          onHandleChange("handler", value)
         }
       },
     ],

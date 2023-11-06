@@ -3,6 +3,7 @@ import CustomLayout from '../customLayout/index';
 import styles from "./index.module.scss"
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
+import debounce from 'lodash/debounce';
 
 import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
@@ -38,6 +39,10 @@ const HandleInformation = (props) => {
     dispatch({ type, payload: val });
   };
 
+  const onHandleChange = debounce((key: string, value: string) => {
+    setState("update", { [key]: value})
+  }, 1000)
+
   const formObj = {
     name: 'handle-form',
     inRow: true,
@@ -55,7 +60,7 @@ const HandleInformation = (props) => {
         name: 'status',
         disabled: true,
         onChange: (e: any) => {
-          setState("update", { status: e.target.value.trim()})
+          onHandleChange("status", e.target.value.trim())
         }
       },
       {
@@ -67,7 +72,7 @@ const HandleInformation = (props) => {
         ),
         name: 'impactSystem',
         onChange: (value: any) => {
-          setState("update", { impactSystem: value})
+          onHandleChange("impactSystem", value)
         }
       },
       {
@@ -80,7 +85,7 @@ const HandleInformation = (props) => {
         name: 'discoveryTime',
         require: 1,
         onChange: (e: any) => {
-          setState("update", { discoveryTime: e.target.value.trim()})
+          onHandleChange("discoveryTime", e.target.value.trim())
         }
       },
       {
@@ -93,7 +98,7 @@ const HandleInformation = (props) => {
         name: 'handleGroup',
         require: 1,
         onChange: (value: any) => {
-          setState("update", { handleGroup: value})
+          onHandleChange("handleGroup", value)
         }
       },
       {
@@ -105,7 +110,7 @@ const HandleInformation = (props) => {
         ),
         name: 'subClass',
         onChange: (value: any) => {
-          setState("update", { subClass: value})
+          onHandleChange("subClass", value)
         }
       },
       {
@@ -117,7 +122,7 @@ const HandleInformation = (props) => {
         ),
         name: 'occurrenceTime',
         onChange: (e: any) => {
-          setState("update", { occurrenceTime: e.target.value.trim()})
+          onHandleChange("occurrenceTime", e.target.value.trim())
         }
       },
       {
@@ -130,7 +135,7 @@ const HandleInformation = (props) => {
         name: 'handler',
         require: 1,
         onChange: (value: any) => {
-          setState("update", { handler: value})
+          onHandleChange("handler", value)
         }
       },
       {
@@ -142,7 +147,7 @@ const HandleInformation = (props) => {
         ),
         name: 'region',
         onChange: (value: any) => {
-          setState("update", { region: value})
+          onHandleChange("region", value)
         }
       },
       {
@@ -154,7 +159,7 @@ const HandleInformation = (props) => {
         ),
         name: 'reportTime',
         onChange: (e: any) => {
-          setState("update", { reportTime: e.target.value.trim()})
+          onHandleChange("reportTime", e.target.value.trim())
         }
       },
       {
@@ -166,7 +171,7 @@ const HandleInformation = (props) => {
         ),
         name: 'effect',
         onChange: (value: any) => {
-          setState("update", { effect: value})
+          onHandleChange("effect", value)
         }
       },
       {
@@ -179,7 +184,7 @@ const HandleInformation = (props) => {
         name: 'processingPriority',
         disabled: true,
         onChange: (value) => {
-          setState("update", { processingPriority: value})
+          onHandleChange("processingPriority", value)
         }
       },
       {
@@ -191,7 +196,7 @@ const HandleInformation = (props) => {
         ),
         name: 'processingFinishTime',
         onChange: (e: any) => {
-          setState("update", { processingFinishTime: e.target.value.trim()})
+          onHandleChange("processingFinishTime", e.target.value.trim())
         }
       },
       {
@@ -203,7 +208,7 @@ const HandleInformation = (props) => {
         ),
         name: 'urgency',
         onChange: (value: any) => {
-          setState("update", { urgency: value})
+          onHandleChange("urgency", value)
         }
       },
       {
@@ -215,7 +220,7 @@ const HandleInformation = (props) => {
         ),
         name: 'problemSolvedTime',
         onChange: (e: any) => {
-          setState("update", { problemSolvedTime: e.target.value.trim()})
+          onHandleChange("problemSolvedTime", e.target.value.trim())
         }
       },
     ],

@@ -3,6 +3,7 @@ import CustomLayout from '../customLayout/index';
 import styles from "./index.module.scss"
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
+import debounce from 'lodash/debounce';
 
 import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
@@ -24,6 +25,10 @@ const EffectAnalysis = () => {
     dispatch({ type, payload: val });
   };
   
+  const onHandleChange = debounce((key: string, value: string) => {
+    setState("update", { [key]: value})
+  }, 1000)
+
   const formObj = {
     name: 'effect-form',
     layout: "horizontal",
@@ -39,7 +44,7 @@ const EffectAnalysis = () => {
         ),
         name: 'legalCompliance',
         onChange: (e: any) => {
-          setState("update", { legalCompliance: e.target.value.trim()})
+          onHandleChange("legalCompliance", e.target.value.trim())
         }
       },
       {
@@ -52,7 +57,7 @@ const EffectAnalysis = () => {
         ),
         name: 'corporateBusiness',
         onChange: (e: any) => {
-          setState("update", { corporateBusiness: e.target.value.trim()})
+          onHandleChange("corporateBusiness", e.target.value.trim())
         }
       },
       {
@@ -65,7 +70,7 @@ const EffectAnalysis = () => {
         ),
         name: 'informationSystem',
         onChange: (e: any) => {
-          setState("update", { informationSystem: e.target.value.trim()})
+          onHandleChange("informationSystem", e.target.value.trim())
         }
       },
       {
@@ -78,7 +83,7 @@ const EffectAnalysis = () => {
         ),
         name: 'impactReputation',
         onChange: (e: any) => {
-          setState("update", { impactReputation: e.target.value.trim()})
+          onHandleChange("impactReputation", e.target.value.trim())
         }
       },
       {
@@ -91,7 +96,7 @@ const EffectAnalysis = () => {
         ),
         name: 'others',
         onChange: (e: any) => {
-          setState("update", { others: e.target.value.trim()})
+          onHandleChange("others", e.target.value.trim())
         }
       },
     ],

@@ -3,6 +3,7 @@ import CustomLayout from '../customLayout/index';
 import styles from "./index.module.scss"
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
+import debounce from 'lodash/debounce';
 
 import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
@@ -21,6 +22,10 @@ const AttachmentUpload = () => {
     dispatch({ type, payload: val });
   };
   
+  const onHandleChange = debounce((key: string, value: string) => {
+    setState("update", { [key]: value})
+  }, 1000)
+
   const formObj = {
     name: 'upload-form',
     layout: "horizontal",
@@ -36,7 +41,7 @@ const AttachmentUpload = () => {
         name: 'files',
         title: "上传附件",
         onChange: (e: any) => {
-          setState("update", { files: e.target.value.trim()})
+          onHandleChange("files", e.target.value.trim())
         }
       },
       {

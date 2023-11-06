@@ -1,14 +1,17 @@
+import React from 'react'
 import FormLayout from '../../components/formLayout';
 import CustomLayout from '../customLayout/index';
 import styles from "./index.module.scss"
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
+import debounce from 'lodash/debounce';
 
 import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Divider } from 'antd';
+import { useEffect } from 'react';
 
 const initialState = {
   title: "", // 标题
@@ -17,18 +20,32 @@ const initialState = {
   registrant: "", // 登记人
   registrationTime: "", // 登记时间
   discoveryChannels: "", // 发现渠道
-  reportedBy: "", // 报告人
-  discoverer: "", // 发现者
+  reportedBy: "" // 报告人
 }
+
+const options = [
+  {
+    value: "1",
+    label: "lucky"
+  },
+  {
+    value: "2",
+    label: "li"
+  }
+]
 
 const BasicInformation = (props: any) => {
   const { basicFormDetail } = props
   const dispatchRedux = useDispatch();
   const [data, dispatch] = useImmerReducer(reducer, initialState);
-  const { title, description, taskId, registrant, registrationTime, discoveryChannels, reportedBy, discoverer } = data as any;
+  const { title, description, taskId, registrant, registrationTime, discoveryChannels, reportedBy } = data as any;
   const setState = (type: string, val: Record<string, any>) => {
     dispatch({ type, payload: val });
   };
+
+  const onHandleChange = debounce((key: string, value: string) => {
+    setState("update", { [key]: value})
+  }, 1000)
 
   const formObj1 = {
     name: 'basic-form1',
@@ -36,8 +53,8 @@ const BasicInformation = (props: any) => {
     labelAlign: "left",
     items: [
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'title',
         value: title,
         label: (
@@ -46,12 +63,12 @@ const BasicInformation = (props: any) => {
         name: 'title',
         require,
         onChange: (e: any) => {
-          setState("update", { title: e.target.value.trim()})
+          onHandleChange('title', e.target.value.trim()) // 修复这里的参数
         }
       },
       {
-        type: 'input',
-        subtype: "area",
+        kind: 'input',
+        type: "area",
         key: 'description',
         value: description,
         label: (
@@ -61,7 +78,7 @@ const BasicInformation = (props: any) => {
         require,
         placeholder: '请输入描述',
         onChange: (e: any) => {
-          setState("update", { description: e.target.value.trim()})
+          onHandleChange('description', e.target.value.trim())
         }
       },
     ],
@@ -85,7 +102,7 @@ const BasicInformation = (props: any) => {
         disabled: true,
         placeholder: '自动获取',
         onChange: (e: any) => {
-          setState("update", { taskId: e.target.value.trim()})
+          onHandleChange('taskId', e.target.value.trim())
         }
       },
       {
@@ -100,7 +117,7 @@ const BasicInformation = (props: any) => {
         disabled: true,
         placeholder: '自动获取',
         onChange: (e: any) => {
-          setState("update", { registrant: e.target.value.trim()})
+          onHandleChange('registrant', e.target.value.trim())
         }
       },
       {
@@ -115,7 +132,7 @@ const BasicInformation = (props: any) => {
         disabled: true,
         placeholder: '自动获取',
         onChange: (e: any) => {
-          setState("update", { registrationTime: e.target.value.trim()})
+          onHandleChange('registrationTime', e.target.value.trim())
         }
       },
       {
@@ -126,10 +143,12 @@ const BasicInformation = (props: any) => {
           <span className={classNames("form-item-label")}>发现渠道</span>
         ),
         name: 'discoveryChannels',
+        options: options,
         require: 1,
         placeholder: '请输入发现渠道',
         onChange: (value: any) => {
-          setState("update", { discoveryChannels: value})
+          console.log("select-11111", value)
+          onHandleChange('discoveryChannels', value)
         }
       },
       {
@@ -142,7 +161,7 @@ const BasicInformation = (props: any) => {
         name: 'reportedBy',
         placeholder: '请输入报告人',
         onChange: (value: any) => {
-          setState("update", { reportedBy: value})
+          onHandleChange('reportedBy', value)
         }
       }
     ],

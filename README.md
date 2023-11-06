@@ -15,7 +15,7 @@ $ npm run start
 
 |————nest-next
 |—————————src
-|————————————client  - 前台代码
+|————————————client  - 前端代码
 |————————————server  - node层代码
 |—————————.eslintrc.js
 |—————————.ignore

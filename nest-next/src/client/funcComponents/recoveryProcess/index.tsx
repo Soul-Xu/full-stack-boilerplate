@@ -5,6 +5,7 @@ import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import styles from "./index.module.scss"
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
+import debounce from 'lodash/debounce';
 
 import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
@@ -42,10 +43,10 @@ const RecoveryProcess = (props) => {
   const setState = (type: string, val: Record<string, any>) => {
     dispatch({ type, payload: val });
   };
-  
-  const onChange = (e: CheckboxChangeEvent) => {
-    console.log(`checked = ${e.target.checked}`);
-  };
+
+  const onHandleChange = debounce((key: string, value: string) => {
+    setState("update", { [key]: value})
+  }, 1000)
 
   const formObj1 = {
     inRow: true,
@@ -62,7 +63,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'recoveryCode',
         onChange: (value: any) => {
-          setState("update", { recoveryCode: value})
+          onHandleChange("recoveryCode", value)
         },
       },
       {
@@ -71,8 +72,7 @@ const RecoveryProcess = (props) => {
         checked: potentialProblem,
         name: '潜在问题',
         onChange: (checked: any) => {
-          console.log("checked", checked)
-          // setState("update", { potentialProblem: e.target.value.trim()})
+          onHandleChange("potentialProblem", checked)
         }
       },
     ],
@@ -93,7 +93,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'recoveryProcessDescription',
         onChange: (e: any) => {
-          setState("update", { recoveryProcessDescription: e.target.value.trim()})
+          onHandleChange("recoveryProcessDescription", e.target.value.trim())
         }
       },
     ],
@@ -114,7 +114,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'availabilityImpact',        
         onChange: (value: any) => {
-          setState("update", { availabilityImpact: value})
+          onHandleChange("availabilityImpact", value)
         }
       },
     ],
@@ -135,7 +135,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'mainFollowUpTeam',        
         onChange: (value: any) => {
-          setState("update", { mainFollowUpTeam: value})
+          onHandleChange("mainFollowUpTeam", value)
         }
       },
       {
@@ -147,7 +147,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'availabilityFollowUpEr',
         onChange: (value: any) => {
-          setState("update", { availabilityFollowUpEr: value})
+          onHandleChange("availabilityFollowUpEr", value)
         }
       },
       {
@@ -159,7 +159,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'assistFollowUpTeam',
         onChange: (value: any) => {
-          setState("update", { assistFollowUpTeam: value})
+          onHandleChange("assistFollowUpTeam", value)
         }
       },
       {
@@ -172,7 +172,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'businessRecoveryTime',
         onChange: (e: any) => {
-          setState("update", { businessRecoveryTime: e.target.value.trim()})
+          onHandleChange("businessRecoveryTime", e.target.value.trim())
         }
       },
       {
@@ -184,7 +184,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'affectedDuration',
         onChange: (value: any) => {
-          setState("update", { affectedDuration: value})
+          onHandleChange("affectedDuration", value)
         }
       },
       {
@@ -196,7 +196,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'availabilityRate',        
         onChange: (value: any) => {
-          setState("update", { availabilityRate: value})
+          onHandleChange("availabilityRate", value)
         }
       },
       {
@@ -209,7 +209,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'businessImpactRatio',
         onChange: (e: any) => {
-          setState("update", { businessImpactRatio: e.target.value.trim()})
+          onHandleChange("businessImpactRatio", e.target.value.trim())
         }
       },
       {
@@ -222,7 +222,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'responsibleTeamAndProportion',
         onChange: (e: any) => {
-          setState("update", { responsibleTeamAndProportion: e.target.value.trim()})
+          onHandleChange("responsibleTeamAndProportion", e.target.value.trim())
         }
       }
     ],

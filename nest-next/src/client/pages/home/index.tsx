@@ -28,12 +28,12 @@ const Home: NextPage = () => {
         <div className={classNames("container-content")}>
           {/* <PersonSelector /> */}
           <BasicInformation />
-          <HandleInformation />
+          {/* <HandleInformation />
           <ReasonAnalysis />
           <RecoveryProcess />
           <EffectAnalysis />
           <AttachmentUpload />
-          <SubmitElement />
+          <SubmitElement /> */}
         </div>
       </section>
     </PageLayout>
