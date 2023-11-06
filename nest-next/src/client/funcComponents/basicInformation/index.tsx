@@ -18,6 +18,7 @@ const initialState = {
   description: "", // 描述
   taskId: "", // 事件编号
   registrant: "", // 登记人
+  showRegistrant: false,
   registrationTime: "", // 登记时间
   discoveryChannels: "", // 发现渠道
   reportedBy: "" // 报告人
@@ -38,7 +39,7 @@ const BasicInformation = (props: any) => {
   const { basicFormDetail } = props
   const dispatchRedux = useDispatch();
   const [data, dispatch] = useImmerReducer(reducer, initialState);
-  const { title, description, taskId, registrant, registrationTime, discoveryChannels, reportedBy } = data as any;
+  const { title, description, taskId, registrant, showRegistrant, registrationTime, discoveryChannels, reportedBy } = data as any;
   const setState = (type: string, val: Record<string, any>) => {
     dispatch({ type, payload: val });
   };
@@ -46,6 +47,14 @@ const BasicInformation = (props: any) => {
   const onHandleChange = debounce((key: string, value: string) => {
     setState("update", { [key]: value})
   }, 1000)
+
+  useEffect(() => {
+    if (discoveryChannels === "2") {
+      setState("update", { showRegistrant: true})
+    } else {
+      setState("update", { showRegistrant: false})
+    }
+  }, [discoveryChannels])
 
   const formObj1 = {
     name: 'basic-form1',
@@ -110,6 +119,7 @@ const BasicInformation = (props: any) => {
         type: "text",
         key: 'registrant',
         value: registrant,
+        isshow: showRegistrant,
         label: (
           <span className={classNames("form-item-label-option")}>登记人</span>
         ),
@@ -147,7 +157,6 @@ const BasicInformation = (props: any) => {
         require: 1,
         placeholder: '请输入发现渠道',
         onChange: (value: any) => {
-          console.log("select-11111", value)
           onHandleChange('discoveryChannels', value)
         }
       },

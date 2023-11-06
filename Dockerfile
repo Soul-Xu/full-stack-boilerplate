@@ -2,8 +2,9 @@
 # stage1 as builder
 FROM node:16.14-alpine as builder
 
-# 修正 CVE 通報資安漏洞
-RUN sed -i 's/v3.15/v3.16/g' /etc/apk/repositories \
+# 切换软件源为阿里云
+RUN echo 'https://mirrors.aliyun.com/alpine/v3.16/main' > /etc/apk/repositories \
+    && echo 'https://mirrors.aliyun.com/alpine/v3.16/community' >> /etc/apk/repositories \
     && apk update \
     && apk upgrade \
     && apk add musl=1.2.3-r2
