@@ -45,8 +45,8 @@ const HandleInformation = (props) => {
     labelAlign: "left",
     items: [
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'status',
         value: status,
         label: (
@@ -59,7 +59,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'impactSystem',
         value: impactSystem,
         label: (
@@ -71,7 +71,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'datepicker',
+        kind: 'datepicker',
         key: 'discoveryTime',
         value: discoveryTime,
         label: (
@@ -84,7 +84,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'handleGroup',
         value: handleGroup,
         label: (
@@ -97,7 +97,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'subClass',
         value: subClass,
         label: (
@@ -109,7 +109,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'datepicker',
+        kind: 'datepicker',
         key: 'occurrenceTime',
         value: occurrenceTime,
         label: (
@@ -121,7 +121,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'handler',
         value: handler,
         label: (
@@ -134,7 +134,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'region',
         value: region,
         label: (
@@ -146,7 +146,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'datepicker',
+        kind: 'datepicker',
         key: 'reportTime',
         value: reportTime,
         label: (
@@ -158,7 +158,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'effect',
         value: effect,
         label: (
@@ -170,7 +170,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'processingPriority',
         value: processingPriority,
         label: (
@@ -183,7 +183,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'datepicker',
+        kind: 'datepicker',
         key: 'processingFinishTime',
         value: processingFinishTime,
         label: (
@@ -195,7 +195,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'urgency',
         value: urgency,
         label: (
@@ -207,7 +207,7 @@ const HandleInformation = (props) => {
         }
       },
       {
-        type: 'datepicker',
+        kind: 'datepicker',
         key: 'problemSolvedTime',
         value: problemSolvedTime,
         label: (

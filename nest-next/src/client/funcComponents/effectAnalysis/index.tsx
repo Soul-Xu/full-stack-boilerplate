@@ -30,8 +30,8 @@ const EffectAnalysis = () => {
     labelAlign: "left",
     items: [
       {
-        type: 'input',
-        subtype: "area",
+        kind: 'input',
+        type: "area",
         key: 'legalCompliance',
         value: legalCompliance,
         label: (
@@ -43,8 +43,8 @@ const EffectAnalysis = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "area",
+        kind: 'input',
+        type: "area",
         key: 'corporateBusiness',
         value: corporateBusiness,
         label: (
@@ -56,8 +56,8 @@ const EffectAnalysis = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "area",
+        kind: 'input',
+        type: "area",
         key: 'informationSystem',
         value: informationSystem,
         label: (
@@ -69,8 +69,8 @@ const EffectAnalysis = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "area",
+        kind: 'input',
+        type: "area",
         key: 'impactReputation',
         value: impactReputation,
         label: (
@@ -82,8 +82,8 @@ const EffectAnalysis = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "area",
+        kind: 'input',
+        type: "area",
         key: 'others',
         value: others,
         label: (

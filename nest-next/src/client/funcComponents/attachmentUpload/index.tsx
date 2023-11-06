@@ -27,7 +27,7 @@ const AttachmentUpload = () => {
     labelAlign: "left",
     items: [
       {
-        type: 'uploadFile',
+        kind: 'uploadFile',
         key: 'files',
         fileList: [],
         label: (
@@ -40,7 +40,7 @@ const AttachmentUpload = () => {
         }
       },
       {
-        type: 'uploadImage',
+        kind: 'uploadImage',
         key: 'images',
         fileList: [],
         label: (

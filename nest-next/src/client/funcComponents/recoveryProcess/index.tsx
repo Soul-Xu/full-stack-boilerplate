@@ -54,7 +54,7 @@ const RecoveryProcess = (props) => {
     labelAlign: "left",
     items: [
       {
-        type: 'select',
+        kind: 'select',
         key: 'recoveryCode',
         value: recoveryCode,
         label: (
@@ -66,7 +66,7 @@ const RecoveryProcess = (props) => {
         },
       },
       {
-        type: 'checkout',
+        kind: 'checkout',
         key: 'potentialProblem',
         checked: potentialProblem,
         name: '潜在问题',
@@ -84,8 +84,8 @@ const RecoveryProcess = (props) => {
     labelAlign: "left",
     items: [
       {
-        type: 'input',
-        subtype: "area",
+        kind: 'input',
+        type: "area",
         key: 'recoveryProcessDescription',
         value: recoveryProcessDescription,
         label: (
@@ -106,7 +106,7 @@ const RecoveryProcess = (props) => {
     labelAlign: "left",
     items: [
       {
-        type: 'select',
+        kind: 'select',
         key: 'availabilityImpact',
         value: availabilityImpact,
         label: (
@@ -127,7 +127,7 @@ const RecoveryProcess = (props) => {
     labelAlign: "left",
     items: [
       {
-        type: 'select',
+        kind: 'select',
         key: 'mainFollowUpTeam',
         value: mainFollowUpTeam,
         label: (
@@ -139,7 +139,7 @@ const RecoveryProcess = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'availabilityFollowUpEr',
         value: availabilityFollowUpEr,
         label: (
@@ -151,7 +151,7 @@ const RecoveryProcess = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'assistFollowUpTeam',
         value: assistFollowUpTeam,
         label: (
@@ -163,8 +163,8 @@ const RecoveryProcess = (props) => {
         }
       },
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'businessRecoveryTime',
         value: businessRecoveryTime,
         label: (
@@ -176,7 +176,7 @@ const RecoveryProcess = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'affectedDuration',
         value: affectedDuration,
         label: (
@@ -188,7 +188,7 @@ const RecoveryProcess = (props) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'availabilityRate',
         value: availabilityRate,
         label: (
@@ -200,8 +200,8 @@ const RecoveryProcess = (props) => {
         }
       },
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'businessImpactRatio',
         value: businessImpactRatio,
         label: (
@@ -213,8 +213,8 @@ const RecoveryProcess = (props) => {
         }
       },
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'responsibleTeamAndProportion',
         value: responsibleTeamAndProportion,
         label: (
@@ -234,8 +234,8 @@ const RecoveryProcess = (props) => {
     labelAlign: "left",
     items: [
       {
-        type: 'input',
-        subtype: "area",
+        kind: 'input',
+        type: "area",
         key: 'businessImpactOverview',
         value: businessImpactOverview,
         label: (

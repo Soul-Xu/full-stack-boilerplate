@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 // import locale from 'antd/es/date-picker/locale/zh_CN';
 // import 'dayjs/locale/zh-cn';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
@@ -54,17 +54,18 @@ const FormLayout = ({
               name={item.name}
               rules={item?.rules}
             >
-              { item.type === "input" && <Input {...item} /> }
-              { item.type === "select" && <Select {...item} /> }
-              { item.type === "checkout" && 
+              { item.kind === "input" && <Input {...item} /> }
+              { item.kind === "select" && <Select {...item} /> }
+              { item.kind === "checkout" && 
                 <span>
-                  <Checkbox {...item} onChange={item.onChange} />
+                  <Checkbox {...item} />
                   <span style={{marginLeft: "8px"}}>{item.name}</span>
                 </span>
               }
-              { item.type === "datepicker" && 
+              { item.kind === "datepicker" && 
                 <Space direction="vertical">
                   <RangePicker 
+                    {...item}
                     showTime
                     format={"YYYY-MM-DD"}
                     placement={"bottomLeft"}
@@ -107,7 +108,7 @@ const FormLayout = ({
       >
         {/* <Row> */}
         { items.length > 0 && items.map((item: any, index: number) => {
-          if (item.type === 'input') {
+          if (item.kind === 'input') {
             return (
               <Row>
                 <Col span={24} className={item?.classname}>
@@ -118,19 +119,18 @@ const FormLayout = ({
                     name={item.name} 
                     rules={item?.rules}
                   >
-                    { item?.subtype !== "area" && (
-                      <Input {...item} type={item?.subtype} />
+                    { item?.type !== "area" && (
+                      <Input {...item}/>
                     )}
-                    { item?.subtype === "area" && (
-                      <TextArea 
-                      />
+                    { item?.type === "area" && (
+                      <TextArea {...item}/>
                     )}
                   </Form.Item>
                 </Col>
               </Row>
             )
           }
-          if (item.type === 'select') {
+          if (item.kind === 'select') {
             return (
               <Row>
                 <Col span={24}>
@@ -147,7 +147,7 @@ const FormLayout = ({
               </Row>
             )
           }
-          if (item.type === 'datepicker') {
+          if (item.kind === 'datepicker') {
             return (
               <Row>
                 <Col span={24}>
@@ -157,6 +157,7 @@ const FormLayout = ({
                     name={item.name} 
                   >
                     <RangePicker
+                      {...item}
                       defaultValue={[dayjs(), dayjs()]}
                       allowClear={false}
                       onChange={(time: any) => {
@@ -169,24 +170,23 @@ const FormLayout = ({
               </Row>
             )
           }
-          if (item.type === 'uploadFile') {
+          if (item.kind === 'uploadFile') {
             return (
               <Form.Item 
                 required={item?.require} 
-                // colon={false} 
                 label={item.label} 
                 key={item.key} 
                 name={item.name} 
               >
                 {/* @ts-ignore */}
-                <Upload>
+                <Upload {...item}>
                   {/* @ts-ignore */}
                   <Button icon={<UploadOutlined />}>{item.title}</Button>
                 </Upload>
               </Form.Item>
             )
           }
-          if (item.type === 'uploadImage') {
+          if (item.kind === 'uploadImage') {
             return (
               <Form.Item 
                 required={item?.require} 
@@ -205,7 +205,7 @@ const FormLayout = ({
               </Form.Item>
             )
           }
-          if (item.type === 'action') {
+          if (item.kind === 'action') {
             return (
               <Form.Item 
                 required={item?.require} 

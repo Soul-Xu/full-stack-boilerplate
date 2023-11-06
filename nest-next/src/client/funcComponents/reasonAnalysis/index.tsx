@@ -55,7 +55,7 @@ const ReasonAnalysis = () => {
     labelAlign: "left",
     items: [
       {
-        type: 'select',
+        kind: 'select',
         key: 'reasonClassify',
         value: reasonClassify,
         label: (
@@ -70,8 +70,8 @@ const ReasonAnalysis = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "area",
+        kind: 'input',
+        type: "area",
         key: 'luckyTip',
         value: luckyTip,
         label: (
@@ -83,8 +83,8 @@ const ReasonAnalysis = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "area",
+        kind: 'input',
+        type: "area",
         key: 'triggerAnalysis',
         value: triggerAnalysis,
         label: (

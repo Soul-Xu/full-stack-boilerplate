@@ -73,8 +73,8 @@ const Login: React.FC = () => {
     style: { maxWidth: 600 },
     items: [
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'username',
         value: username,
         style: {
@@ -101,8 +101,8 @@ const Login: React.FC = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "password",
+        kind: 'input',
+        type: "password",
         key: 'password',
         value: password,
         style: {

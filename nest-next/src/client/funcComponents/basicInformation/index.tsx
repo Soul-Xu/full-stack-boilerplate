@@ -74,8 +74,8 @@ const BasicInformation = (props: any) => {
     labelAlign: "left",
     items: [
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'taskId',
         value: taskId,
         label: (
@@ -89,8 +89,8 @@ const BasicInformation = (props: any) => {
         }
       },
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'registrant',
         value: registrant,
         label: (
@@ -104,8 +104,8 @@ const BasicInformation = (props: any) => {
         }
       },
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'registrationTime',
         value: registrationTime,
         label: (
@@ -119,7 +119,7 @@ const BasicInformation = (props: any) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'discoveryChannels',
         value: discoveryChannels,
         label: (
@@ -133,7 +133,7 @@ const BasicInformation = (props: any) => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'reportedBy',
         value: reportedBy,
         label: (
