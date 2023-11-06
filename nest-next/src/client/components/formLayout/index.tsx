@@ -49,7 +49,6 @@ const FormLayout = ({
           }}>
            <Form.Item 
               required={item?.require} 
-              // colon={false} 
               label={item.label} 
               key={item.key} 
               name={item.name}
@@ -66,7 +65,6 @@ const FormLayout = ({
               { item.type === "datepicker" && 
                 <Space direction="vertical">
                   <RangePicker 
-                    // locale={locale}
                     showTime
                     format={"YYYY-MM-DD"}
                     placement={"bottomLeft"}
@@ -121,7 +119,7 @@ const FormLayout = ({
                     rules={item?.rules}
                   >
                     { item?.subtype !== "area" && (
-                      <Input />
+                      <Input {...item} type={item?.subtype} />
                     )}
                     { item?.subtype === "area" && (
                       <TextArea 

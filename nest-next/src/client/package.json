@@ -21,34 +21,22 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.1",
-    "@types/js-base64": "^3.3.1",
     "@types/node": "^16.11.28",
     "@types/ramda": "^0.28.11",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "ant-design": "^1.0.0",
     "antd": "^4.20.2",
-    "antd-img-crop": "^4.2.3",
-    "array-move": "^4.0.0",
     "axios": "^0.27.2",
     "babel-plugin-module-resolver": "^5.0.0",
     "bignumber.js": "^9.1.0",
     "classnames": "^2.3.1",
-    "copy-to-clipboard": "^3.3.1",
-    "craco-less": "^2.0.0",
-    "echarts": "^5.3.2",
-    "echarts-for-react": "^3.0.2",
-    "imagemin-webp": "^8.0.0",
     "immer": "^9.0.12",
-    "js-base64": "^3.7.2",
     "lodash": "^4.17.21",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.5",
     "next-sass": "^1.0.3",
-    "qrcode.react": "^3.1.0",
     "ramda": "^0.28.0",
-    "react-datepicker": "^4.11.0",
-    "react-player": "^2.12.0",
     "redux": "^4.2.0",
     "sass": "^1.62.1",
     "sharp": "^0.32.0",
@@ -58,16 +46,8 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.2.3",
-    "@commitlint/config-conventional": "^16.2.1",
-    "@craco/craco": "^6.4.3",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
-    "commitizen": "^4.2.4",
-    "commitlint-config-cz": "^0.13.3",
-    "concurrently": "^7.1.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "cz-customizable": "^6.3.0",
     "dotenv-cli": "^5.1.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
@@ -81,16 +61,12 @@
     "eslint-plugin-react-hooks": "^4.4.0",
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-typescript": "^0.14.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.4.0",
     "mini-css-extract-plugin": "^2.7.6",
     "node-sass": "^7.0.1",
     "postcss-px-scale": "^1.1.1",
-    "public-ip": "^6.0.1",
     "react-dev-inspector": "^1.8.0",
     "sass-loader": "^12.6.0",
     "simple-progress-webpack-plugin": "^2.0.0",
-    "standard-version": "^9.3.2",
     "stylelint": "^14.7.1",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-prettier-scss": "^0.0.1",
@@ -122,21 +98,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "lint-staged": {
-    "./src/**/*.{js, ts, jsx, tsx}": [
-      "eslint ./src/**/*.{ts, jsx, tsx} --fix"
-    ],
-    "*.{css, scss, sass, html}": [
-      "stylelint ./src/**/*.{css, scss, sass, html} --fix"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./nodejs/node_modules/cz-customizable"
-    },
-    "cz-customizable": {
-      "config": ".cz-config.js"
-    }
   }
 }

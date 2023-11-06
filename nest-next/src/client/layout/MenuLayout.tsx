@@ -51,7 +51,7 @@ const items: MenuItem[] = [
   // @ts-ignore
   getItem('关闭/结单', '8', <TransactionOutlined />),
   // @ts-ignore
-  getItem('图表示例', '9', <AreaChartOutlined />),
+  // getItem('图表示例', '9', <AreaChartOutlined />),
 ];
 
 const itemsMap = {

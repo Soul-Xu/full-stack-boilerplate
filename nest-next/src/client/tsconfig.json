@@ -21,7 +21,6 @@
         "@/*"
       ]
     },
-    "suppressImplicitAnyIndexErrors": true,
     "noImplicitAny": false,
     "noEmit": true,
     "incremental": true
