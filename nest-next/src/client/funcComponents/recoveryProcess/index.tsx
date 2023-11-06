@@ -243,7 +243,7 @@ const RecoveryProcess = (props) => {
         ),
         name: 'businessImpactOverview',
         onChange: (e: any) => {
-          setState("update", { businessImpactOverview: e.target.value.trim()})
+          onHandleChange("businessImpactOverview", e.target.value.trim())
         }
       },
     ],
