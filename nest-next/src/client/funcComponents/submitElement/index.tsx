@@ -20,7 +20,7 @@ const SubmitElement = (props: any) => {
     layout: "horizontal",
     items: [
       {
-        type: 'action',
+        kind: 'action',
         key: 'action',
         name: 'submit',
         customElement: (
