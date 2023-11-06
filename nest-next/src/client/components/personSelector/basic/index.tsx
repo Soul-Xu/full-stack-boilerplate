@@ -12,7 +12,7 @@ const peopleData = [
   // 添加更多人员数据...
 ];
 
-const PersonSelector = () => {
+const PersonSelectorBasic = () => {
   const [selectedPerson, setSelectedPerson] = useState(null);
 
   const handlePersonChange = (value) => {
@@ -35,4 +35,4 @@ const PersonSelector = () => {
   );
 };
 
-export default PersonSelector;
+export default PersonSelectorBasic;
