@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-// import locale from 'antd/es/date-picker/locale/zh_CN';
-// import 'dayjs/locale/zh-cn';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import { Form, Input, Select, DatePicker, Upload, Checkbox, Button, Row, Col, Space } from 'antd'
-import type { DatePickerProps } from 'antd';
 import classnames from 'classnames/bind';
 import style from './index.module.scss';
 import dayjs from 'dayjs'
@@ -13,6 +10,10 @@ const { Option } = Select;
 const { TextArea } = Input
 const { Dragger } = Upload;
 const classNames = classnames.bind(style);
+
+interface ItemProps {
+  kind: string, // input、select、datepicker
+}
 
 interface IFormObjProps {
   name: string,
@@ -64,6 +65,7 @@ const FormLayout = ({
               }
               { item.kind === "datepicker" && 
                 <Space direction="vertical">
+                  {/* @ts-ignore */}
                   <RangePicker 
                     {...item}
                     showTime
@@ -83,6 +85,7 @@ const FormLayout = ({
     const { items, layout, labelAlign, customElements, inRow, ...rest } = formObj
     const [form] = Form.useForm();
 
+    // 配置inRow为true, 则以一行三列的形式进行布局
     if (inRow) {
       return (
         <Form
@@ -106,7 +109,6 @@ const FormLayout = ({
         id={formObj.name} 
         name={formObj.name} 
       >
-        {/* <Row> */}
         { items.length > 0 && items.map((item: any, index: number) => {
           if (item.kind === 'input') {
             return (
@@ -156,6 +158,7 @@ const FormLayout = ({
                     key={item.key} 
                     name={item.name} 
                   >
+                    {/* @ts-ignore */}
                     <RangePicker
                       {...item}
                       defaultValue={[dayjs(), dayjs()]}
@@ -178,7 +181,6 @@ const FormLayout = ({
                 key={item.key} 
                 name={item.name} 
               >
-                {/* @ts-ignore */}
                 <Upload {...item}>
                   {/* @ts-ignore */}
                   <Button icon={<UploadOutlined />}>{item.title}</Button>
@@ -216,7 +218,6 @@ const FormLayout = ({
           }
           return null
         }) }
-        {/* </Row> */}
         <div>
           { typeof customElements === 'function' && (
             <>{customElements()}</>

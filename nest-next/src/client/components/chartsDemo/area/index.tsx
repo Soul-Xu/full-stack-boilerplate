@@ -2,7 +2,7 @@ import { Area } from "@antv/g2plot"
 import { useEffect } from "react";
 import { data } from "./constants"
 
-const AreaDemo = () => {
+const AreaDemo: React.FC = () => {
   useEffect(() => {
     const area = new Area("area-container", {
       data,

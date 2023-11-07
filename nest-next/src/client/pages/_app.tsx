@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="../public/favicon.ico" />
         <title>ITTL流程开发</title>
       </Head>
+      {/* @ts-ignore */}
       <Component {...pageProps} />
     </Suspense>
   )

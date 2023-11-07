@@ -74,7 +74,7 @@ const data = [
   { genre: 'Other', sold: 150 },
 ];
 
-const CustomLineDemo = () => {
+const CustomLineDemo: React.FC = () => {
   useEffect(() => {
     const hill = new P(
       'custom-line-container',

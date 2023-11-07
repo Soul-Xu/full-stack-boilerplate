@@ -2,7 +2,7 @@ import { Mix } from '@antv/g2plot';
 import { useEffect } from 'react';
 import { data } from "./constants"
 
-const CustomMixDemo = () => {
+const CustomMixDemo: React.FC = () => {
   useEffect(() => {
     const plot = new Mix('custom-mix-container', {
       // 关闭 chart 上的 tooltip，子 view 开启 tooltip

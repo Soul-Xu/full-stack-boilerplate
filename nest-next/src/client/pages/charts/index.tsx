@@ -49,21 +49,26 @@ const Charts: NextPage = () => {
         <h1 className={classNames("container-title")}>图表示例</h1>
         <div className={classNames("container-content")}>
           <h3>基础图表</h3>
+          {/* @ts-ignore */}
           <Divider />
           <section className={classNames("content-demos")}>
+            {/* @ts-ignore */}
             <Row className={classNames("row-demo")}>
               <Col span={8} className={classNames("col-demo")}>
                 <Card title="折线图">
+                  {/* @ts-ignore */}
                   <LineDemo />
                 </Card>
               </Col>
               <Col span={8} className={classNames("col-demo")}>
                 <Card title="面积图">
+                  {/* @ts-ignore */}
                   <AreaDemo />
                 </Card>
               </Col>
               <Col span={8} className={classNames("col-demo")}>
                 <Card title="柱状图">
+                  {/* @ts-ignore */}
                   <ColumnDemo />
                 </Card>
               </Col>
@@ -71,16 +76,19 @@ const Charts: NextPage = () => {
             <Row className={classNames("row-demo")}>
               <Col span={8} className={classNames("col-demo")}>
                 <Card title="条形图">
+                  {/* @ts-ignore */}
                   <BarDemo />
                 </Card>
               </Col>
               <Col span={8} className={classNames("col-demo")}>
                 <Card title="饼图">
+                  {/* @ts-ignore */}
                   <PieDemo />
                 </Card>
               </Col>
               <Col span={8} className={classNames("col-demo")}>
                 <Card title="双折线图">
+                  {/* @ts-ignore */}
                   <DualAxesDemo />
                 </Card>
               </Col>
@@ -95,11 +103,13 @@ const Charts: NextPage = () => {
             <Row className={classNames("row-demo")}>
               <Col span={12} className={classNames("col-demo")}>
                 <Card title="自定义图形">
+                  {/* @ts-ignore */}
                   <CustomLineDemo />
                 </Card>
               </Col>
               <Col span={12} className={classNames("col-demo")}>
                 <Card title="自定义环形">
+                  {/* @ts-ignore */}
                   <CustomPieDemo />
                 </Card>
               </Col>
@@ -107,6 +117,7 @@ const Charts: NextPage = () => {
             <Row className={classNames("row-demo")}>
               <Col span={24}>
                 <Card title="图表联动">
+                  {/* @ts-ignore */}
                   <CustomMixDemo />
                 </Card>
               </Col>

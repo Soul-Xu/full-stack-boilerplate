@@ -2,7 +2,7 @@ import { Line } from "@antv/g2plot"
 import { useEffect } from "react";
 import { data } from "./constants"
 
-const LineDemo = () => {
+const LineDemo: React.FC = () => {
   useEffect(() => {
     const line = new Line("line-container", {
       data,

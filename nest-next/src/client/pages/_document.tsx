@@ -13,6 +13,7 @@ class MyDocument extends Document {
         <Head />
         <body>
           <Main />
+          {/* @ts-ignore */}
           <NextScript />
         </body>
       </Html>

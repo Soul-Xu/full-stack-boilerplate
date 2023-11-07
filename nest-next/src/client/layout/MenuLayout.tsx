@@ -52,6 +52,8 @@ const items: MenuItem[] = [
   getItem('关闭/结单', '8', <TransactionOutlined />),
   // @ts-ignore
   // getItem('图表示例', '9', <AreaChartOutlined />),
+    // @ts-ignore
+  getItem('搜索页示例', '10', <AreaChartOutlined />),
 ];
 
 const itemsMap = {
@@ -64,7 +66,8 @@ const itemsMap = {
   "6": "departmentCounterSign",
   "7": "reportCoordination",
   "8": "statement",
-  "9": "charts"
+  "9": "charts",
+  "10": "search"
 }
 
 const transferMaps = (obj: any) => {

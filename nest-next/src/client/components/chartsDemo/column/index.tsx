@@ -2,7 +2,7 @@ import { Column } from "@antv/g2plot"
 import { useEffect } from "react";
 import { data } from "./constants"
 
-const ColumnDemo = () => {
+const ColumnDemo: React.FC = () => {
   useEffect(() => {
     const column = new Column("column-container", {
       data,

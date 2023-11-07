@@ -2,7 +2,7 @@ import { Pie } from "@antv/g2plot"
 import { useEffect } from "react";
 import { data } from "./constants"
 
-const PieDemo = () => {
+const PieDemo: React.FC = () => {
   useEffect(() => {
     const pie = new Pie('pie-container', {
       appendPadding: 10,

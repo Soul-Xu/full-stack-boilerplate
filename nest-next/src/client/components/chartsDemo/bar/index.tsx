@@ -2,7 +2,7 @@ import { Bar } from '@antv/g2plot';
 import { data } from "./constants"
 import { useEffect } from 'react';
 
-const BarDemo = () => {
+const BarDemo: React.FC = () => {
   useEffect(() => {
     const bar = new Bar('bar-container', {
       data,

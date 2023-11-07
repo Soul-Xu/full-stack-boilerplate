@@ -94,6 +94,13 @@ export class ViewController {
     await this.viewService.handler(req, res);
   }
 
+  @Get('search')
+  @ApiTags('Search')
+  @ApiResponse({ status: 200, description: '图表' })
+  public async showSearch(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
   @Get('404')
   @ApiTags('404')
   @ApiResponse({ status: 200, description: '404' })

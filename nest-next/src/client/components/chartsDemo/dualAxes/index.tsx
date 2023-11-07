@@ -2,7 +2,7 @@ import { DualAxes } from "@antv/g2plot"
 import { useEffect } from "react";
 import { data } from "./constants"
 
-const DualAxesDemo = () => {
+const DualAxesDemo: React.FC = () => {
   useEffect(() => {
     const dualAxes = new DualAxes("dualAxes-container", {
       data: [data, data],

@@ -55,7 +55,7 @@ G2.registerShape('interval', 'slice-shape', {
   },
 });
 
-const CustomPieDemo = () => {
+const CustomPieDemo: React.FC = () => {
   useEffect(() => {
     const piePlot = new Pie('custom-pie-container', {
       data,
