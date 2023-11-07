@@ -6,10 +6,7 @@ FROM node:16.14-alpine as builder
 RUN echo 'https://mirrors.aliyun.com/alpine/v3.16/main' > /etc/apk/repositories \
     && echo 'https://mirrors.aliyun.com/alpine/v3.16/community' >> /etc/apk/repositories \
     && apk update \
-    && apk upgrade \
-    && apk add musl=1.2.3-r2
-
-ARG STAGE_ENV
+    && apk upgrade
 
 # copy the package.json to install dependencies
 COPY ./nest-next/package.json ./nest-next/package-lock.json ./

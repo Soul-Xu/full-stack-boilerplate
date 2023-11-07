@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./index.module.scss";
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
-import debounce from 'lodash/debounce';
+// import debounce from 'lodash/debounce';
 
 import FormLayout from "../../components/formLayout"
 import { authState, setAuthState } from "../../store/modules/authSlice"
@@ -39,9 +39,9 @@ const Login: React.FC = () => {
     dispatch({ type, payload: val });
   };
 
-  const onHandleChange = debounce((key: string, value: string) => {
+  const onHandleChange = (key: string, value: string) => {
     setState("update", { [key]: value})
-  }, 1000)
+  }
 
   const onLogin = useCallback(async () => {
     if (!username) {

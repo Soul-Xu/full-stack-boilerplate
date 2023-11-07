@@ -119,7 +119,6 @@ const BasicInformation = (props: any) => {
         type: "text",
         key: 'registrant',
         value: registrant,
-        isshow: showRegistrant,
         label: (
           <span className={classNames("form-item-label-option")}>登记人</span>
         ),

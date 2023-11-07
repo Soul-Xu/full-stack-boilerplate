@@ -56,8 +56,8 @@ const ReceiveAssign: NextPage = () => {
     labelAlign: "left",
     items: [
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'taskId',
         value: taskId,
         label: (
@@ -71,8 +71,8 @@ const ReceiveAssign: NextPage = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'registrant',
         value: registrant,
         label: (
@@ -85,8 +85,8 @@ const ReceiveAssign: NextPage = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'registrationTime',
         value: registrationTime,
         label: (
@@ -99,7 +99,7 @@ const ReceiveAssign: NextPage = () => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'discoveryChannels',
         value: discoveryChannels,
         label: (
@@ -113,7 +113,7 @@ const ReceiveAssign: NextPage = () => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'reportedBy',
         value: reportedBy,
         label: (
@@ -125,7 +125,7 @@ const ReceiveAssign: NextPage = () => {
         }
       },
       {
-        type: 'datepicker',
+        kind: 'datepicker',
         key: 'discoveryTime',
         value: discoveryTime,
         label: (
@@ -148,8 +148,8 @@ const ReceiveAssign: NextPage = () => {
     labelAlign: "left",
     items: [
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'status',
         value: status,
         label: (
@@ -162,7 +162,7 @@ const ReceiveAssign: NextPage = () => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'impactSystem',
         value: impactSystem,
         label: (
@@ -174,7 +174,7 @@ const ReceiveAssign: NextPage = () => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'handleGroup',
         value: handleGroup,
         label: (
@@ -187,7 +187,7 @@ const ReceiveAssign: NextPage = () => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'handler',
         value: handler,
         label: (

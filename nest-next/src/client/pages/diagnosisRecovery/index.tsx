@@ -55,8 +55,8 @@ const DiagnosisRecovery: NextPage = () => {
     labelAlign: "left",
     items: [
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'taskId',
         value: taskId,
         label: (
@@ -70,8 +70,8 @@ const DiagnosisRecovery: NextPage = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'registrant',
         value: registrant,
         label: (
@@ -85,8 +85,8 @@ const DiagnosisRecovery: NextPage = () => {
         }
       },
       {
-        type: 'input',
-        subtype: "text",
+        kind: 'input',
+        type: "text",
         key: 'registrationTime',
         value: registrationTime,
         label: (
@@ -100,7 +100,7 @@ const DiagnosisRecovery: NextPage = () => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'discoveryChannels',
         value: discoveryChannels,
         label: (
@@ -115,7 +115,7 @@ const DiagnosisRecovery: NextPage = () => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'reportedBy',
         value: reportedBy,
         label: (
@@ -138,7 +138,7 @@ const DiagnosisRecovery: NextPage = () => {
     labelAlign: "left",
     items: [
       {
-        type: 'select',
+        kind: 'select',
         key: 'mainFollowUpTeam',
         value: mainFollowUpTeam,
         label: (
@@ -150,7 +150,7 @@ const DiagnosisRecovery: NextPage = () => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'availabilityFollowUpEr',
         value: availabilityFollowUpEr,
         label: (
@@ -162,7 +162,7 @@ const DiagnosisRecovery: NextPage = () => {
         }
       },
       {
-        type: 'select',
+        kind: 'select',
         key: 'assistFollowUpTeam',
         value: assistFollowUpTeam,
         label: (

@@ -47,11 +47,9 @@ const FormLayout = ({
           }: { 
             paddingLeft: "8px", paddingRight: "8px"
           }}>
-          {
-            !item?.isshow && (
-            <Form.Item 
-              required={item?.require} 
-              label={item.label} 
+          <Form.Item 
+            required={item?.require} 
+            label={item.label} 
               key={item.key} 
               name={item.name}
               rules={item?.rules}
@@ -75,8 +73,6 @@ const FormLayout = ({
                 </Space>
               }
             </Form.Item>
-            )
-          }
         </Col>,
       );
     })
