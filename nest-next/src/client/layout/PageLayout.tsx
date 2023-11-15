@@ -1,5 +1,5 @@
 import Image from "next/image"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import { Layout, theme, Breadcrumb } from 'antd';
 import MenuLayout from './MenuLayout';
@@ -36,14 +36,14 @@ const PageLayout: React.FC = ({children}) => {
       </Sider>
       <Layout>
         {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
-        <Content style={{ margin: '0 16px', marginTop: '16px', marginLeft: "216px" }}>
+        <Content style={{ margin: '0 16px', marginTop: '16px', marginLeft: collapsed ? "96px" : "216px" }}>
           {/* <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>User</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
           </Breadcrumb> */}
           { children }
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+        {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer> */}
       </Layout>
     </Layout>
     </div>

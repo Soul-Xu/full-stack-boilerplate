@@ -1,14 +1,20 @@
 import React, { useEffect } from 'react'
+import { useRouter } from 'next/router';
 import { NextPage } from 'next'
-
 import styles from "./index.module.scss";
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
 import debounce from 'lodash/debounce';
+import { Tabs, message, Button, Modal } from 'antd'
+const { confirm } = Modal;
+const { TabPane } = Tabs;
 
-import { useImmerReducer } from "use-immer";
-import { reducer } from "../../utils/reducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useImmerReducer } from "use-immer"
+import { reducer } from "../../utils/reducer"
+import { useDispatch, useSelector } from "react-redux"
+import { setBasicInfo } from '../../store/modules/basicInfoSlice'
+import { setRecovery } from '../../store/modules/recoverySlice'
+import dayjs from "dayjs"
 
 /** component */
 import PageLayout from '../../layout/PageLayout'
@@ -17,115 +23,242 @@ import HandleInformation from '../../funcComponents/handleInformation/index';
 import ReasonAnalysis from '../../funcComponents/reasonAnalysis/index';
 import RecoveryProcess from '../../funcComponents/recoveryProcess/index';
 import AttachmentUpload from '../../funcComponents/attachmentUpload/index';
+import ProcessLayout from '../../funcComponents/processLayout';
+import ProcessIframe from "../../funcComponents/processIframe"
+import CustomLayout from "../../funcComponents/customLayout/index"
 
 interface DiagnosisRecoveryProps {
 }
 
 const initialState = {
-  taskId: "", // 事件编号
-  registrant: "", // 登记人
-  registrationTime: "", // 登记时间
-  discoveryChannels: "", // 发现渠道
-  reportedBy: "", // 报告人
-  discoverer: "", // 发现者
-  mainFollowUpTeam: "", // 主要跟进团队
-  availabilityFollowUpEr: "", // 可用性跟进人 
-  assistFollowUpTeam: "", // 协助跟进团队
+  fdNo: "", // 事件编号
+  fdAuthor: "", // 登记人
+  fdInputTime: "", // 登记时间
+  fdFindWay: "", // 发现渠道
+  fdReportor: "", // 报告人
+  fdFollowTeam: "", // 主要跟进团队
+  fdFollowUser: "", // 可用性跟进人 
+  fdAssistTeam: "", // 协助跟进团队
 }
 
+const frontendURL = "https://yunsucoding.landray.com.cn/web"
+const processId = "1hbcove6fw3mwqa6w268kv4hofm0l21b88w2"
+
 const DiagnosisRecovery: NextPage = () => {
+  const router = useRouter()
   const dispatchRedux = useDispatch();
+  const basicInfo: any = useSelector((state: any) => state.basic.basicInfo)
+  const handleInfo: any = useSelector((state: any) => state.handle.handleInfo)
+  const recovery: any = useSelector((state: any) => state.recovery.recovery)
   const [data, dispatch] = useImmerReducer(reducer, initialState);
   const { 
-    taskId, registrant, registrationTime, discoveryChannels, reportedBy,
-    mainFollowUpTeam, availabilityFollowUpEr, assistFollowUpTeam,
+    fdNo, fdAuthor, fdInputTime, fdFindWay, fdReportor,
+    fdFollowTeam, fdFollowUser, fdAssistTeam,
   } = data as any;
   const setState = (type: string, val: Record<string, any>) => {
     dispatch({ type, payload: val });
   };
 
-  const onHandleChange = debounce((key: string, value: string) => {
-    setState("update", { [key]: value})
+  const fnMaps = [
+    {
+      id: "reasonAnalysis",
+      label: "原因分析",
+      value: () => {
+        return (
+          <>
+            {/* @ts-ignore */}
+            <ReasonAnalysis />
+          </>
+        )
+      }
+    },
+    {
+      id: "recoveryProcess",
+      label: "恢复过程",
+      value: () => {
+        return (
+          <>
+            {/* @ts-ignore */}
+            <RecoveryProcess form4={recoveryForm3} showForm5={false} />
+          </>
+        )
+      }
+    },
+    {
+      id: "attachmentUpload",
+      label: "附件上传",
+      value: () => {
+        return (
+          <>
+          {/* @ts-ignore */}
+          <AttachmentUpload />
+          </>
+        )
+      }
+    },
+    {
+      id: "auditNotes",
+      label: "流程审批意见",
+      value: () => {
+        return (
+          <>
+          {/* @ts-ignore */}
+          <ProcessIframe type="auditNotes" processId={processId} />
+          </>
+        )
+      }
+    },
+    {
+      id: "processStatus",
+      label: "流程状态",
+      value: () => {
+        return (
+          <>
+            {/* @ts-ignore */}
+            <ProcessIframe type="processStatus" processId={processId} />
+          </>
+        )
+      }
+    },
+    {
+      id: "auditChart",
+      label: "流程图",
+      value: () => {
+        return (
+          <>
+            {/* @ts-ignore */}
+            <ProcessIframe type="auditChart" processId={processId} />
+          </>
+        )
+      }
+    },
+    {
+      id: "auditLogs",
+      label: "流程操作日志",
+      value: () => {
+        return (
+          <>
+            {/* @ts-ignore */}
+            <ProcessIframe type="auditLogs" processId={processId} />
+          </>
+        )
+      }
+    },
+  ]
+
+  const onChange = (key: string) => {
+    console.log(key);
+  };
+
+  const onHandleBasic = debounce((key: string, value: string) => {
+    const newValue = key.indexOf("Time") > -1
+    ? dayjs().locale('zh-cn').toString()
+    : value;
+
+    setState("update", { [key]: value });
+
+    const updatedBasicInfo = { ...basicInfo, [key]: newValue };
+    dispatchRedux(setBasicInfo(updatedBasicInfo));
   }, 1000)
+
+  const onHandleChange = debounce((key: string, value: string) => {
+    const newValue = key.indexOf("Time") > -1
+      ? dayjs().locale('zh-cn').toString()
+      : value;
+  
+    setState("update", { [key]: value });
+  
+    const updatedRecovery = { ...recovery, [key]: newValue };
+    dispatchRedux(setRecovery(updatedRecovery));
+  }, 1000);
 
   const basicForm = {
     name: 'diagnosis-basic-form',
-    inRow: true,
+    inRow: 3,
     layout: "horizontal",
-    labelAlign: "left",
+    labelAlign: "right",
     items: [
       {
         kind: 'input',
         type: "text",
-        key: 'taskId',
-        value: taskId,
+        key: 'fdNo',
+        value: fdNo,
+        defaultValue: "SJ-2023092800001",
         label: (
           <span className={classNames("form-item-label-option")}>事件编号</span>
         ),
-        name: 'taskId',
+        name: 'fdNo',
         disabled: true,
-        placeholder: '自动获取',
+        placeholder: '自动生成',
         onChange: (e: any) => {
-          onHandleChange("taskId", e.target.value.trim())
+          onHandleBasic("fdNo", e.target.value.trim())
         }
       },
       {
         kind: 'input',
         type: "text",
-        key: 'registrant',
-        value: registrant,
+        key: 'fdAuthor',
+        value: fdAuthor,
+        defaultValue: "廖",
         label: (
           <span className={classNames("form-item-label-option")}>登记人</span>
         ),
-        name: 'registrant',
+        name: 'fdAuthor',
         disabled: true,
         placeholder: '自动获取',
         onChange: (e: any) => {
-          onHandleChange("registrant", e.target.value.trim())
+          onHandleBasic("fdAuthor", e.target.value.trim())
         }
       },
       {
         kind: 'input',
         type: "text",
-        key: 'registrationTime',
-        value: registrationTime,
+        key: 'fdInputTime',
+        value: fdInputTime,
+        defaultValue: "2023-11-07 08:07:54",
         label: (
           <span className={classNames("form-item-label-option")}>登记时间</span>
         ),
-        name: 'registrationTime',
+        name: 'fdInputTime',
         disabled: true,
         placeholder: '自动获取',
         onChange: (e: any) => {
-          onHandleChange("registrationTime", e.target.value.trim())
+          onHandleBasic("fdInputTime", e.target.value.trim())
         }
       },
       {
         kind: 'select',
-        key: 'discoveryChannels',
-        value: discoveryChannels,
+        key: 'fdFindWay',
+        value: fdFindWay,
+        defaultValue: "告警日志",
         label: (
-          <span className={classNames("form-item-label")}>发现渠道</span>
+          // <span className={classNames("form-item-label")}>发现渠道</span>
+          <span className={classNames("form-item-label-option")}>
+            <span className={classNames("form-item-require")}>*</span>
+            发现渠道
+          </span>
         ),
-        name: 'discoveryChannels',
+        name: 'fdFindWay',
         disabled: true,
-        require: 1,
+        // require: 1,
         placeholder: '请输入发现渠道',
         onChange: (value: any) => {
-          onHandleChange("discoveryChannels", value)
+          onHandleBasic("fdFindWay", value)
         }
       },
       {
         kind: 'select',
-        key: 'reportedBy',
-        value: reportedBy,
+        key: 'fdReportor',
+        value: fdReportor,
+        defaultValue: "廖",
         label: (
           <span className={classNames("form-item-label-option")}>报告人</span>
         ),
-        name: 'reportedBy',
+        name: 'fdReportor',
         disabled: true,
         placeholder: '请输入报告人',
         onChange: (value: any) => {
-          onHandleChange("reportedBy", value)
+          onHandleBasic("fdReportor", value)
         }
       }
     ],
@@ -133,62 +266,158 @@ const DiagnosisRecovery: NextPage = () => {
 
   const recoveryForm3 = {
     name: 'diagnosis-recovery-three',
-    inRow: true,
+    inRow: 3,
     layout: "horizontal",
-    labelAlign: "left",
+    labelAlign: "right",
     items: [
       {
         kind: 'select',
-        key: 'mainFollowUpTeam',
-        value: mainFollowUpTeam,
+        key: 'fdFollowTeam',
+        value: fdFollowTeam,
         label: (
           <span className={classNames("form-item-label-option")}>主要跟进团队</span>
         ),
-        name: 'mainFollowUpTeam',
+        name: 'fdFollowTeam',
         onChange: (value: any) => {
-          onHandleChange("mainFollowUpTeam", value)
+          onHandleChange("fdFollowTeam", value)
         }
       },
       {
         kind: 'select',
-        key: 'availabilityFollowUpEr',
-        value: availabilityFollowUpEr,
+        key: 'fdFollowUser',
+        value: fdFollowUser,
         label: (
           <span className={classNames("form-item-label-option")}>可用性跟进人</span>
         ),
-        name: 'availabilityFollowUpEr',
+        name: 'fdFollowUser',
         onChange: (value: any) => {
-          onHandleChange("availabilityFollowUpEr", value)
+          onHandleChange("fdFollowUser", value)
         }
       },
       {
         kind: 'select',
-        key: 'assistFollowUpTeam',
-        value: assistFollowUpTeam,
+        key: 'fdAssistTeam',
+        value: fdAssistTeam,
         label: (
           <span className={classNames("form-item-label")}>协助跟进团队</span>
         ),
-        name: 'assistFollowUpTeam',
+        name: 'fdAssistTeam',
         onChange: (value: any) => {
-          onHandleChange("assistFollowUpTeam", value)
+          onHandleChange("fdAssistTeam", value)
         }
       },
     ],
   }
 
+  // 点击提交按钮表单校验逻辑
+  const onSubmit = () => {
+    const { fdSubject, fdDesc, fdFindWay, fdReportTime } = basicInfo
+    const { fdProcessDept, fdProcessUser, fdFindTime } = handleInfo
+  
+    // // 表单必填项验证
+    // if (!fdSubject) {
+    //   message.warning("标题不能为空")
+    //   return
+    // }
+    // if (!fdDesc) {
+    //   message.warning("描述不能为空")
+    //   return
+    // }
+    // if (!fdFindWay) {
+    //   message.warning("发现渠道不能为空")
+    //   return
+    // }
+    // if (!fdReportTime) {
+    //   message.warning("发现时间不能为空")
+    //   return
+    // }
+    // if (!fdProcessDept) {
+    //   message.warning("处理组不能为空")
+    //   return
+    // }
+    // if (!fdProcessUser) {
+    //   message.warning("处理人不能为空")
+    //   return
+    // }
+    // if (!fdFindTime) {
+    //   message.warning("发现时间不能为空")
+    //   return
+    // }
+
+    // 节点审批弹窗
+    handleSubmit()
+  }
+
+  // 节点审批的函数
+  const handleSubmit = () => {
+    // 弹出确认框
+    confirm({
+      title: "节点审批",
+      content: `是否确定通过该节点的审批？`,
+      onOk() {
+        // 跳转到下一个节点
+        message.success("通过该节点的审批，即将进入下一节点");
+        router.push("/review")
+      },
+      onCancel() {
+        message.info("拒绝该节点的审批");
+        return
+      }
+    });
+  }
+
   return(
     // @ts-ignore
     <PageLayout>
-      <section className={classNames("container")}>
-        <h1 className={classNames("container-title")}>事件管理</h1>
-        <div className={classNames("container-content")}>
-          <BasicInformation basicFormDetail={basicForm} />
-          <HandleInformation />
-          <ReasonAnalysis />
-          <RecoveryProcess form4={recoveryForm3} showForm5={false} />
-          <AttachmentUpload />
-        </div>
-      </section>
+      <div className={classNames("container")}>
+        <section className={classNames("container-form")}>
+          <div className={classNames("content")}>
+            {/* @ts-ignore */}
+            <BasicInformation basicFormDetail={basicForm} />
+            {/* @ts-ignore */}
+            <HandleInformation />
+            <div className={classNames("content-tabs")}>
+              {/* @ts-ignore */}
+              <Tabs
+                onChange={onChange}
+                type="card"
+                items={fnMaps.map((item, i) => {
+                  return {
+                    label: item.label,
+                    key: item.id,
+                    children: item.value(),
+                  };
+                })}
+              />
+            </div>
+          </div>
+        </section>
+        <section className={classNames("container-process")}>
+          <CustomLayout title="流程引擎" />
+          <iframe
+            id="auditForm"
+            className={classNames("process")}
+            width="1300"
+            src={`${frontendURL}/sys-lbpm/desktop/#/lbpmIntegrate/integrate/auditForm?fdProcessId=${processId}`}
+          />
+        </section>
+      </div>
+      <div className={classNames("action")}>
+        {/* @ts-ignore */}
+        <Button 
+          type="primary" 
+          className={classNames("action-submit")}
+          onClick={onSubmit}
+        >提交</Button>
+        {/* @ts-ignore */}
+        <Button className={classNames("action-btn")}>暂存</Button>
+        {/* @ts-ignore */}
+        <Button className={classNames("action-btn")}>保存</Button>
+        {/* @ts-ignore */}
+        <Button className={classNames("action-btn")}>取消</Button>
+        {/* @ts-ignore */}
+        <Button className={classNames("action-btn")}>重置</Button>
+      </div>
     </PageLayout>
   )
 }

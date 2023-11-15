@@ -9,7 +9,8 @@ import {
   TableOutlined,
   SolutionOutlined,
   TransactionOutlined,
-  AreaChartOutlined
+  AreaChartOutlined,
+  LineChartOutlined
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 import type { MenuProps, MenuTheme } from 'antd/es/menu';
@@ -33,7 +34,7 @@ function getItem(
 
 const items: MenuItem[] = [
   // @ts-ignore
-  getItem('事件管理', '0', <HomeOutlined />),
+  getItem('流程看板', '0', <HomeOutlined />),
   // @ts-ignore
   getItem('接收和分配', '1', <ApartmentOutlined />),
   // @ts-ignore
@@ -51,9 +52,11 @@ const items: MenuItem[] = [
   // @ts-ignore
   getItem('关闭/结单', '8', <TransactionOutlined />),
   // @ts-ignore
-  // getItem('图表示例', '9', <AreaChartOutlined />),
-    // @ts-ignore
-  getItem('搜索页示例', '10', <AreaChartOutlined />),
+  getItem('图表示例', '9', <AreaChartOutlined />),
+  //  // @ts-ignore
+  getItem('搜索示例', '10', <AreaChartOutlined />),
+  // // @ts-ignore
+  // getItem('证劵运维值班', '11', <LineChartOutlined />),
 ];
 
 const itemsMap = {
@@ -67,7 +70,8 @@ const itemsMap = {
   "7": "reportCoordination",
   "8": "statement",
   "9": "charts",
-  "10": "search"
+  "10": "search",
+  "11": "stock"
 }
 
 const transferMaps = (obj: any) => {

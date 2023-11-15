@@ -6,39 +6,42 @@ import styles from "./index.module.scss"
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
 import debounce from 'lodash/debounce';
+import { setRecovery } from '../../store/modules/recoverySlice';
 
 import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
 
 import { Divider } from 'antd';
 
 const initialState = {
-  recoveryCode: "", // 恢复代码
-  potentialProblem: false, // 潜在问题
-  recoveryProcessDescription: "", // 恢复过程描述
-  availabilityImpact: "", // 可用性影响初步评估
-  mainFollowUpTeam: "", // 主要跟进团队
-  availabilityFollowUpEr: "", // 可用性跟进人 
-  assistFollowUpTeam: "", // 协助跟进团队
-  businessRecoveryTime: "", // 业务恢复时间
-  affectedDuration: "", // 受影响时长
-  availabilityRate: "", // 可用性定级
-  businessImpactRatio: "", // 业务影响比例
-  responsibleTeamAndProportion: "", // 责任团队及承担比例
-  businessImpactOverview: "" // 业务影响概述
+  fdRestoreCode: "", // 恢复代码
+  fdHasProblem: false, // 潜在问题
+  fdRestoreDesc: "", // 恢复过程描述
+  fdEffectEstimate: "", // 可用性影响初步评估
+  fdFollowTeam: "", // 主要跟进团队
+  fdFollowUser: "", // 可用性跟进人 
+  fdAssistTeam: "", // 协助跟进团队
+  fdRestoreTime: "", // 业务恢复时间
+  fdEffectDuration: "", // 受影响时长
+  fdUsabilityLevel: "", // 可用性定级
+  fdEffectPercent: "", // 业务影响比例
+  fdBearPercent: "", // 责任团队及承担比例
+  fdEffectDesc: "" // 业务影响概述
 }
 
 const RecoveryProcess = (props) => {
   const { form4, showForm5 } = props
   const dispatchRedux = useDispatch();
+  const recovery = useSelector((state: any) => state.recovery.recovery)
   const [data, dispatch] = useImmerReducer(reducer, initialState);
   const { 
-    recoveryCode, recoveryProcessDescription, availabilityImpact,
-    mainFollowUpTeam, availabilityFollowUpEr, assistFollowUpTeam,
-    businessRecoveryTime, affectedDuration, availabilityRate,
-    businessImpactRatio, responsibleTeamAndProportion,
-    businessImpactOverview, potentialProblem
+    fdRestoreCode, fdRestoreDesc, fdEffectEstimate,
+    fdFollowTeam, fdFollowUser, fdAssistTeam,
+    fdRestoreTime, fdEffectDuration, fdUsabilityLevel,
+    fdEffectPercent, fdBearPercent,
+    fdEffectDesc, fdHasProblem
   } = data as any;
   const setState = (type: string, val: Record<string, any>) => {
     dispatch({ type, payload: val });
@@ -46,33 +49,37 @@ const RecoveryProcess = (props) => {
 
   const onHandleChange = debounce((key: string, value: string) => {
     setState("update", { [key]: value})
+    dispatchRedux(setRecovery({
+      ...recovery,
+      [key]: value
+    }))
   }, 1000)
 
   const formObj1 = {
-    inRow: true,
+    inRow: 2,
     name: 'recovery-form-one',
     layout: "horizontal",
-    labelAlign: "left",
+    labelAlign: "right",
     items: [
       {
         kind: 'select',
-        key: 'recoveryCode',
-        value: recoveryCode,
+        key: 'fdRestoreCode',
+        value: fdRestoreCode,
         label: (
           <span className={classNames("form-item-label-option")}>恢复代码</span>
         ),
-        name: 'recoveryCode',
+        name: 'fdRestoreCode',
         onChange: (value: any) => {
-          onHandleChange("recoveryCode", value)
+          onHandleChange("fdRestoreCode", value)
         },
       },
       {
         kind: 'checkout',
-        key: 'potentialProblem',
-        checked: potentialProblem,
+        key: 'fdHasProblem',
+        checked: fdHasProblem,
         name: '潜在问题',
-        onChange: (checked: any) => {
-          onHandleChange("potentialProblem", checked)
+        onChange: (e: any) => {
+          onHandleChange("fdHasProblem", e.target.checked)
         }
       },
     ],
@@ -81,19 +88,19 @@ const RecoveryProcess = (props) => {
   const formObj2 = {
     name: 'recovery-form-one',
     layout: "horizontal",
-    labelAlign: "left",
+    labelAlign: "right",
     items: [
       {
         kind: 'input',
         type: "area",
-        key: 'recoveryProcessDescription',
-        value: recoveryProcessDescription,
+        key: 'fdRestoreDesc',
+        value: fdRestoreDesc,
         label: (
           <span className={classNames("form-item-label-option")}>恢复过程描述</span>
         ),
-        name: 'recoveryProcessDescription',
+        name: 'fdRestoreDesc',
         onChange: (e: any) => {
-          onHandleChange("recoveryProcessDescription", e.target.value.trim())
+          onHandleChange("fdRestoreDesc", e.target.value.trim())
         }
       },
     ],
@@ -101,20 +108,20 @@ const RecoveryProcess = (props) => {
 
   const formObj3 = {
     name: 'recovery-form-two',
-    inRow: true,
+    inRow: 2,
     layout: "horizontal",
-    labelAlign: "left",
+    labelAlign: "right",
     items: [
       {
         kind: 'select',
-        key: 'availabilityImpact',
-        value: availabilityImpact,
+        key: 'fdEffectEstimate',
+        value: fdEffectEstimate,
         label: (
           <span className={classNames("form-item-label-option")}>可用性影响初步评估</span>
         ),
-        name: 'availabilityImpact',        
+        name: 'fdEffectEstimate',        
         onChange: (value: any) => {
-          onHandleChange("availabilityImpact", value)
+          onHandleChange("fdEffectEstimate", value)
         }
       },
     ],
@@ -122,107 +129,107 @@ const RecoveryProcess = (props) => {
 
   const formObj4 = {
     name: 'recovery-form-three',
-    inRow: true,
+    inRow: 2,
     layout: "horizontal",
-    labelAlign: "left",
+    labelAlign: "right",
     items: [
       {
         kind: 'select',
-        key: 'mainFollowUpTeam',
-        value: mainFollowUpTeam,
+        key: 'fdFollowTeam',
+        value: fdFollowTeam,
         label: (
           <span className={classNames("form-item-label-option")}>主要跟进团队</span>
         ),
-        name: 'mainFollowUpTeam',        
+        name: 'fdFollowTeam',        
         onChange: (value: any) => {
-          onHandleChange("mainFollowUpTeam", value)
+          onHandleChange("fdFollowTeam", value)
         }
       },
       {
         kind: 'select',
-        key: 'availabilityFollowUpEr',
-        value: availabilityFollowUpEr,
+        key: 'fdFollowUser',
+        value: fdFollowUser,
         label: (
           <span className={classNames("form-item-label-option")}>可用性跟进人</span>
         ),
-        name: 'availabilityFollowUpEr',
+        name: 'fdFollowUser',
         onChange: (value: any) => {
-          onHandleChange("availabilityFollowUpEr", value)
+          onHandleChange("fdFollowUser", value)
         }
       },
       {
         kind: 'select',
-        key: 'assistFollowUpTeam',
-        value: assistFollowUpTeam,
+        key: 'fdAssistTeam',
+        value: fdAssistTeam,
         label: (
           <span className={classNames("form-item-label-option")}>协助跟进团队</span>
         ),
-        name: 'assistFollowUpTeam',
+        name: 'fdAssistTeam',
         onChange: (value: any) => {
-          onHandleChange("assistFollowUpTeam", value)
+          onHandleChange("fdAssistTeam", value)
         }
       },
       {
         kind: 'input',
         type: "text",
-        key: 'businessRecoveryTime',
-        value: businessRecoveryTime,
+        key: 'fdRestoreTime',
+        value: fdRestoreTime,
         label: (
           <span className={classNames("form-item-label-option")}>业务恢复时间</span>
         ),
-        name: 'businessRecoveryTime',
+        name: 'fdRestoreTime',
         onChange: (e: any) => {
-          onHandleChange("businessRecoveryTime", e.target.value.trim())
+          onHandleChange("fdRestoreTime", e.target.value.trim())
         }
       },
       {
         kind: 'select',
-        key: 'affectedDuration',
-        value: affectedDuration,
+        key: 'fdEffectDuration',
+        value: fdEffectDuration,
         label: (
           <span className={classNames("form-item-label-option")}>受影响时长</span>
         ),
-        name: 'affectedDuration',
+        name: 'fdEffectDuration',
         onChange: (value: any) => {
-          onHandleChange("affectedDuration", value)
+          onHandleChange("fdEffectDuration", value)
         }
       },
       {
         kind: 'select',
-        key: 'availabilityRate',
-        value: availabilityRate,
+        key: 'fdUsabilityLevel',
+        value: fdUsabilityLevel,
         label: (
           <span className={classNames("form-item-label-option")}>可用性定级</span>
         ),
-        name: 'availabilityRate',        
+        name: 'fdUsabilityLevel',        
         onChange: (value: any) => {
-          onHandleChange("availabilityRate", value)
+          onHandleChange("fdUsabilityLevel", value)
         }
       },
       {
         kind: 'input',
         type: "text",
-        key: 'businessImpactRatio',
-        value: businessImpactRatio,
+        key: 'fdEffectPercent',
+        value: fdEffectPercent,
         label: (
           <span className={classNames("form-item-label-option")}>业务影响比例</span>
         ),
-        name: 'businessImpactRatio',
+        name: 'fdEffectPercent',
         onChange: (e: any) => {
-          onHandleChange("businessImpactRatio", e.target.value.trim())
+          onHandleChange("fdEffectPercent", e.target.value.trim())
         }
       },
       {
         kind: 'input',
         type: "text",
-        key: 'responsibleTeamAndProportion',
-        value: responsibleTeamAndProportion,
+        key: 'fdBearPercent',
+        value: fdBearPercent,
         label: (
           <span className={classNames("form-item-label-option")}>责任团队及承担比例</span>
         ),
-        name: 'responsibleTeamAndProportion',
+        name: 'fdBearPercent',
         onChange: (e: any) => {
-          onHandleChange("responsibleTeamAndProportion", e.target.value.trim())
+          onHandleChange("fdBearPercent", e.target.value.trim())
         }
       }
     ],
@@ -231,19 +238,19 @@ const RecoveryProcess = (props) => {
   const formObj5 = {
     name: 'recovery-form-four',
     layout: "horizontal",
-    labelAlign: "left",
+    labelAlign: "right",
     items: [
       {
         kind: 'input',
         type: "area",
-        key: 'businessImpactOverview',
-        value: businessImpactOverview,
+        key: 'fdEffectDesc',
+        value: fdEffectDesc,
         label: (
           <span className={classNames("form-item-label-option")}>业务影响概述</span>
         ),
-        name: 'businessImpactOverview',
+        name: 'fdEffectDesc',
         onChange: (e: any) => {
-          onHandleChange("businessImpactOverview", e.target.value.trim())
+          onHandleChange("fdEffectDesc", e.target.value.trim())
         }
       },
     ],
@@ -254,12 +261,17 @@ const RecoveryProcess = (props) => {
 
   return (
     <>
-      <CustomLayout title="恢复过程" />
+      {/* <CustomLayout title="恢复过程" /> */}
       <div>
+        {/* @ts-ignore */}
         <FormLayout formObj={formObj1} />
+        {/* @ts-ignore */}
         <FormLayout formObj={formObj2} />
+        {/* @ts-ignore */}
         <FormLayout formObj={formObj3} />
+        {/* @ts-ignore */}
         <FormLayout formObj={formRender4} />
+        {/* @ts-ignore */}
         { formRender5 && <FormLayout formObj={formObj5} /> }
       </div>
     </>

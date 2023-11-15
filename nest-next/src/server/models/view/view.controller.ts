@@ -96,8 +96,15 @@ export class ViewController {
 
   @Get('search')
   @ApiTags('Search')
-  @ApiResponse({ status: 200, description: '图表' })
+  @ApiResponse({ status: 200, description: '搜索页' })
   public async showSearch(@Req() req: Request, @Res() res: Response) {
+    await this.viewService.handler(req, res);
+  }
+
+  @Get('stock')
+  @ApiTags('Stock')
+  @ApiResponse({ status: 200, description: '证劵运维值班' })
+  public async showStock(@Req() req: Request, @Res() res: Response) {
     await this.viewService.handler(req, res);
   }
 

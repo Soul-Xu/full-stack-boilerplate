@@ -18,7 +18,7 @@
 
     .form-title {
       width: 268px;
-      font-size: 24px;
+      font-size: 20px;
       text-align: center;
     }
 
@@ -31,11 +31,11 @@
 
   :global {
     .ant-form-item-no-colon {
-      height: 24px;
+      height: 20px;
       font-size: 14px;
       font-family: MicrosoftYaHei;
       color: #242424 !important;
-      line-height: 24px;
+      line-height: 20px;
     }
   }
 }

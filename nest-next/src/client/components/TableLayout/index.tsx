@@ -60,7 +60,7 @@ const TableLayout = ({
           <div>
             <Table
               columns={columns}
-              dataSource={datasource?.tableData}
+              dataSource={datasource}
               pagination={{
                 hideOnSinglePage: true,
                 current: page,

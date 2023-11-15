@@ -4,99 +4,106 @@ import styles from "./index.module.scss"
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
 import debounce from 'lodash/debounce';
+import { setEffect } from '../../store/modules/effectSlice';
 
 import { useImmerReducer } from "use-immer";
 import { reducer } from "../../utils/reducer";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
 
 const initialState = {
-  legalCompliance: "", // 合法合规
-  corporateBusiness: "", // 公司业务
-  informationSystem: "", // 信息系统
-  impactReputation: "", // 影响声誉
-  others: "" // 其他
+  fdLegal: "", // 合法合规
+  fdBusiness: "", // 公司业务
+  fdItSystem: "", // 信息系统
+  fdReputation: "", // 影响声誉
+  fdOther: "" // 其他
 }
 
 const EffectAnalysis = () => {
   const dispatchRedux = useDispatch();
+  const effect = useSelector((state: any) => state.effect.effect)
   const [data, dispatch] = useImmerReducer(reducer, initialState);
-  const { legalCompliance, corporateBusiness, informationSystem, impactReputation, others } = data as any;
+  const { fdLegal, fdBusiness, fdItSystem, fdReputation, fdOther } = data as any;
   const setState = (type: string, val: Record<string, any>) => {
     dispatch({ type, payload: val });
   };
   
   const onHandleChange = debounce((key: string, value: string) => {
     setState("update", { [key]: value})
+    dispatchRedux(setEffect({
+      ...effect,
+      [key]: value
+    }))
   }, 1000)
 
   const formObj = {
     name: 'effect-form',
     layout: "horizontal",
-    labelAlign: "left",
+    labelAlign: "right",
     items: [
       {
         kind: 'input',
         type: "area",
-        key: 'legalCompliance',
-        value: legalCompliance,
+        key: 'fdLegal',
+        value: fdLegal,
         label: (
           <span className={classNames("form-item-label-option")}>合法合规</span>
         ),
-        name: 'legalCompliance',
+        name: 'fdLegal',
         onChange: (e: any) => {
-          onHandleChange("legalCompliance", e.target.value.trim())
+          onHandleChange("fdLegal", e.target.value.trim())
         }
       },
       {
         kind: 'input',
         type: "area",
-        key: 'corporateBusiness',
-        value: corporateBusiness,
+        key: 'fdBusiness',
+        value: fdBusiness,
         label: (
           <span className={classNames("form-item-label-option")}>公司业务</span>
         ),
-        name: 'corporateBusiness',
+        name: 'fdBusiness',
         onChange: (e: any) => {
-          onHandleChange("corporateBusiness", e.target.value.trim())
+          onHandleChange("fdBusiness", e.target.value.trim())
         }
       },
       {
         kind: 'input',
         type: "area",
-        key: 'informationSystem',
-        value: informationSystem,
+        key: 'fdItSystem',
+        value: fdItSystem,
         label: (
           <span className={classNames("form-item-label-option")}>信息系统</span>
         ),
-        name: 'informationSystem',
+        name: 'fdItSystem',
         onChange: (e: any) => {
-          onHandleChange("informationSystem", e.target.value.trim())
+          onHandleChange("fdItSystem", e.target.value.trim())
         }
       },
       {
         kind: 'input',
         type: "area",
-        key: 'impactReputation',
-        value: impactReputation,
+        key: 'fdReputation',
+        value: fdReputation,
         label: (
           <span className={classNames("form-item-label-option")}>影响声誉</span>
         ),
-        name: 'impactReputation',
+        name: 'fdReputation',
         onChange: (e: any) => {
-          onHandleChange("impactReputation", e.target.value.trim())
+          onHandleChange("fdReputation", e.target.value.trim())
         }
       },
       {
         kind: 'input',
         type: "area",
-        key: 'others',
-        value: others,
+        key: 'fdOther',
+        value: fdOther,
         label: (
           <span className={classNames("form-item-label-option")}>其他</span>
         ),
-        name: 'others',
+        name: 'fdOther',
         onChange: (e: any) => {
-          onHandleChange("others", e.target.value.trim())
+          onHandleChange("fdOther", e.target.value.trim())
         }
       },
     ],
@@ -104,8 +111,9 @@ const EffectAnalysis = () => {
 
   return (
     <>
-      <CustomLayout title="影响分析" />
+      {/* <CustomLayout title="影响分析" /> */}
       <div>
+        {/* @ts-ignore */}
         <FormLayout formObj={formObj} />
       </div>
     </>

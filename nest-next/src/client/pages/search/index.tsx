@@ -62,40 +62,41 @@ const data = [
     group: "xxxx",
     createAt: "xxxx-xx-xx"
   },
-  {
-    key: "ding",
-    sort: 7,
-    username: "ding",
-    group: "xxxx",
-    createAt: "xxxx-xx-xx"
-  },
-  {
-    key: "pick",
-    sort: 8,
-    username: "pick",
-    group: "xxxx",
-    createAt: "xxxx-xx-xx"
-  },
-  {
-    key: "ten",
-    sort: 9,
-    username: "ten",
-    group: "xxxx",
-    createAt: "xxxx-xx-xx"
-  },   {
-    key: "seven",
-    sort: 10,
-    username: "seven",
-    group: "xxxx",
-    createAt: "xxxx-xx-xx"
-  },
-  {
-    key: "ella",
-    sort: 11,
-    username: "ella",
-    group: "xxxx",
-    createAt: "xxxx-xx-xx"
-  },
+  // {
+  //   key: "ding",
+  //   sort: 7,
+  //   username: "ding",
+  //   group: "xxxx",
+  //   createAt: "xxxx-xx-xx"
+  // },
+  // {
+  //   key: "pick",
+  //   sort: 8,
+  //   username: "pick",
+  //   group: "xxxx",
+  //   createAt: "xxxx-xx-xx"
+  // },
+  // {
+  //   key: "ten",
+  //   sort: 9,
+  //   username: "ten",
+  //   group: "xxxx",
+  //   createAt: "xxxx-xx-xx"
+  // },  
+  // {
+  //   key: "seven",
+  //   sort: 10,
+  //   username: "seven",
+  //   group: "xxxx",
+  //   createAt: "xxxx-xx-xx"
+  // },
+  // {
+  //   key: "ella",
+  //   sort: 11,
+  //   username: "ella",
+  //   group: "xxxx",
+  //   createAt: "xxxx-xx-xx"
+  // },
 ]
 
 const Search: NextPage = () => {
@@ -117,7 +118,7 @@ const Search: NextPage = () => {
   }
 
    // 删除数据的函数
-   const handleDelete = (record: any) => {
+  const handleDelete = (record: any) => {
     // 弹出确认框，确保用户确认删除操作
     confirm({
       title: "确认删除",
@@ -169,7 +170,9 @@ const Search: NextPage = () => {
     ],
     customElements: () => (
       <section>
+        {/* @ts-ignore */}
         <Button className={classNames("btn-action")} onClick={() => console.log("search")} type='primary'>查询</Button>
+        {/* @ts-ignore */}
         <Button className={classNames("btn-action")} onClick={() => console.log("add")}>添加</Button>
       </section>
     )
@@ -188,6 +191,7 @@ const Search: NextPage = () => {
         render: (_: any, record: any) => {
           return (
             <>
+              {/* @ts-ignore */}
               <Button className={classNames("btn-action")} onClick={() => handleDelete(record)}>删除</Button>
             </>
           )
@@ -211,6 +215,7 @@ const Search: NextPage = () => {
       <PageLayout>
         <section className={classNames("container")}>
           <div className={classNames("container-content")}>
+            {/* @ts-ignore */}
             <SearchLayout formObj={formObj} tabelObj={tabelObj} />
           </div>
         </section>

@@ -1,10 +1,5 @@
 import { Method } from "axios";
 
-/**
- * 配置thunk
- * 如果不传url默认为 /api/setting/settings_by_main_type_sub_type
- */
-
 export interface AsyncThunkValueObject {
   method: Method;
   url: string;
@@ -19,23 +14,23 @@ export type AsyncThunkValue = AsyncThunkValueObject | Method;
  * 需要将thunk名手动添加到 AsyncThunkMap 中，方便代码提示
  */
 
-// 其他
-const other: Record<string, AsyncThunkValue> = {
-  getCoin: {
+// demo
+const demo: Record<string, AsyncThunkValue> = {
+  getDemo: {
     method: "get",
-    url: "/api/others/wallet/config"
+    url: "/api/demo"
   },
-  getWallet: {
-    method: "get",
-    url: "/api/others/wallet/manualLog"
-  },
-  batchByUsername: {
+  batchDemo: {
     method: "post",
-    url: "/api/others/wallet/batchByUsername"
+    url: "/api/demo/"
   },
-  postWallet: {
+  postDemo: {
     method: "post",
-    url: "/api/others/wallet/handle"
+    url: "/api/demo"
+  },
+  deleteDemo: {
+    method: "delete",
+    url: "/api/demo/:id"
   }
 };
 
@@ -44,7 +39,7 @@ const asyncThunkMap: Record<string, AsyncThunkValue> = {
     method: "post",
     url: "/api/login"
   },
-  ...other
+  ...demo
 };
 
 export type AsyncThunkMap =

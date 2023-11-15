@@ -1,16 +1,10 @@
 .container {
-  padding: 20px 0;
   height: auto;
   min-height: 500px;
   background: #fff;
 
-  .container-title {
-    display: flex;
-    justify-content: center;
-  }
-
-  .container-content {
-    padding-left: 27px;
-    padding-right: 27px;
+  .content {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

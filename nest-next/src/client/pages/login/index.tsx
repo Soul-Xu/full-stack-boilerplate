@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./index.module.scss";
 import classnames from "classnames/bind";
 const classNames = classnames.bind(styles);
-// import debounce from 'lodash/debounce';
 
 import FormLayout from "../../components/formLayout"
 import { authState, setAuthState } from "../../store/modules/authSlice"
@@ -94,10 +93,10 @@ const Login: React.FC = () => {
         // formItemLayout,
         label: '账号',
         labelStyle: {
-          height: "24px",
+          height: "20px",
           fontSize: "14px",
           color: "#242424",
-          lineHeight: "24px"
+          lineHeight: "20px"
         },
         // name: 'username',
         placeholder: '请输入账号',
@@ -121,10 +120,10 @@ const Login: React.FC = () => {
         },
         label: '密码',
         labelStyle: {
-          height: "24px",
+          height: "20px",
           fontSize: "14px",
           color: "#242424",
-          lineHeight: "24px"
+          lineHeight: "20px"
         },
         name: 'password',
         placeholder: '请输入密码',
